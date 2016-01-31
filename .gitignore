@@ -1,5 +1,7 @@
 #2340 ignores#
 *.class
+.gradle/
+build/
 
 # IDEA Ignores #
 ################
