@@ -1,3 +1,6 @@
+#2340 ignores#
+*.class
+
 # IDEA Ignores #
 ################
 *.iml
