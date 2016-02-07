@@ -1,42 +1,34 @@
 package edu.gatech.cs2340.nochill;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
 
-public class MainActivity extends ActionBarActivity {
+
+public class Register extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        Button button = (Button) findViewById(R.id.button);
-        Button register = (Button) findViewById(R.id.register);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSecondActivity();
-            }
-        });
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToRegistration();
+                goToMainActivity();
             }
         });
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_register, menu);
         return true;
     }
 
@@ -55,14 +47,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToSecondActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    private void goToRegistration() {
-        Intent intent = new Intent(this, Register.class);
-        startActivity(intent);
-    }
-
 }
