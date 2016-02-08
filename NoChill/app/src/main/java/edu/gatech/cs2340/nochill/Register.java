@@ -7,22 +7,52 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class Register extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 goToMainActivity();
             }
         });
+
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                checkPassAndConfirm();
+            }
+        });
+    }
+
+    private void checkPassAndConfirm(){
+        String password = ((EditText) findViewById(R.id.regPassword)).getText().toString();
+        String confirmPassword = ((EditText) findViewById(R.id.confirmPassword)).getText().toString();
+        if(password.equals(confirmPassword)) {
+            Toast.makeText(this, "Congratulations, you have registered!!!!",
+                    Toast.LENGTH_LONG).show();
+            goToLoggedIn();
+        } else {
+            Toast.makeText(this, "Password and Confirm password do not match",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void goToLoggedIn() {
+        Intent intent = new Intent(this, LoggedInActivity.class);
+        startActivity(intent);
     }
 
     @Override

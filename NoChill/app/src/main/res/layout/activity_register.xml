@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText4"
+        android:id="@+id/regPassword"
         android:layout_alignTop="@+id/password"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -116,21 +116,21 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Confirm Password: "
-        android:id="@+id/confirmPassword"
+        android:id="@+id/confirmPass"
         android:textSize="20dp"
-        android:layout_below="@+id/editText4"
-        android:layout_toLeftOf="@+id/editText4"
-        android:layout_toStartOf="@+id/editText4" />
+        android:layout_below="@+id/regPassword"
+        android:layout_toLeftOf="@+id/regPassword"
+        android:layout_toStartOf="@+id/regPassword" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText5"
-        android:layout_alignBottom="@+id/confirmPassword"
-        android:layout_toEndOf="@+id/confirmPassword"
-        android:layout_toRightOf="@+id/confirmPassword" />
+        android:id="@+id/confirmPassword"
+        android:layout_below="@+id/regPassword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -140,5 +140,15 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/password"
         android:layout_toEndOf="@+id/password" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/registerButton"
+        android:layout_alignTop="@+id/cancelButton"
+        android:layout_toRightOf="@+id/cancelButton"
+        android:layout_toEndOf="@+id/cancelButton" />
 
 </RelativeLayout>
