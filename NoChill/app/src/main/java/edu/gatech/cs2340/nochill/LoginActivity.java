@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.*;
 import android.widget.*;
@@ -19,7 +20,7 @@ public class LoginActivity extends ActionBarActivity {
 
 
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
-        cancelButton.setOnClickListener(new View.OnClickListener(){
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainActivity();
@@ -33,6 +34,7 @@ public class LoginActivity extends ActionBarActivity {
                 checkUserAndPass();
             }
         });
+
     }
 
     private void goToMainActivity() {
@@ -43,15 +45,16 @@ public class LoginActivity extends ActionBarActivity {
     private void checkUserAndPass(){
         String username = ((EditText) findViewById(R.id.userName)).getText().toString();
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
-        if(username.equals("user") && password.equals("pass")) {
+
+        Profile p = Users.getUser(username);
+        if(p != null && p.getPassword().equals(password)){
             Toast.makeText(this, "Congratulations you entered the APP!!!!",
                     Toast.LENGTH_LONG).show();
             goToLoggedIn();
         } else {
-            Toast.makeText(this, "Wrong password, go away",
+            Toast.makeText(this, "Incorrect credentials",
                     Toast.LENGTH_LONG).show();
         }
-
 
     }
 

@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -20,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSecondActivity();
+                goToLogin();
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -55,13 +57,15 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToSecondActivity() {
+    private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     private void goToRegistration() {
         Intent intent = new Intent(this, Register.class);
+        ArrayList<Profile> profileList = new ArrayList<Profile>();
+        intent.putParcelableArrayListExtra("profiles", profileList);
         startActivity(intent);
     }
 

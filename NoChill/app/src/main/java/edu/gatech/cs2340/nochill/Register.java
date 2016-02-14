@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
+import java.util.List;
 
 
 public class Register extends ActionBarActivity {
@@ -38,20 +40,32 @@ public class Register extends ActionBarActivity {
     }
 
     private void checkPassAndConfirm(){
-        String password = ((EditText) findViewById(R.id.regPassword)).getText().toString();
-        String confirmPassword = ((EditText) findViewById(R.id.confirmPassword)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordLine)).getText().toString();
+        String confirmPassword = ((EditText) findViewById(R.id.confirmPasswordLine)).getText().toString();
         if(password.equals(confirmPassword)) {
             Toast.makeText(this, "Congratulations, you have registered!!!!",
                     Toast.LENGTH_LONG).show();
-            goToLoggedIn();
+
+
+            String firstName = ((EditText) findViewById(R.id.firstNameLine)).getText().toString();
+            String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
+            String email = ((EditText) findViewById(R.id.emailLine)).getText().toString();
+            String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
+
+
+            Users.addUser(new Profile(firstName, lastName, email, username, password));
+
+
+
+            goToLogin();
         } else {
             Toast.makeText(this, "Password and Confirm password do not match",
                     Toast.LENGTH_LONG).show();
         }
     }
 
-    private void goToLoggedIn() {
-        Intent intent = new Intent(this, LoggedInActivity.class);
+    private void goToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
