@@ -24,6 +24,16 @@ public class LoggedInActivity extends ActionBarActivity {
                 goToLogin();
             }
         });
+
+
+        Button proButt = ((Button) findViewById(R.id.profileButton));
+        proButt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToProfile();
+            }
+        });
+
     }
 
     @Override
@@ -50,6 +60,11 @@ public class LoggedInActivity extends ActionBarActivity {
 
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToProfile(){
+        Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 }
