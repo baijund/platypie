@@ -43,9 +43,6 @@ public class Register extends ActionBarActivity {
         String password = ((EditText) findViewById(R.id.passwordLine)).getText().toString();
         String confirmPassword = ((EditText) findViewById(R.id.confirmPasswordLine)).getText().toString();
         if(password.equals(confirmPassword)) {
-            Toast.makeText(this, "Congratulations, you have registered!!!!",
-                    Toast.LENGTH_LONG).show();
-
 
             String firstName = ((EditText) findViewById(R.id.firstNameLine)).getText().toString();
             String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
@@ -53,11 +50,16 @@ public class Register extends ActionBarActivity {
             String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
 
 
-            Users.addUser(new Profile(firstName, lastName, email, username, password));
+            boolean added = Users.addUser(new Profile(firstName, lastName, email, username, password));
 
-
-
-            goToLogin();
+            if (!added){
+                Toast.makeText(this, "User already exists, choose another username.",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Congratulations, you have registered!!!!",
+                        Toast.LENGTH_LONG).show();
+                goToLogin();
+            }
         } else {
             Toast.makeText(this, "Password and Confirm password do not match",
                     Toast.LENGTH_LONG).show();

@@ -26,7 +26,7 @@
             android:name=".LoggedInActivity"
             android:label="@string/title_activity_logged_in"></activity>
         <activity
-            android:name=".UserProfile"
+            android:name=".UserProfileActivity"
             android:label="@string/title_activity_user_profile"></activity>
     </application>
 

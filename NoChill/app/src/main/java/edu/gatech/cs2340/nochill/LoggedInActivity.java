@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.nochill;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -64,7 +63,7 @@ public class LoggedInActivity extends ActionBarActivity {
     }
 
     private void goToProfile(){
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);
     }
 }

@@ -2,7 +2,7 @@ package edu.gatech.cs2340.nochill;
 
 import android.util.Log;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,11 +10,16 @@ import java.util.List;
  */
 public class Users {
 
-    private static List<Profile> userList = new ArrayList<Profile>();
+    private static List<Profile> userList = new LinkedList<Profile>();
 
-    public static void addUser(Profile p){
+    //Returns false if unable to add user or else returns true
+    public static boolean addUser(Profile p){
+        if (getUser(p.getUsername()) != null){
+            return false;
+        }
         userList.add(p);
         Log.i("Users", "User "+ p.getUsername() +" has been added.");
+        return true;
     }
 
     public static Profile getUser(String username){

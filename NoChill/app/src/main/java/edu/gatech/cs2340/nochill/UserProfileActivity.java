@@ -3,7 +3,7 @@ package edu.gatech.cs2340.nochill;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-public class UserProfile extends ActionBarActivity {
+public class UserProfileActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
