@@ -22,6 +22,18 @@ public class Users {
         return true;
     }
 
+    //Removes old profile and adds new one
+    public static void editUser(Profile p){
+        removeUser(p.getUsername());
+        addUser(p);
+    }
+
+    //Returns true if successfully removed user or else returns false
+    public static boolean removeUser(String username){
+        Profile p = getUser(username);
+        return userList.remove(p);
+    }
+
     public static Profile getUser(String username){
         for(Profile p : userList){
             if (p.getUsername().equals(username)){
