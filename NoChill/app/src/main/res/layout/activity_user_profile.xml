@@ -9,4 +9,93 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".UserProfileActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name: "
+        android:textSize="20dp"
+        android:id="@+id/fnamelabel"
+        android:layout_alignTop="@+id/fname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fname"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/fnamelabel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name:"
+        android:textSize="20dp"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/fname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lname"
+        android:layout_below="@+id/fname"
+        android:layout_alignRight="@+id/fname"
+        android:layout_alignEnd="@+id/fname"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_alignLeft="@+id/fname"
+        android:layout_alignStart="@+id/fname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="About Me"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/aboutme"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/aboutme"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/lname"
+        android:layout_alignEnd="@+id/lname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        android:textSize="20dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/lname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_toRightOf="@+id/fnamelabel"
+        android:layout_alignRight="@+id/lname"
+        android:layout_alignEnd="@+id/lname" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Profile"
+        android:id="@+id/updateButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp" />
+
 </RelativeLayout>

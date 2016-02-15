@@ -64,8 +64,6 @@ public class MainActivity extends ActionBarActivity {
 
     private void goToRegistration() {
         Intent intent = new Intent(this, Register.class);
-        ArrayList<Profile> profileList = new ArrayList<Profile>();
-        intent.putParcelableArrayListExtra("profiles", profileList);
         startActivity(intent);
     }
 

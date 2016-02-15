@@ -29,4 +29,8 @@ public class CurrentUser {
         return loggedIn;
     }
 
+    public static Profile getProfile(){
+        return profile;
+    }
+
 }
