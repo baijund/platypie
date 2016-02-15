@@ -50,6 +50,7 @@ public class LoginActivity extends ActionBarActivity {
         if(p != null && p.getPassword().equals(password)){
             Toast.makeText(this, "Congratulations you entered the APP!!!!",
                     Toast.LENGTH_LONG).show();
+            CurrentUser.login(p);
             goToLoggedIn();
         } else {
             Toast.makeText(this, "Incorrect credentials",
