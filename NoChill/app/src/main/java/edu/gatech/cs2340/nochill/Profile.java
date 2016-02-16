@@ -14,13 +14,15 @@ public class Profile {
     private String username;
     private String password;
     private String aboutMe;
+    private String major;
 
-    public Profile(String firstName, String lastName, String email, String username, String password) {
+    public Profile(String firstName, String lastName, String email, String username, String password, String major) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.major = major;
     }
 
     /**
@@ -100,4 +102,20 @@ public class Profile {
      * @param about
      */
     public void setAboutMe(String about){aboutMe = about;}
+
+    /**
+     * Returns the user's about me
+     * @return String representing profile major
+     */
+    public String getMajor(){
+        return major;
+    }
+
+    /**
+     * Sets the user's new about me
+     * @param m major
+     */
+    public void setMajor(String m){
+        major = m;
+    }
 }

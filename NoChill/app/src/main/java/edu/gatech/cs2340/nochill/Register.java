@@ -48,9 +48,9 @@ public class Register extends ActionBarActivity {
             String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
             String email = ((EditText) findViewById(R.id.emailLine)).getText().toString();
             String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
+            String major = ((EditText) findViewById(R.id.majorLine)).getText().toString();
 
-
-            boolean added = Users.addUser(new Profile(firstName, lastName, email, username, password));
+            boolean added = Users.addUser(new Profile(firstName, lastName, email, username, password, major));
 
             if (!added){
                 Toast.makeText(this, "User already exists, choose another username.",

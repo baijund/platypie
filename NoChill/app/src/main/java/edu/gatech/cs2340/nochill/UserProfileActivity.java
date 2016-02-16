@@ -15,6 +15,7 @@ public class UserProfileActivity extends ActionBarActivity {
     EditText lname;
     EditText email;
     EditText aboutMe;
+    EditText major;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,14 @@ public class UserProfileActivity extends ActionBarActivity {
         lname = (EditText) findViewById(R.id.lname);
         email = (EditText) findViewById(R.id.email);
         aboutMe = (EditText) findViewById(R.id.aboutme);
+        major = (EditText) findViewById(R.id.major);
+
 
         fname.setText(p.getFirstName(), TextView.BufferType.EDITABLE);
         lname.setText(p.getLastName(), TextView.BufferType.EDITABLE);
         email.setText(p.getEmail(), TextView.BufferType.EDITABLE);
         aboutMe.setText(p.getAboutMe(), TextView.BufferType.EDITABLE);
+        major.setText(p.getMajor(), TextView.BufferType.EDITABLE);
 
         Button updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener(){
@@ -48,6 +52,7 @@ public class UserProfileActivity extends ActionBarActivity {
         p.setEmail(email.getText().toString());
         p.setLastName(lname.getText().toString());
         p.setFirstName(fname.getText().toString());
+        p.setMajor(major.getText().toString());
         CurrentUser.editProfile(p);
         Toast.makeText(this, "Profile Edited!",
                 Toast.LENGTH_LONG).show();

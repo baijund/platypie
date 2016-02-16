@@ -34,9 +34,8 @@
         android:id="@+id/lastName"
         android:textSize="20dp"
         android:layout_below="@+id/firstNameLine"
-        android:layout_alignLeft="@+id/firstName"
-        android:layout_alignStart="@+id/firstName"
-        android:layout_marginTop="29dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -75,10 +74,9 @@
         android:text="Username: "
         android:id="@+id/username"
         android:textSize="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/emailLine"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignEnd="@+id/password" />
+        android:layout_below="@+id/lastNameLine"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -150,5 +148,25 @@
         android:layout_alignTop="@+id/cancelButton"
         android:layout_toRightOf="@+id/cancelButton"
         android:layout_toEndOf="@+id/cancelButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Major: "
+        android:id="@+id/textView9"
+        android:textSize="20dp"
+        android:layout_below="@+id/usernameLine"
+        android:layout_alignRight="@+id/email"
+        android:layout_alignEnd="@+id/email" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/majorLine"
+        android:ems="10"
+        android:layout_below="@+id/usernameLine"
+        android:layout_alignLeft="@+id/usernameLine"
+        android:layout_alignStart="@+id/usernameLine" />
 
 </RelativeLayout>
