@@ -12,7 +12,9 @@ public class Users {
 
     private static List<Profile> userList = new LinkedList<Profile>();
 
-    //Returns false if unable to add user or else returns true
+    /**
+     * Returns false if unable to add user or else returns true
+     */
     public static boolean addUser(Profile p){
         if (getUser(p.getUsername()) != null){
             return false;
@@ -22,18 +24,27 @@ public class Users {
         return true;
     }
 
-    //Removes old profile and adds new one
+    /**
+     * Removes old profile and adds new one
+     */
     public static void editUser(Profile p){
         removeUser(p.getUsername());
         addUser(p);
     }
 
-    //Returns true if successfully removed user or else returns false
+    /**
+     * Returns true if successfully removed user or else returns false
+     */
     public static boolean removeUser(String username){
         Profile p = getUser(username);
         return userList.remove(p);
     }
 
+    /**
+     * Returns the user's profile when a username is entered
+     * @param username
+     * @return
+     */
     public static Profile getUser(String username){
         for(Profile p : userList){
             if (p.getUsername().equals(username)){

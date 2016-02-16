@@ -37,11 +37,17 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * Goes to main screen if user presses cancel
+     */
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Checks if password matches confirm password and stores profile in an arraylist
+     */
     private void checkUserAndPass(){
         String username = ((EditText) findViewById(R.id.userName)).getText().toString();
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
@@ -81,6 +87,9 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Goes to login screen after account has been made
+     */
     private void goToLoggedIn() {
         Intent intent = new Intent(this, LoggedInActivity.class);
         startActivity(intent);

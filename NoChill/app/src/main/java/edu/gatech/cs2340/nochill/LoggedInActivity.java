@@ -57,11 +57,17 @@ public class LoggedInActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Goes to login screen
+     */
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to profile screen
+     */
     private void goToProfile(){
         Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);

@@ -23,33 +23,81 @@ public class Profile {
         this.password = password;
     }
 
-
+    /**
+     * Returns first name of user
+     * @return firstName
+     */
     public String getFirstName(){
         return firstName;
     }
+
+    /**
+     * Sets the first name of user
+     * @param fname is the user's new first name
+     */
     public void setFirstName(String fname){
         firstName = fname;
     }
 
+    /**
+     * Returns the user's last name
+     * @return lastName
+     */
     public String getLastName(){
         return lastName;
     }
+
+    /**
+     * Sets the user's new last name
+     * @param lname
+     */
     public void setLastName(String lname){lastName = lname;}
 
+    /**
+     * Returns the user's email
+     * @return email
+     */
     public String getEmail(){
         return email;
     }
+
+    /**
+     * Sets the user's new email
+     * @param em
+     */
     public void setEmail(String em){email = em;}
 
+    /**
+     * Returns the user's password
+     * @return password
+     */
     public String getPassword(){
         return password;
     }
+
+    /**
+     * Sets the user's new password
+     * @param pword
+     */
     public void setPassword(String pword){password = pword;}
 
+    /**
+     * Returns the user's username
+     * @return username
+     */
     public String getUsername(){
         return username;
     }
 
+    /**
+     * Returns the user's about me
+     * @return aboutMe
+     */
     public String getAboutMe(){ return aboutMe;}
+
+    /**
+     * Sets the user's new about me
+     * @param about
+     */
     public void setAboutMe(String about){aboutMe = about;}
 }

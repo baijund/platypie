@@ -57,11 +57,17 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Goes to login screen if user presses login
+     */
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to registration screen if user presses register
+     */
     private void goToRegistration() {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);

@@ -40,6 +40,9 @@ public class UserProfileActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * Updates the user's profile
+     */
     private void updateProfile(){
         p.setAboutMe(aboutMe.getText().toString());
         p.setEmail(email.getText().toString());
