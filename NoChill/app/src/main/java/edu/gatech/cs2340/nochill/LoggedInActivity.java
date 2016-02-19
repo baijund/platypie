@@ -7,15 +7,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import edu.gatech.cs2340.nochill.models.Movies;
 
 public class LoggedInActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
 
+        Movies.initiateRequestQueue(this);
         Button logout = ((Button) findViewById(R.id.logout));
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
