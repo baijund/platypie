@@ -9,7 +9,5 @@
     <string name="title_activity_logged_in">LoggedInActivity</string>
     <string name="title_activity_user_profile">UserProfile</string>
     <string name="title_activity_new_releases">NewReleases</string>
-    <string name="title_activity_test">test</string>
-    <string name="title_activity_hello">hello</string>
-    <string name="title_activity_search">Search</string>
+    <string name="title_activity_new_dvd">NewDVDActivity</string>
 </resources>

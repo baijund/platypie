@@ -34,8 +34,8 @@
             android:name=".NewReleases"
             android:label="@string/title_activity_new_releases" />
         <activity
-            android:name=".Search"
-            android:label="@string/title_activity_search"></activity>
+            android:name=".NewDVDActivity"
+            android:label="@string/title_activity_new_dvd"></activity>
     </application>
 
 </manifest>

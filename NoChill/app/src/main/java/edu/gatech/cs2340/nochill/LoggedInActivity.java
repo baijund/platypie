@@ -26,7 +26,7 @@ public class LoggedInActivity extends ActionBarActivity {
         Movies.initializeRequestQueue(this);
 
         Button logout = ((Button) findViewById(R.id.logout));
-        logout.setOnClickListener(new View.OnClickListener(){
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToLogin();
@@ -58,6 +58,14 @@ public class LoggedInActivity extends ActionBarActivity {
                         Log.i("REQUEST THING", "IT DIDNT RESPOND");
                     }
                 });
+            }
+        });
+
+        Button dvdButt = ((Button) findViewById(R.id.dvdButton));
+        dvdButt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToDVD();
             }
         });
 
@@ -98,6 +106,11 @@ public class LoggedInActivity extends ActionBarActivity {
      */
     private void goToProfile(){
         Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToDVD() {
+        Intent intent = new Intent(this, NewDVDActivity.class);
         startActivity(intent);
     }
 }
