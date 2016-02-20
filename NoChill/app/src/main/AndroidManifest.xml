@@ -36,6 +36,12 @@
         <activity
             android:name=".NewDVDActivity"
             android:label="@string/title_activity_new_dvd"></activity>
+
+        <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search"></activity>
+
+
     </application>
 
 </manifest>

@@ -67,6 +67,25 @@ public class LoggedInActivity extends ActionBarActivity {
             public void onClick(View v) {
                 goToDVD();
             }
+
+        });
+
+        Button searchButt = ((Button) findViewById(R.id.searchButton));
+        searchButt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToSearch();
+            }
+
+        });
+
+        Button newReleasesButt = ((Button) findViewById(R.id.releasesButton));
+        newReleasesButt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToNewReleases();
+            }
+
         });
 
     }
@@ -111,6 +130,16 @@ public class LoggedInActivity extends ActionBarActivity {
 
     private void goToDVD() {
         Intent intent = new Intent(this, NewDVDActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToSearch() {
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
+    }
+
+    private void goToNewReleases() {
+        Intent intent = new Intent(this, NewReleases.class);
         startActivity(intent);
     }
 }
