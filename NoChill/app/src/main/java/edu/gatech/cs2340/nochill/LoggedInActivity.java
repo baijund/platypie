@@ -3,10 +3,15 @@ package edu.gatech.cs2340.nochill;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import edu.gatech.cs2340.nochill.models.Movies;
 
 public class LoggedInActivity extends ActionBarActivity {
@@ -17,7 +22,9 @@ public class LoggedInActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
 
-        Movies.initiateRequestQueue(this);
+        //Creates the request queue
+        Movies.initializeRequestQueue(this);
+
         Button logout = ((Button) findViewById(R.id.logout));
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -32,6 +39,25 @@ public class LoggedInActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 goToProfile();
+            }
+        });
+
+        Button releasesButton = ((Button) findViewById(R.id.releasesButton));
+        releasesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Movies.requestNewReleases(new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.i("REQUEST THING", response);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("REQUEST THING", "IT DIDNT RESPOND");
+                    }
+                });
             }
         });
 

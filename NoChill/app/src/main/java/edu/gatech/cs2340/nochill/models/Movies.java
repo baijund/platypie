@@ -15,13 +15,19 @@ import com.android.volley.toolbox.Volley;
  */
 public class Movies {
     private static String API_KEY = "yedukp76ffytfuy24zsqk7f5";
+    private static String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    private static String NewReleaseURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
 
     // Instantiate the RequestQueue.
     private static RequestQueue queue;
     static String url ="http://www.google.com";
 
 
-    public static void initiateRequestQueue(Context c){
+    public static void initializeRequestQueue(Context c){
+        queue = Volley.newRequestQueue(c);
+    }
+
+    public static void dontUseThis(Context c){
         queue = Volley.newRequestQueue(c);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -29,7 +35,7 @@ public class Movies {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Log.i("REQUEST THING", "IT RESPONDED");
+                        Log.i("REQUEST THING", response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -37,8 +43,15 @@ public class Movies {
                 Log.i("REQUEST THING", "IT DIDNT RESPOND");
             }
         });
-// Add the request to the RequestQueue.
+        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
+    public static void requestNewReleases(Response.Listener<String> rl, Response.ErrorListener el){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, NewReleaseURL, rl, el);
+        queue.add(stringRequest);
+    }
+
+
 
 }
