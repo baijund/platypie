@@ -32,7 +32,10 @@
             android:label="@string/title_activity_user_profile" />
         <activity
             android:name=".NewReleases"
-            android:label="@string/title_activity_new_releases"></activity>
+            android:label="@string/title_activity_new_releases" />
+        <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search"></activity>
     </application>
 
 </manifest>
