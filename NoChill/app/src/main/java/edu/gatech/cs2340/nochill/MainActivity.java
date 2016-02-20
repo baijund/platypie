@@ -17,6 +17,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //HARDCODED ADMIN COMMENT OUT BEFORE DEMO
+        Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");
+        Users.addUser(ADMIN);
+
         Button button = (Button) findViewById(R.id.button);
         Button register = (Button) findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {

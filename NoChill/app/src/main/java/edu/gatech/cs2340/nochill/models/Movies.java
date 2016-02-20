@@ -27,26 +27,6 @@ public class Movies {
         queue = Volley.newRequestQueue(c);
     }
 
-    public static void dontUseThis(Context c){
-        queue = Volley.newRequestQueue(c);
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.i("REQUEST THING", response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("REQUEST THING", "IT DIDNT RESPOND");
-            }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-    }
-
     public static void requestNewReleases(Response.Listener<String> rl, Response.ErrorListener el){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, NewReleaseURL, rl, el);
         queue.add(stringRequest);
