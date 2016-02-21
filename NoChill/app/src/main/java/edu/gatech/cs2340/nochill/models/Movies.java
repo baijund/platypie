@@ -14,9 +14,10 @@ import com.android.volley.toolbox.Volley;
  * Created by Baijun on 2/19/2016.
  */
 public class Movies {
-    private static String API_KEY = "yedukp76ffytfuy24zsqk7f5";
-    private static String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
-    private static String NewReleaseURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
+    private static final String API_KEY = "yedukp76ffytfuy24zsqk7f5";
+    private static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    private static final String NewReleaseURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
+    private static final String InTheatersURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey="+API_KEY;
 
     // Instantiate the RequestQueue.
     private static RequestQueue queue;
@@ -32,6 +33,10 @@ public class Movies {
         queue.add(stringRequest);
     }
 
+    public static void requestInTheater(Response.Listener<String> rl, Response.ErrorListener el){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, InTheatersURL, rl, el);
+        queue.add(stringRequest);
+    }
 
 
 }
