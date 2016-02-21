@@ -45,14 +45,6 @@ public class LoggedInActivity extends ActionBarActivity {
             }
         });
 
-        Button releasesButton = ((Button) findViewById(R.id.releasesButton));
-        releasesButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         Button dvdButt = ((Button) findViewById(R.id.dvdButton));
         dvdButt.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -126,12 +118,12 @@ public class LoggedInActivity extends ActionBarActivity {
     }
 
     private void goToSearch() {
-        Intent intent = new Intent(this, Search.class);
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
     private void goToNewReleases() {
-        Intent intent = new Intent(this, NewReleases.class);
+        Intent intent = new Intent(this, NewReleasesActivity.class);
         startActivity(intent);
     }
 }
