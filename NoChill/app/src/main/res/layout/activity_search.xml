@@ -25,4 +25,13 @@
         android:id="@+id/listView3"
         android:layout_below="@+id/editText2"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search!"
+        android:id="@+id/searchButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 </RelativeLayout>

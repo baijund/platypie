@@ -36,7 +36,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Realeases"
+        android:text="New Releases"
         android:id="@+id/releasesButton"
         android:layout_below="@+id/searchButton"
         android:layout_centerHorizontal="true" />
