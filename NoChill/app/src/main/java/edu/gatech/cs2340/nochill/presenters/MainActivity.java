@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.presenters;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.*;
-import java.util.List;
-import java.util.ArrayList;
+
+import edu.gatech.cs2340.nochill.models.Profile;
+import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.Users;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -73,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
      * Goes to registration screen if user presses register
      */
     private void goToRegistration() {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.models;
 
 /**
  * Created by Baijun on 2/19/2016.

@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.presenters;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -15,21 +15,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.cs2340.nochill.models.MovieItem;
+import edu.gatech.cs2340.nochill.models.MovieList;
+import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.Movies;
 
-public class NewReleasesActivity extends ActionBarActivity {
+public class NewDVDActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_releases);
+        setContentView(R.layout.activity_new_dvd);
 
-
-        //Initiate the request queue
+        //Creates the request queue
         Movies.initializeRequestQueue(this);
 
         final List l = new ArrayList<MovieItem>();
-        Movies.requestInTheater(new Response.Listener<String>() {
+        Movies.requestNewReleases(new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // Display the first 500 characters of the response string.
@@ -57,9 +59,8 @@ public class NewReleasesActivity extends ActionBarActivity {
         });
 
 
-        ListView lv = (ListView)findViewById(R.id.theaterReleasesList);
+        ListView lv = (ListView)findViewById(R.id.movieList);
         lv.setAdapter(new MovieList(this, R.layout.movie_item, l));
-
 
     }
 

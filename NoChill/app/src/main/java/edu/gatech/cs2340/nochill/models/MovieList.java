@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.models;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import edu.gatech.cs2340.nochill.R;
 
 /**
  * Created by Baijun on 2/19/2016.

@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.models;
 
 import android.util.Log;
 

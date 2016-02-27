@@ -1,14 +1,17 @@
-package edu.gatech.cs2340.nochill;
+package edu.gatech.cs2340.nochill.presenters;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.*;
 import android.widget.*;
 import android.widget.EditText;
+
+import edu.gatech.cs2340.nochill.models.CurrentUser;
+import edu.gatech.cs2340.nochill.models.Profile;
+import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.Users;
 
 
 public class LoginActivity extends ActionBarActivity {

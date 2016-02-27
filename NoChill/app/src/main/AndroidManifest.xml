@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".presenters.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,26 +19,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".presenters.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".Register"
+            android:name=".presenters.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
-            android:name=".LoggedInActivity"
+            android:name=".presenters.LoggedInActivity"
             android:label="@string/title_activity_logged_in" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".presenters.UserProfileActivity"
             android:label="@string/title_activity_user_profile" />
         <activity
-            android:name=".NewReleasesActivity"
+            android:name=".presenters.NewReleasesActivity"
             android:label="@string/title_activity_new_releases" />
         <activity
-            android:name=".NewDVDActivity"
+            android:name=".presenters.NewDVDActivity"
             android:label="@string/title_activity_new_dvd"></activity>
 
         <activity
-            android:name=".SearchActivity"
+            android:name=".presenters.SearchActivity"
             android:label="@string/title_activity_search"></activity>
 
 
