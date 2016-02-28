@@ -35,13 +35,13 @@
             android:label="@string/title_activity_new_releases" />
         <activity
             android:name=".presenters.NewDVDActivity"
-            android:label="@string/title_activity_new_dvd"></activity>
-
+            android:label="@string/title_activity_new_dvd" />
         <activity
             android:name=".presenters.SearchActivity"
-            android:label="@string/title_activity_search"></activity>
-
-
+            android:label="@string/title_activity_search" />
+        <activity
+            android:name=".presenters.descriptionActivity"
+            android:label="@string/title_activity_description"></activity>
     </application>
 
 </manifest>
