@@ -16,8 +16,12 @@ public class descriptionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_description);
 
         MovieItem movie = CurrentMovie.getMovie();
+
         TextView titleText = (TextView) findViewById(R.id.movieTitle);
         titleText.setText(movie.getName());
+
+        TextView synopsisText = (TextView) findViewById(R.id.synopsisText);
+        synopsisText.setText(movie.getDescription());
 
     }
 

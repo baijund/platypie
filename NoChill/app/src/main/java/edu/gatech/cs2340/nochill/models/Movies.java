@@ -1,7 +1,5 @@
 package edu.gatech.cs2340.nochill.models;
 
-import android.util.Log;
-
 import java.util.HashMap;
 
 /**
@@ -42,7 +40,7 @@ public class Movies {
      * @param id
      * @param rating
      */
-    public static void rateMovie(int id, int rating){
+    public static void rateMovie(int id, double rating){
         MovieItem m = getMovie(id);
         double oldavg = m.getAverageRating();
         int oldnumrats = m.getNumRatings();
