@@ -91,6 +91,7 @@ public class NewDVDActivity extends ActionBarActivity {
                 Object o = lv.getItemAtPosition(position);
                 MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
                 CurrentMovie.setMovie(movie);
+
                 //Toast.makeText(getBaseContext(), str.getActors().get(0), Toast.LENGTH_SHORT).show();
             }
         });

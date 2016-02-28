@@ -17,6 +17,14 @@ public class CurrentMovie {
 
     /**
      *
+     * @return
+     */
+    public static MovieItem getMovie(){
+        return movie;
+    }
+
+    /**
+     *
      * @param rating
      */
     public static void rate(int rating){
