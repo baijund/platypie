@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,9 +19,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.cs2340.nochill.models.CurrentMovie;
 import edu.gatech.cs2340.nochill.models.MovieItem;
 import edu.gatech.cs2340.nochill.models.MovieList;
 import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.MovieRequester;
 import edu.gatech.cs2340.nochill.models.Movies;
 
 public class SearchActivity extends ActionBarActivity {
@@ -29,10 +32,6 @@ public class SearchActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-
-        //Creates the request queue
-        Movies.initializeRequestQueue(this);
 
         Button searchButt = ((Button) findViewById(R.id.searchButton));
 
@@ -53,7 +52,7 @@ public class SearchActivity extends ActionBarActivity {
         String q = queryEditText.getText().toString();
         final List l = new ArrayList<MovieItem>();
 
-        Movies.query(q, new Response.Listener<String>() {
+        MovieRequester.query(q, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // Display the first 500 characters of the response string.
@@ -64,9 +63,31 @@ public class SearchActivity extends ActionBarActivity {
                     JSONArray jsonMoviesArray = jsonRootObject.optJSONArray("movies");
                     for (int i = 0; i < jsonMoviesArray.length(); i++) {
                         JSONObject j = jsonMoviesArray.getJSONObject(i);
-                        Log.i("Movie : ", j.getString("title") + j.getInt("year") + j.getString("mpaa_rating"));
+                        Log.i("Movie title: ", j.getString("title"));
 
-                        l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating")));
+                        int id = j.getInt("id");
+                        String description = j.getString("synopsis");
+
+                        List<String> actors = new ArrayList<String>();
+                        JSONArray actorsArr = j.getJSONArray("abridged_cast");
+                        for (int k = 0; k < actorsArr.length(); k++) {
+                            JSONObject actorobj = actorsArr.getJSONObject(k);
+                            actors.add(actorobj.getString("name"));
+                        }
+
+                        MovieItem m = Movies.getMovie(id);
+
+                        double averageRating;
+                        int numRatings;
+                        if (m != null) {
+                            averageRating = m.getAverageRating();
+                            numRatings = m.getNumRatings();
+                        } else {
+                            averageRating = 0;
+                            numRatings = 0;
+                        }
+
+                        l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
                     }
 
                 } catch (JSONException e) {
@@ -80,8 +101,18 @@ public class SearchActivity extends ActionBarActivity {
             }
         });
 
-        ListView lv = (ListView)findViewById(R.id.titleList);
+        final ListView lv = (ListView)findViewById(R.id.titleList);
         lv.setAdapter(new MovieList(this, R.layout.movie_item, l));
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Object o = lv.getItemAtPosition(position);
+                MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
+                CurrentMovie.setMovie(movie);
+                //Toast.makeText(getBaseContext(), str.getActors().get(0), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

@@ -36,7 +36,7 @@ public class MovieList extends ArrayAdapter<MovieItem> {
         TextView year = (TextView) rowView.findViewById(R.id.movieItemYear);
 
         title.setText(list.get(position).getName());
-        rating.setText(list.get(position).getRating());
+        rating.setText(list.get(position).getRating_mpaa());
         year.setText(String.valueOf(list.get(position).getYear()));
 
         return rowView;

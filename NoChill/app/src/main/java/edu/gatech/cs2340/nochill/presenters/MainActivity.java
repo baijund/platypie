@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.*;
 
+import edu.gatech.cs2340.nochill.models.MovieRequester;
 import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.Requests;
 import edu.gatech.cs2340.nochill.models.Users;
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +20,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Creates the request queue
+        Requests.initializeRequestQueue(this);
 
         //HARDCODED ADMIN COMMENT OUT BEFORE DEMO
         Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");

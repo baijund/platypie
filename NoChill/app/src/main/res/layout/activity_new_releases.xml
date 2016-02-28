@@ -15,5 +15,6 @@
         android:id="@+id/theaterReleasesList"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:choiceMode="none" />
+        android:choiceMode="none"
+        android:clickable="false" />
 </RelativeLayout>
