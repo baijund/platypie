@@ -18,6 +18,8 @@ public class descriptionActivity extends ActionBarActivity {
         MovieItem movie = CurrentMovie.getMovie();
         TextView titleText = (TextView) findViewById(R.id.movieTitle);
         titleText.setText(movie.getName());
+
     }
+
 
 }

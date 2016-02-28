@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -91,10 +92,20 @@ public class NewDVDActivity extends ActionBarActivity {
                 Object o = lv.getItemAtPosition(position);
                 MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
                 CurrentMovie.setMovie(movie);
+                goToActivityDescription();
 
                 //Toast.makeText(getBaseContext(), str.getActors().get(0), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+    }
+    /**
+     * Goes to activity description
+     */
+    private void goToActivityDescription() {
+        Intent intent = new Intent(this, descriptionActivity.class);
+        startActivity(intent);
     }
 
 }
