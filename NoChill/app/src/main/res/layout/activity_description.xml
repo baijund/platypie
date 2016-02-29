@@ -76,10 +76,10 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/ratingtxt"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="89dp"
         android:layout_below="@+id/actorsText"
-        android:layout_alignLeft="@+id/movieTitle"
-        android:layout_alignStart="@+id/movieTitle" />
+        android:layout_alignLeft="@+id/mpaaText"
+        android:layout_alignStart="@+id/mpaaText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,10 +97,12 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/mpaaText"
+        android:layout_marginTop="55dp"
         android:layout_below="@+id/ratingtxt"
-        android:layout_alignLeft="@+id/ratingtxt"
-        android:layout_alignStart="@+id/ratingtxt"
-        android:layout_marginTop="42dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="28dp"
+        android:layout_marginEnd="28dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -118,10 +120,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:text="Rate"
+        android:id="@+id/rateButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/mpaaText"
-        android:layout_alignStart="@+id/mpaaText" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

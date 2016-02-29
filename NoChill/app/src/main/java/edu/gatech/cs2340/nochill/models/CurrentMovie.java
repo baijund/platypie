@@ -27,8 +27,8 @@ public class CurrentMovie {
      *
      * @param rating
      */
-    public static void rate(int rating){
-        Movies.rateMovie(movie.getID(), rating);
+    public static void rate(double rating){
+        Movies.rateMovie(movie, rating);
     }
 
 }

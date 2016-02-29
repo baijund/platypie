@@ -37,13 +37,21 @@ public class Movies {
 
     /**
      *
-     * @param id
+     * @param mov
      * @param rating
      */
-    public static void rateMovie(int id, double rating){
-        MovieItem m = getMovie(id);
-        double oldavg = m.getAverageRating();
-        int oldnumrats = m.getNumRatings();
+    public static void rateMovie(MovieItem mov, double rating){
+        MovieItem m = getMovie(mov.getID());
+        double oldavg;
+        int oldnumrats;
+        if (m != null){
+            oldavg = m.getAverageRating();
+            oldnumrats = m.getNumRatings();
+        } else {
+            oldavg = 0;
+            oldnumrats = 0;
+            m = mov;
+        }
         double newavg = (oldavg*oldnumrats + rating)/(oldnumrats + 1);
         m.setAverageRating(newavg);
         m.setNumRatings(oldnumrats + 1);
