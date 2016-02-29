@@ -10,7 +10,7 @@ import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.CurrentMovie;
 import edu.gatech.cs2340.nochill.models.MovieItem;
 
-public class mid extends ActionBarActivity {
+public class DescriptionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

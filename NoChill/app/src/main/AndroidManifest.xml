@@ -40,7 +40,7 @@
             android:name=".presenters.SearchActivity"
             android:label="@string/title_activity_search" />
         <activity
-            android:name=".presenters.mid"
+            android:name=".presenters.DescriptionActivity"
             android:label="@string/title_activity_description"></activity>
     </application>
 
