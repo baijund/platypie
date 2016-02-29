@@ -122,7 +122,7 @@ public class SearchActivity extends ActionBarActivity {
      * Goes to activity description
      */
     private void goToActivityDescription() {
-        Intent intent = new Intent(this, descriptionActivity.class);
+        Intent intent = new Intent(this, mid.class);
         startActivity(intent);
     }
 

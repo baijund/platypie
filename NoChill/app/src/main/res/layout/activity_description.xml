@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.gatech.cs2340.nochill.presenters.descriptionActivity">
+    tools:context=".presenters.mid">
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,9 +32,86 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/synopsisText"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/actorsText"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/synopsisText"
+        android:layout_alignLeft="@+id/synopsisText"
+        android:layout_alignStart="@+id/synopsisText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Synopsis"
+        android:id="@+id/textView4"
+        android:editable="false"
+        android:textStyle="bold"
         android:layout_below="@+id/movieTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="69dp" />
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actors:"
+        android:id="@+id/textView10"
+        android:editable="false"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/actorsText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/ratingtxt"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/actorsText"
+        android:layout_alignLeft="@+id/movieTitle"
+        android:layout_alignStart="@+id/movieTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Average Rating:"
+        android:id="@+id/textView12"
+        android:editable="false"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/ratingtxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/mpaaText"
+        android:layout_below="@+id/ratingtxt"
+        android:layout_alignLeft="@+id/ratingtxt"
+        android:layout_alignStart="@+id/ratingtxt"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MPAARATS"
+        android:id="@+id/textView13"
+        android:editable="false"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/mpaaText"
+        android:layout_alignBottom="@+id/mpaaText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
