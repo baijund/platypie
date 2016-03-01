@@ -8,7 +8,7 @@ public class CurrentMovie {
     private static MovieItem movie;
 
     /**
-     *
+     * sets current movie
      * @param m
      */
     public static void setMovie(MovieItem m){
@@ -16,15 +16,15 @@ public class CurrentMovie {
     }
 
     /**
-     *
-     * @return
+     * Gets current movie
+     * @return current movie
      */
     public static MovieItem getMovie(){
         return movie;
     }
 
     /**
-     *
+     * takes rating for movie
      * @param rating
      */
     public static void rate(double rating){
