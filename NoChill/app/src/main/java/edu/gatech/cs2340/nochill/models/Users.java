@@ -14,6 +14,8 @@ public class Users {
 
     /**
      * Returns false if unable to add user or else returns true
+     * @param p
+     * @return if user was added
      */
     public static boolean addUser(Profile p){
         if (getUser(p.getUsername()) != null){
@@ -26,6 +28,7 @@ public class Users {
 
     /**
      * Removes old profile and adds new one
+     * @param p
      */
     public static void editUser(Profile p){
         removeUser(p.getUsername());
@@ -34,6 +37,8 @@ public class Users {
 
     /**
      * Returns true if successfully removed user or else returns false
+     * @param username
+     * @return if user was removed
      */
     public static boolean removeUser(String username){
         Profile p = getUser(username);
@@ -43,7 +48,7 @@ public class Users {
     /**
      * Returns the user's profile when a username is entered
      * @param username
-     * @return
+     * @return user's profile
      */
     public static Profile getUser(String username){
         for(Profile p : userList){

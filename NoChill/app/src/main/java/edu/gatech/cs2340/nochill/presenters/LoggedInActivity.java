@@ -104,16 +104,25 @@ public class LoggedInActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /**
+     * Goes to DVD screen
+     */
     private void goToDVD() {
         Intent intent = new Intent(this, NewDVDActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to search screen
+     */
     private void goToSearch() {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to new releases screen
+     */
     private void goToNewReleases() {
         Intent intent = new Intent(this, NewReleasesActivity.class);
         startActivity(intent);
