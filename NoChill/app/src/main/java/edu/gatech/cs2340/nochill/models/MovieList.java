@@ -25,7 +25,13 @@ public class MovieList extends ArrayAdapter<MovieItem> {
         this.list = objects;
     }
 
-
+    /**
+     * Gets proper view of the movies
+     * @param position of movie in list
+     * @param view object
+     * @param parent object
+     * @return
+     */
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
