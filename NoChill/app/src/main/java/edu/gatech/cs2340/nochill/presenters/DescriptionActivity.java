@@ -16,6 +16,10 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class DescriptionActivity extends ActionBarActivity {
 
+    /**
+     * Creates description
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
