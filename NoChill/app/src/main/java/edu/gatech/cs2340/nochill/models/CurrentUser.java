@@ -11,6 +11,7 @@ public class CurrentUser {
 
     /**
      * Sets profile and logged in
+     * @param p profile
      */
     public static void login(Profile p){
         loggedIn = true;
@@ -19,20 +20,32 @@ public class CurrentUser {
 
     /**
      * Edits profile in storage and in current user
+     * @param p profile
      */
     public static void editProfile(Profile p){
         profile = p;
         Users.editUser(profile);
     }
 
+    /**
+     * logs out user
+     */
     public static void logOut(){
         loggedIn = false;
     }
 
+    /**
+     * whether or not the user is logged in
+     * @return boolean whether or not user is logged in
+     */
     public static boolean isLoggedIn(){
         return loggedIn;
     }
 
+    /**
+     * returns profile of current user
+     * @return current user profile
+     */
     public static Profile getProfile(){
         return profile;
     }
