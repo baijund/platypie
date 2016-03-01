@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,120 +11,121 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".presenters.DescriptionActivity">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/movieTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/movieTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:numStars="5"
+            android:layout_alignWithParentIfMissing="false"
+            android:paddingRight="0dp"
+            android:layout_below="@+id/movieTitle"
+            android:layout_centerHorizontal="true" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:numStars="5"
-        android:layout_below="@+id/movieTitle"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentRight="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/actorsText"
+            android:layout_alignTop="@+id/textView10"
+            android:layout_toRightOf="@+id/textView10"
+            android:layout_toEndOf="@+id/textView10"
+            android:paddingLeft="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/synopsisText"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/movieTitle"
-        android:layout_alignStart="@+id/movieTitle" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/synopsisText"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4"
+            android:paddingLeft="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/actorsText"
-        android:layout_alignTop="@+id/textView10"
-        android:layout_alignLeft="@+id/synopsisText"
-        android:layout_alignStart="@+id/synopsisText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Synopsis"
+            android:id="@+id/textView4"
+            android:editable="false"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView12"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="26dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Synopsis"
-        android:id="@+id/textView4"
-        android:editable="false"
-        android:textStyle="bold"
-        android:layout_below="@+id/textView12"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cast:"
+            android:id="@+id/textView10"
+            android:editable="false"
+            android:textStyle="bold"
+            android:layout_marginTop="26dp"
+            android:layout_below="@+id/rateButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cast:"
-        android:id="@+id/textView10"
-        android:editable="false"
-        android:textStyle="bold"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/rateButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/ratingtxt"
+            android:layout_above="@+id/textView4"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingRight="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/ratingtxt"
-        android:layout_above="@+id/textView4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average User Rating:"
+            android:id="@+id/textView12"
+            android:editable="false"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView13"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Average User Rating:"
-        android:id="@+id/textView12"
-        android:editable="false"
-        android:textStyle="bold"
-        android:layout_below="@+id/textView13"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/mpaaText"
+            android:layout_marginTop="29dp"
+            android:paddingRight="5dp"
+            android:layout_below="@+id/actorsText"
+            android:layout_alignRight="@+id/ratingtxt"
+            android:layout_alignEnd="@+id/ratingtxt" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/mpaaText"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/actorsText"
-        android:layout_alignLeft="@+id/ratingtxt"
-        android:layout_alignStart="@+id/ratingtxt" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MPAA Rating"
+            android:id="@+id/textView13"
+            android:editable="false"
+            android:textStyle="bold"
+            android:layout_alignBaseline="@+id/mpaaText"
+            android:layout_alignBottom="@+id/mpaaText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MPAA Rating"
-        android:id="@+id/textView13"
-        android:editable="false"
-        android:textStyle="bold"
-        android:layout_alignBaseline="@+id/mpaaText"
-        android:layout_alignBottom="@+id/mpaaText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rate"
-        android:id="@+id/rateButton"
-        android:layout_below="@+id/ratingBar"
-        android:layout_centerHorizontal="true" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate"
+            android:id="@+id/rateButton"
+            android:layout_below="@+id/ratingBar"
+            android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
+</ScrollView>
