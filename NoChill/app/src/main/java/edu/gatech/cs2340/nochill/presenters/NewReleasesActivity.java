@@ -27,6 +27,10 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class NewReleasesActivity extends ActionBarActivity {
 
+    /**
+     * Creates list for new releases
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

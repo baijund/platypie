@@ -21,6 +21,10 @@ public class UserProfileActivity extends ActionBarActivity {
     EditText aboutMe;
     EditText major;
 
+    /**
+     * Creates user profile screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,6 +18,10 @@ import edu.gatech.cs2340.nochill.models.Users;
 public class RegisterActivity extends ActionBarActivity {
 
 
+    /**
+     * Creates registration screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,9 @@ public class RegisterActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * checks the credentials of the user/password and username combination
+     */
     private void checkPassAndConfirm(){
         String password = ((EditText) findViewById(R.id.passwordLine)).getText().toString();
         String confirmPassword = ((EditText) findViewById(R.id.confirmPasswordLine)).getText().toString();
@@ -68,11 +75,19 @@ public class RegisterActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * goes to login screen
+     */
     private void goToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Creates the menu
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -80,6 +95,11 @@ public class RegisterActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Acts when item is selected
+     * @param item
+     * @return item selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -95,6 +115,9 @@ public class RegisterActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Goes to main activity
+     */
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

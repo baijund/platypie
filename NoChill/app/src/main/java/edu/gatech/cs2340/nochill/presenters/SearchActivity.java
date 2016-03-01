@@ -29,6 +29,10 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class SearchActivity extends ActionBarActivity {
 
+    /**
+     * Creates movie search screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,9 @@ public class SearchActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * Searches for movie
+     */
     private void doQuery() {
 
         EditText queryEditText = (EditText) findViewById(R.id.searchBar);
