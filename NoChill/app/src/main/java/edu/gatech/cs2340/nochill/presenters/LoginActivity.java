@@ -16,6 +16,10 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoginActivity extends ActionBarActivity {
 
+    /**
+     * Creates log in screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,11 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * Creates options menu
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -75,6 +84,11 @@ public class LoginActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Acts when item is selected
+     * @param item
+     * @return item selection
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
