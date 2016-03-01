@@ -27,7 +27,7 @@ public class Profile {
 
     /**
      * Returns first name of user
-     * @return firstName
+     * @return first name of user
      */
     public String getFirstName(){
         return firstName;

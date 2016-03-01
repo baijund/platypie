@@ -26,16 +26,32 @@ public class MovieRequester {
 
     private static RequestQueue queue = Requests.getQueue();
 
+    /**
+     * requests new releases
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void requestNewReleases(Response.Listener<String> rl, Response.ErrorListener el){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, NewReleaseURL, rl, el);
         queue.add(stringRequest);
     }
 
+    /**
+     * requests theaters
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void requestInTheater(Response.Listener<String> rl, Response.ErrorListener el){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, InTheatersURL, rl, el);
         queue.add(stringRequest);
     }
 
+    /**
+     * gets query
+     * @param q query
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void query(String q, Response.Listener<String> rl, Response.ErrorListener el){
         String url = "";
         try{
