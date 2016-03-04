@@ -20,16 +20,16 @@
         android:layout_height="wrap_content"
         android:text="View Profile"
         android:id="@+id/profileButton"
-        android:layout_above="@+id/logout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/dvdButton"
+        android:layout_toStartOf="@+id/dvdButton" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
         android:id="@+id/searchButton"
-        android:layout_marginTop="131dp"
+        android:layout_marginTop="107dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -44,9 +44,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New DVD&apos;s"
+        android:text="New DVDs"
         android:id="@+id/dvdButton"
         android:layout_below="@+id/releasesButton"
         android:layout_alignLeft="@+id/searchButton"
         android:layout_alignStart="@+id/searchButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recommendations"
+        android:id="@+id/recommendationButton"
+        android:layout_below="@+id/dvdButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

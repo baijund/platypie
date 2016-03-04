@@ -69,6 +69,15 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
+        Button recommendationsButton = ((Button) findViewById(R.id.recommendationButton));
+        recommendationsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToRecommendations();
+            }
+
+        });
+
     }
 
     /**
@@ -141,6 +150,14 @@ public class LoggedInActivity extends ActionBarActivity {
      */
     private void goToNewReleases() {
         Intent intent = new Intent(this, NewReleasesActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Goes to new recommendations screen
+     */
+    private void goToRecommendations() {
+        Intent intent = new Intent(this, RecommendationActivity.class);
         startActivity(intent);
     }
 }
