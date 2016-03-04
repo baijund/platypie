@@ -22,13 +22,15 @@ public class DescriptionActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
         final MovieItem movie = CurrentMovie.getMovie();
+        setTitle(movie.getName());
 
-        TextView titleText = (TextView) findViewById(R.id.movieTitle);
-        titleText.setText(movie.getName());
+//        TextView titleText = (TextView) findViewById(R.id.movieTitle);
+//        titleText.setText(movie.getName());
 
         TextView synopsisText = (TextView) findViewById(R.id.synopsisText);
         synopsisText.setText(movie.getDescription());

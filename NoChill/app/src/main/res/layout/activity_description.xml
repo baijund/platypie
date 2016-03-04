@@ -11,23 +11,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".presenters.DescriptionActivity">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/movieTitle"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
 
-        <RatingBar
+    <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratingBar"
             android:numStars="5"
             android:layout_alignWithParentIfMissing="false"
             android:paddingRight="0dp"
-            android:layout_below="@+id/movieTitle"
             android:layout_centerHorizontal="true" />
 
         <TextView

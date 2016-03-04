@@ -30,6 +30,8 @@ public class UserProfileActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        setTitle("Profile");
+
         fname = (EditText) findViewById(R.id.fname);
         lname = (EditText) findViewById(R.id.lname);
         email = (EditText) findViewById(R.id.email);

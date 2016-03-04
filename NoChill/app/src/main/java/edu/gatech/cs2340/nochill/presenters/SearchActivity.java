@@ -48,7 +48,7 @@ public class SearchActivity extends ActionBarActivity {
                 doQuery();
             }
         });
-
+        setTitle("Search");
 
     }
 

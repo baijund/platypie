@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoggedInActivity extends ActionBarActivity {
 
@@ -22,7 +23,7 @@ public class LoggedInActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
 
-
+        setTitle("Home");
 
         Button logout = ((Button) findViewById(R.id.logout));
         logout.setOnClickListener(new View.OnClickListener() {

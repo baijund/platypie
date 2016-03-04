@@ -35,6 +35,7 @@ public class NewReleasesActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_releases);
+        setTitle("New Releases");
 
         final List l = new ArrayList<MovieItem>();
         MovieRequester.requestInTheater(new Response.Listener<String>() {
