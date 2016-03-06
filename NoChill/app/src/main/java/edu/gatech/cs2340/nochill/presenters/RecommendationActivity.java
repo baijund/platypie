@@ -69,6 +69,19 @@ public class RecommendationActivity extends ActionBarActivity {
             }
         });
 
+        majorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(majorSpinner.isEnabled())
+                    sortMajorRating(adapterView.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
     }
 
