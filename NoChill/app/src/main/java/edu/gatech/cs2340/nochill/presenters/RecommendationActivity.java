@@ -34,17 +34,11 @@ public class RecommendationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_recommendation);
         setTitle("Recommendations");
 
-        List<MovieItem> filteredMovies = Movies.getMovieList();
-        Collections.sort(filteredMovies, new Comparator<MovieItem>() {
-            @Override
-            public int compare(MovieItem movieItem, MovieItem t1) {
-                return (int) Math.round(movieItem.getAverageRating() - t1.getAverageRating());
-            }
-        });
-
         moviesView = (ListView)findViewById(R.id.recommendListView);
-        moviesView.setAdapter(new MovieList(this, R.layout.movie_item, filteredMovies));
+        List<MovieItem> filteredMovies = Movies.getMovieList();
 
+        majorSpinner.setEnabled(false);
+        sortMajorRating("");
 
 
         moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,8 +60,10 @@ public class RecommendationActivity extends ActionBarActivity {
         majorBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
+                    majorSpinner.setEnabled(true);
                     sortMajorRating(majorSpinner.getSelectedItem().toString());
                 } else {
+                    majorSpinner.setEnabled(false);
                     sortMajorRating("");
                 }
             }
@@ -89,7 +85,7 @@ public class RecommendationActivity extends ActionBarActivity {
         List<MovieItem> l = Movies.getMovieList();
 
         if (!major.equals("")){
-            for(int i = 0; i < l.size(); i++){
+            for(int i = l.size() - 1; i >=0; i--){
                 MovieItem m = l.get(i);
                 if(m.getMajorCount(major) == 0){
                     l.remove(i);
@@ -99,7 +95,7 @@ public class RecommendationActivity extends ActionBarActivity {
             Collections.sort(l, new Comparator<MovieItem>() {
                 @Override
                 public int compare(MovieItem movieItem, MovieItem t1) {
-                    return (int) Math.round(movieItem.getMajorRating(major) - t1.getMajorRating(major));
+                    return (movieItem.getMajorRating(major) > t1.getMajorRating(major))?-1:1;
                 }
             });
         } else {
@@ -107,7 +103,7 @@ public class RecommendationActivity extends ActionBarActivity {
             Collections.sort(l, new Comparator<MovieItem>() {
                 @Override
                 public int compare(MovieItem movieItem, MovieItem t1) {
-                    return (int) Math.round(movieItem.getAverageRating() - t1.getAverageRating());
+                    return (movieItem.getAverageRating() > t1.getAverageRating())?-1:1;
                 }
             });
         }
