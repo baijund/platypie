@@ -34,6 +34,15 @@ public class MainActivity extends ActionBarActivity {
         Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");
         Users.addUser(ADMIN);
 
+        Profile physics = new Profile("Physics","adminlast","adminemail","physics","","Physics");
+        Users.addUser(ADMIN);
+
+        Profile math = new Profile("Math","adminlast","adminemail","math","","Applied Mathematics");
+        Users.addUser(ADMIN);
+
+        Profile biology = new Profile("Biology","adminlast","adminemail","biology","","Biology");
+        Users.addUser(ADMIN);
+
         Button button = (Button) findViewById(R.id.button);
         Button register = (Button) findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {

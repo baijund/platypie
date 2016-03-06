@@ -22,60 +22,78 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Major Only"
-        android:id="@+id/checkBox"
-        android:layout_alignTop="@+id/textView11"
-        android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11" />
+        android:text="Major"
+        android:id="@+id/major"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating"
+        android:id="@+id/rate"
+        android:layout_below="@+id/majorSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/majorSpinner"
+        android:entries="@array/majors"
+        android:layout_alignTop="@+id/major"
+        android:layout_alignRight="@+id/listView"
+        android:layout_alignEnd="@+id/listView"
+        android:layout_alignLeft="@+id/mpaaRating"
+        android:layout_alignStart="@+id/mpaaRating"
+        android:paddingTop="5dp" />
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mpaaRating"
+        android:entries="@array/MPAARating"
+        android:layout_below="@+id/majorSpinner"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_toRightOf="@+id/recent"
+        android:layout_alignRight="@+id/listView"
+        android:layout_alignEnd="@+id/listView"
+        android:paddingTop="5dp" />
+
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recency"
-        android:id="@+id/checkBox2"
-        android:layout_above="@+id/spinner"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MPAA Rating"
-        android:id="@+id/checkBox3"
-        android:checked="false"
-        android:layout_below="@+id/checkBox"
+        android:id="@+id/recent"
+        android:layout_below="@+id/mpaaRating"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="16dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:entries="@array/MPAARating"
-        android:layout_below="@+id/checkBox3"
-        android:layout_alignLeft="@+id/checkBox3"
-        android:layout_alignStart="@+id/checkBox3"
-        android:layout_toStartOf="@+id/checkBox2"
-        android:layout_alignRight="@+id/checkBox3"
-        android:layout_alignEnd="@+id/checkBox3" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
+        android:id="@+id/Recency"
         android:entries="@array/recency"
-        android:layout_alignBottom="@+id/spinner"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/checkBox" />
+        android:layout_below="@+id/mpaaRating"
+        android:layout_alignRight="@+id/majorSpinner"
+        android:layout_alignEnd="@+id/majorSpinner"
+        android:layout_alignLeft="@+id/mpaaRating"
+        android:layout_alignStart="@+id/mpaaRating"
+        android:paddingTop="5dp" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_below="@+id/spinner"
-        android:layout_toStartOf="@+id/checkBox2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/recent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

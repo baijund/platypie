@@ -123,9 +123,11 @@
         android:layout_height="wrap_content"
         android:text="Your Major Rating"
         android:id="@+id/majorLabel"
+        android:textStyle="bold"
         android:layout_below="@+id/textView12"
-        android:layout_alignRight="@+id/actorsText"
-        android:layout_alignEnd="@+id/actorsText" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_alignEnd="@+id/textView12" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -133,8 +135,9 @@
         android:text="none"
         android:id="@+id/majorRatingTxt"
         android:paddingRight="5dp"
-        android:layout_below="@+id/majorLabel"
-        android:layout_alignRight="@+id/actorsText" />
+        android:layout_below="@+id/ratingtxt"
+        android:layout_alignRight="@+id/mpaaText"
+        android:layout_alignEnd="@+id/mpaaText" />
 
 </RelativeLayout>
 </ScrollView>
