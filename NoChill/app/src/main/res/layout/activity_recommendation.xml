@@ -95,6 +95,8 @@
         android:id="@+id/recommendListView"
         android:layout_below="@+id/recent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="15dp"
+        android:choiceMode="none" />
 
 </RelativeLayout>

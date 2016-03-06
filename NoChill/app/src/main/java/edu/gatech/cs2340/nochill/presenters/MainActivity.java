@@ -35,13 +35,13 @@ public class MainActivity extends ActionBarActivity {
         Users.addUser(ADMIN);
 
         Profile physics = new Profile("Physics","adminlast","adminemail","physics","","Physics");
-        Users.addUser(ADMIN);
+        Users.addUser(physics);
 
         Profile math = new Profile("Math","adminlast","adminemail","math","","Applied Mathematics");
-        Users.addUser(ADMIN);
+        Users.addUser(math);
 
         Profile biology = new Profile("Biology","adminlast","adminemail","biology","","Biology");
-        Users.addUser(ADMIN);
+        Users.addUser(biology);
 
         Button button = (Button) findViewById(R.id.button);
         Button register = (Button) findViewById(R.id.register);
