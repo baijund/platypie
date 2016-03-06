@@ -1,8 +1,11 @@
 package edu.gatech.cs2340.nochill.models;
 
+import android.graphics.Movie;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Baijun on 2/27/2016.
@@ -83,6 +86,15 @@ public class Movies {
 
     private static double recalculateAverage(double oldAvg, int ratingNum, double rating){
         return (oldAvg*ratingNum + rating)/(ratingNum + 1);
+    }
+
+    public static List<MovieItem> getMovieList(){
+        List<MovieItem> l = new ArrayList();
+        for(int id : movieMap.keySet()){
+            if(movieMap.get(id).getNumRatings() > 0)
+                l.add(movieMap.get(id));
+        }
+        return l;
     }
 
 }

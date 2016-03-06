@@ -21,7 +21,6 @@ public class UserProfileActivity extends ActionBarActivity {
     EditText lname;
     EditText email;
     EditText aboutMe;
-    Spinner firstMajor;
     Spinner major;
 
     /**
