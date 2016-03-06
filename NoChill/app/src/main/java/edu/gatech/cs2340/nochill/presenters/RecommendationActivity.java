@@ -34,6 +34,10 @@ public class RecommendationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_recommendation);
         setTitle("Recommendations");
 
+        majorSpinner = (Spinner) findViewById(R.id.majorSpinner);
+
+
+
         moviesView = (ListView)findViewById(R.id.recommendListView);
         majorSpinner.setEnabled(false);
         sortMajorRating("");
@@ -52,8 +56,6 @@ public class RecommendationActivity extends ActionBarActivity {
         });
 
         CheckBox majorBox = (CheckBox) findViewById(R.id.major);
-
-        majorSpinner = (Spinner) findViewById(R.id.majorSpinner);
 
         majorBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
