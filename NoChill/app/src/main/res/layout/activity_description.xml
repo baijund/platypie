@@ -126,8 +126,8 @@
         android:textStyle="bold"
         android:layout_below="@+id/textView12"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/rateButton"
-        android:layout_alignEnd="@+id/rateButton" />
+        android:layout_toLeftOf="@+id/mpaaText"
+        android:layout_toStartOf="@+id/mpaaText" />
 
     <TextView
         android:layout_width="wrap_content"
