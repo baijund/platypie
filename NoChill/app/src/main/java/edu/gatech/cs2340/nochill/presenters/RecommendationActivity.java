@@ -18,14 +18,6 @@ public class RecommendationActivity extends ActionBarActivity {
         Button recommendationButton = ((Button) findViewById(R.id.recommendationButton));
 
 
-//        recommendationButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//            }
-//        }
-//        );
 
     }
 

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import edu.gatech.cs2340.nochill.models.Profile;
@@ -58,7 +59,7 @@ public class RegisterActivity extends ActionBarActivity {
             String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
             String email = ((EditText) findViewById(R.id.emailLine)).getText().toString();
             String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
-            String major = ((EditText) findViewById(R.id.majorLine)).getText().toString();
+            String major = ((Spinner) findViewById(R.id.majorLine)).getSelectedItem().toString();
 
             boolean added = Users.addUser(new Profile(firstName, lastName, email, username, password, major));
 

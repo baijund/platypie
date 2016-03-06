@@ -3,8 +3,10 @@ package edu.gatech.cs2340.nochill.presenters;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,8 @@ public class UserProfileActivity extends ActionBarActivity {
     EditText lname;
     EditText email;
     EditText aboutMe;
-    EditText major;
+    Spinner firstMajor;
+    Spinner major;
 
     /**
      * Creates user profile screen
@@ -36,14 +39,20 @@ public class UserProfileActivity extends ActionBarActivity {
         lname = (EditText) findViewById(R.id.lname);
         email = (EditText) findViewById(R.id.email);
         aboutMe = (EditText) findViewById(R.id.aboutme);
-        major = (EditText) findViewById(R.id.major);
+        major = (Spinner) findViewById(R.id.majorLine2);
+
+        ArrayAdapter adapt = (ArrayAdapter) major.getAdapter();
+        int position = adapt.getPosition(p.getMajor());
+        major.setSelection(position);
+
+
 
 
         fname.setText(p.getFirstName(), TextView.BufferType.EDITABLE);
         lname.setText(p.getLastName(), TextView.BufferType.EDITABLE);
         email.setText(p.getEmail(), TextView.BufferType.EDITABLE);
         aboutMe.setText(p.getAboutMe(), TextView.BufferType.EDITABLE);
-        major.setText(p.getMajor(), TextView.BufferType.EDITABLE);
+
 
         Button updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener(){
@@ -62,7 +71,7 @@ public class UserProfileActivity extends ActionBarActivity {
         p.setEmail(email.getText().toString());
         p.setLastName(lname.getText().toString());
         p.setFirstName(fname.getText().toString());
-        p.setMajor(major.getText().toString());
+        p.setMajor(major.getSelectedItem().toString());
         CurrentUser.editProfile(p);
         Toast.makeText(this, "Profile Edited!",
                 Toast.LENGTH_LONG).show();
