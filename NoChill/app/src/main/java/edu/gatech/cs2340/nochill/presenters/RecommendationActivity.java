@@ -35,8 +35,6 @@ public class RecommendationActivity extends ActionBarActivity {
         setTitle("Recommendations");
 
         moviesView = (ListView)findViewById(R.id.recommendListView);
-        List<MovieItem> filteredMovies = Movies.getMovieList();
-
         majorSpinner.setEnabled(false);
         sortMajorRating("");
 
