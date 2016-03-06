@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.nochill.models;
 
+import android.util.Log;
+
 import java.util.HashMap;
 
 /**
@@ -42,6 +44,8 @@ public class Movies {
      */
     public static void rateMovie(MovieItem mov, double rating){
         MovieItem m = getMovie(mov.getID());
+
+        //Set general ratings
         double oldavg;
         int oldnumrats;
         if (m != null){
@@ -52,11 +56,33 @@ public class Movies {
             oldnumrats = 0;
             m = mov;
         }
-        double newavg = (oldavg*oldnumrats + rating)/(oldnumrats + 1);
+        double newavg = recalculateAverage(oldavg, oldnumrats, rating);
         m.setAverageRating(newavg);
         m.setNumRatings(oldnumrats + 1);
+
+        //Set major specific ratings
+        String major = CurrentUser.getProfile().getMajor();
+        double oldMajorAvg = m.getMajorRating(major);
+        int oldMajorRatings = m.getMajorCount(major);
+
+        double newMajorAvg = recalculateAverage(oldMajorAvg, oldMajorRatings, rating);
+        m.setMajorCount(major, oldMajorRatings + 1);
+        m.setMajorRating(major, newMajorAvg);
+
+
         addMovie(m);
+//        Log.i("Map: ", "Movies in map ----------------------------");
+//        for(int id : movieMap.keySet()){
+//            Log.i("id: ", String.format("%d", id));
+//            Log.i("Name: ", movieMap.get(id).getName());
+//            Log.i("Rating: ", String.format("%f", movieMap.get(id).getAverageRating()));
+//            Log.i("------","--------");
+//        }
     }
 
+
+    private static double recalculateAverage(double oldAvg, int ratingNum, double rating){
+        return (oldAvg*ratingNum + rating)/(ratingNum + 1);
+    }
 
 }

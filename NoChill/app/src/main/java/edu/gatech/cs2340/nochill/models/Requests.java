@@ -18,7 +18,8 @@ public class Requests {
     private static RequestQueue queue;
 
     public static void initializeRequestQueue(Context c){
-        queue = Volley.newRequestQueue(c);
+        if (queue == null)
+            queue = Volley.newRequestQueue(c);
     }
 
     public static RequestQueue getQueue(){

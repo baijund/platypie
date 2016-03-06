@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.nochill.models;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public class MovieItem {
     private double averageRating;
     private int numRatings;
     private List<String> actors;
+    private HashMap<String, Double> majorRatingMap = new HashMap<String, Double>();
+    private HashMap<String, Integer> majorCountMap = new HashMap<String, Integer>();
 
     /**
      * gets movie ID
@@ -108,6 +111,8 @@ public class MovieItem {
 
         this.actors = actors;
 
+
+
     }
 
     /**
@@ -158,4 +163,23 @@ public class MovieItem {
     public void setRating_mpaa(String rating_mpaa) {
         this.rating_mpaa = rating_mpaa;
     }
+
+    public double getMajorRating(String major){
+        Double rating = majorRatingMap.get(major);
+        return rating!=null?rating:0;
+    }
+
+    public void setMajorRating(String major, double rating){
+        majorRatingMap.put(major, rating);
+    }
+
+    public int getMajorCount(String major){
+        Integer count = majorCountMap.get(major);
+        return count!=null?count:0;
+    }
+
+    public void setMajorCount(String major, int rating){
+        majorCountMap.put(major, rating);
+    }
+
 }

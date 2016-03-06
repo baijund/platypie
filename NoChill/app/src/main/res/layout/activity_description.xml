@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="none"
             android:id="@+id/ratingtxt"
             android:layout_above="@+id/textView4"
             android:layout_alignParentRight="true"
@@ -117,6 +117,24 @@
             android:id="@+id/rateButton"
             android:layout_below="@+id/ratingBar"
             android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Major Rating"
+        android:id="@+id/majorLabel"
+        android:layout_below="@+id/textView12"
+        android:layout_alignRight="@+id/actorsText"
+        android:layout_alignEnd="@+id/actorsText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="none"
+        android:id="@+id/majorRatingTxt"
+        android:paddingRight="5dp"
+        android:layout_below="@+id/majorLabel"
+        android:layout_alignRight="@+id/actorsText" />
 
 </RelativeLayout>
 </ScrollView>

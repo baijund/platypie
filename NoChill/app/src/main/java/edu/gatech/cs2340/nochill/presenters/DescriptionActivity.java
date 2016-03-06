@@ -2,6 +2,7 @@ package edu.gatech.cs2340.nochill.presenters;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -11,10 +12,19 @@ import java.util.List;
 
 import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.CurrentMovie;
+import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.MovieItem;
 import edu.gatech.cs2340.nochill.models.Movies;
 
 public class DescriptionActivity extends ActionBarActivity {
+
+    MovieItem movie;
+    TextView ratingtxt;
+    TextView actorsText;
+    TextView synopsisText;
+    TextView mpaaText;
+    TextView majorLabel;
+    TextView majorRatingText;
 
     /**
      * Creates description
@@ -26,13 +36,23 @@ public class DescriptionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
-        final MovieItem movie = CurrentMovie.getMovie();
+        //Set the current movie
+        movie = CurrentMovie.getMovie();
         setTitle(movie.getName());
+
+        actorsText = (TextView) findViewById(R.id.actorsText);
+
+        majorRatingText = (TextView) findViewById(R.id.majorRatingTxt);
+
+
+
+        majorLabel = (TextView) findViewById(R.id.majorLabel);
+        majorLabel.setText(CurrentUser.getProfile().getMajor());
 
 //        TextView titleText = (TextView) findViewById(R.id.movieTitle);
 //        titleText.setText(movie.getName());
 
-        TextView synopsisText = (TextView) findViewById(R.id.synopsisText);
+        synopsisText = (TextView) findViewById(R.id.synopsisText);
         synopsisText.setText(movie.getDescription());
 
         String actors = "";
@@ -40,15 +60,17 @@ public class DescriptionActivity extends ActionBarActivity {
         for (String s : actorsList){
             actors += s + ", ";
         }
-        TextView actorsText = (TextView) findViewById(R.id.actorsText);
+
         actorsText.setText(actors);
 
-        final TextView ratingtxt = (TextView) findViewById(R.id.ratingtxt);
-        ratingtxt.setText(String.format("%.2f", movie.getAverageRating()));
+        ratingtxt = (TextView) findViewById(R.id.ratingtxt);
+        //ratingtxt.setText(String.format("%.2f", movie.getAverageRating()));
 
-        TextView mpaaText = (TextView) findViewById(R.id.mpaaText);
+        mpaaText = (TextView) findViewById(R.id.mpaaText);
         mpaaText.setText(String.valueOf(movie.getRating_mpaa()));
 
+
+        updateFields();
 
         Button rateButton = (Button) findViewById(R.id.rateButton);
         rateButton.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +79,12 @@ public class DescriptionActivity extends ActionBarActivity {
                 RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
                 double rating = mBar.getRating();
                 CurrentMovie.rate(rating);
-                ratingtxt.setText(String.format("%.2f", movie.getAverageRating()));
+                movie = CurrentMovie.getMovie();
+                updateFields();
+                Log.i("Ratebutton: ", "Clicked");
+                Log.i("CurrentMovie: ", CurrentMovie.getMovie().getName());
+                Log.i("Major Count: ", String.format("%d",CurrentMovie.getMovie().getMajorCount(CurrentUser.getProfile().getMajor())));
+
             }
         });
 
@@ -65,5 +92,22 @@ public class DescriptionActivity extends ActionBarActivity {
 
     }
 
+    private void updateFields(){
+
+        MovieItem m = Movies.getMovie(CurrentMovie.getMovie().getID());
+        if(m == null){
+            return;
+        }
+
+        if(m.getNumRatings() != 0){
+            ratingtxt.setText(String.format("%.2f", m.getAverageRating()));
+        }
+
+        if(m.getMajorCount(CurrentUser.getProfile().getMajor()) != 0){
+            majorRatingText.setText(String.format("%.2f", m.getMajorRating(CurrentUser.getProfile().getMajor())));
+        } else {
+            Log.i("MAJOR COUNT","waht ZEROOOO");
+        }
+    }
 
 }

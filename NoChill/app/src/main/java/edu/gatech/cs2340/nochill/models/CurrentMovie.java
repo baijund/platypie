@@ -29,6 +29,8 @@ public class CurrentMovie {
      */
     public static void rate(double rating){
         Movies.rateMovie(movie, rating);
+        movie = Movies.getMovie(movie.getID());
+        //movie.setAverageRating(Movies.getMovie(movie.getID()).getAverageRating());
     }
 
 }
