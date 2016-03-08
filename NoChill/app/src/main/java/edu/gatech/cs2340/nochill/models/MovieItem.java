@@ -164,20 +164,40 @@ public class MovieItem {
         this.rating_mpaa = rating_mpaa;
     }
 
+    /**
+     * Gets major rating of movie
+     * @param major of user
+     * @return double of rating
+     */
     public double getMajorRating(String major){
         Double rating = majorRatingMap.get(major);
         return rating!=null?rating:0;
     }
 
+    /**
+     * sets the major's rating
+     * @param major String
+     * @param rating
+     */
     public void setMajorRating(String major, double rating){
         majorRatingMap.put(major, rating);
     }
 
+    /**
+     * Gets number of people who rated movie from major
+     * @param major
+     * @return int number of people
+     */
     public int getMajorCount(String major){
         Integer count = majorCountMap.get(major);
         return count!=null?count:0;
     }
 
+    /**
+     * Sets number of people who rate movie from major
+     * @param major
+     * @param rating
+     */
     public void setMajorCount(String major, int rating){
         majorCountMap.put(major, rating);
     }

@@ -17,11 +17,19 @@ public class Requests {
 
     private static RequestQueue queue;
 
+    /**
+     * Starts request queue
+     * @param c context of queue
+     */
     public static void initializeRequestQueue(Context c){
         if (queue == null)
             queue = Volley.newRequestQueue(c);
     }
 
+    /**
+     * Queue for requests
+     * @return RequestQueue queue of requests
+     */
     public static RequestQueue getQueue(){
         return queue;
     }

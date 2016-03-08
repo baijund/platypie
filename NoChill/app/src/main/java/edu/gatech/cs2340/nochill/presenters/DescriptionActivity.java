@@ -92,6 +92,9 @@ public class DescriptionActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * Updates fields for average rating and major specific rating
+     */
     private void updateFields(){
 
         MovieItem m = Movies.getMovie(CurrentMovie.getMovie().getID());

@@ -41,9 +41,9 @@ public class Movies {
     }
 
     /**
-     *
-     * @param mov
-     * @param rating
+     * User rates the movie
+     * @param mov MovieItem movie that was rated
+     * @param rating double of rating
      */
     public static void rateMovie(MovieItem mov, double rating){
         MovieItem m = getMovie(mov.getID());
@@ -84,10 +84,18 @@ public class Movies {
     }
 
 
+    /**
+     * Re-calculates average of the ratings after user inputs a new one
+     *
+     */
     private static double recalculateAverage(double oldAvg, int ratingNum, double rating){
         return (oldAvg*ratingNum + rating)/(ratingNum + 1);
     }
 
+    /**
+     * Gives list of MovieItems for search results
+     * @return List<MovieItem> movieitem list
+     */
     public static List<MovieItem> getMovieList(){
         List<MovieItem> l = new ArrayList();
         for(int id : movieMap.keySet()){

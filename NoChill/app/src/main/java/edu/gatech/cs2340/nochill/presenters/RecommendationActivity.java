@@ -28,6 +28,11 @@ public class RecommendationActivity extends ActionBarActivity {
     ListView moviesView;
     Spinner majorSpinner;
 
+
+    /**
+     * Creates Recommendation Activity screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +98,9 @@ public class RecommendationActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /**
+     * Sorts by Major's Rating
+     */
     private void sortMajorRating(final String major){
 
         List<MovieItem> l = Movies.getMovieList();
