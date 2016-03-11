@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.Users;
 
 public class adminActivity extends ActionBarActivity {
@@ -43,6 +44,8 @@ public class adminActivity extends ActionBarActivity {
         nonAdminSpinner.setAdapter(banAdapt);
 
         Button banButt = ((Button) findViewById(R.id.banButton));
+
+
         banButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,14 +67,18 @@ public class adminActivity extends ActionBarActivity {
         });
 
         Button addAdminButt = ((Button) findViewById(R.id.addAdminButton));
-        addAdminButt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = (String) nonAdminSpinner.getSelectedItem();
-                attemptAdmin(username);
-            }
+        if(!CurrentUser.getProfile().isSuperAdmin()){
+            addAdminButt.setEnabled(false);
+        } else {
+            addAdminButt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String username = (String) nonAdminSpinner.getSelectedItem();
+                    attemptAdmin(username);
+                }
 
-        });
+            });
+        }
 
     }
 
