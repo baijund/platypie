@@ -16,6 +16,8 @@ public class Profile {
     private String aboutMe;
     private String major;
     private boolean banned;
+    private boolean admin;
+    private boolean superAdmin;
 
     public Profile(String firstName, String lastName, String email, String username, String password, String major) {
         this.firstName = firstName;
@@ -121,15 +123,57 @@ public class Profile {
     }
 
 
+    /**
+     * bans user
+     */
     public void ban(){
         banned = true;
     }
 
+    /**
+     * unbans user
+     */
     public void unban(){
         banned = false;
     }
 
+    /**
+     * gets if user is banned or not
+     * @return true if user is banned or else false
+     */
     public boolean getBan(){
         return banned;
+    }
+
+    /**
+     * Gets if user is an admin
+     * @return true if admin or else false
+     */
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    /**
+     * Sets admin status.
+     * @param admin true if making an admin or else false.
+     */
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    /**
+     *
+     * @return true if superadmin or else false
+     */
+    public boolean isSuperAdmin() {
+        return superAdmin;
+    }
+
+    /**
+     *
+     * @param superAdmin true if setting superadmin or else false.
+     */
+    public void setSuperAdmin(boolean superAdmin) {
+        this.superAdmin = superAdmin;
     }
 }
