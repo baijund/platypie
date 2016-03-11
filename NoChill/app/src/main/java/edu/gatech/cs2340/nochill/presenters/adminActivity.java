@@ -21,6 +21,8 @@ public class adminActivity extends ActionBarActivity {
     Spinner banSpinner;
     ArrayAdapter<String> banAdapt; //Adapter displaying unbanned users
 
+    Spinner nonAdminSpinner;
+    ArrayAdapter<String> nonAdminAdapt; //Adapter displaying unbanned users
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class adminActivity extends ActionBarActivity {
         unbanSpinner = (Spinner) findViewById(R.id.unbanSpinner);
         unbanAdapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Users.getBannedUsers());
         unbanSpinner.setAdapter(unbanAdapt);
+
+        nonAdminSpinner = (Spinner) findViewById(R.id.addAdminSpinner);
+        nonAdminSpinner.setAdapter(banAdapt);
 
         Button banButt = ((Button) findViewById(R.id.banButton));
         banButt.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +63,37 @@ public class adminActivity extends ActionBarActivity {
 
         });
 
+        Button addAdminButt = ((Button) findViewById(R.id.addAdminButton));
+        addAdminButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = (String) nonAdminSpinner.getSelectedItem();
+                attemptAdmin(username);
+            }
+
+        });
+
     }
 
+    private void attemptAdmin(final String username){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to make " + username + " an admin?")
+                .setCancelable(false)
+                .setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Ban user
+                        Users.makeAdmin(username);
+                        updateAdapters();
+                    }
+                })
+                .setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     private void attemptBan(final String username){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -108,6 +142,9 @@ public class adminActivity extends ActionBarActivity {
 
         unbanAdapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Users.getBannedUsers());
         unbanSpinner.setAdapter(unbanAdapt);
+
+        //Can only admin unbanned users
+        nonAdminSpinner.setAdapter(banAdapt);
     }
 
 }
