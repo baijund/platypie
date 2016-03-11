@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
         //HARDCODED ADMIN COMMENT OUT BEFORE DEMO
         Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");
         ADMIN.setSuperAdmin(true);
+        ADMIN.setAdmin(true);
         Users.addUser(ADMIN);
 
         Profile physics = new Profile("Physics","adminlast","adminemail","physics","","Physics");

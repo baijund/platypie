@@ -7,8 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import edu.gatech.cs2340.nochill.R;
+import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoggedInActivity extends ActionBarActivity {
@@ -78,6 +80,7 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
+
         Button adminProfileButton = ((Button) findViewById(R.id.adminProfileButton));
         adminProfileButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -86,6 +89,10 @@ public class LoggedInActivity extends ActionBarActivity {
             }
 
         });
+
+        if(!CurrentUser.getProfile().isAdmin()){
+            adminProfileButton.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -174,7 +181,12 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to admin changes screen screen
      */
     private void goToAdminChanges() {
-        Intent intent = new Intent(this, adminActivity.class);
-        startActivity(intent);
+        if(CurrentUser.getProfile().isAdmin()){
+            Intent intent = new Intent(this, adminActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Not an admin",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }
