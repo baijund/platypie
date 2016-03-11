@@ -13,4 +13,5 @@
     <string name="title_activity_search">Search</string>
     <string name="title_activity_description">descriptionActivity</string>
     <string name="title_activity_recommendation">RecommendationActivity</string>
+    <string name="title_activity_admin">adminActivity</string>
 </resources>
