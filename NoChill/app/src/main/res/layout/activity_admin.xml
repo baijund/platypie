@@ -23,7 +23,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/banSpinner"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/textView14"
@@ -43,7 +43,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
+        android:id="@+id/unbanSpinner"
         android:layout_alignTop="@+id/textView15"
         android:layout_toRightOf="@+id/textView15"
         android:layout_toEndOf="@+id/textView15" />
@@ -55,7 +55,7 @@
         android:text="Add User as Admin"
         android:id="@+id/textView16"
         android:layout_marginTop="59dp"
-        android:layout_below="@+id/spinner2"
+        android:layout_below="@+id/unbanSpinner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -66,15 +66,15 @@
         android:layout_below="@+id/textView16"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/spinner2"
-        android:layout_alignEnd="@+id/spinner2" />
+        android:layout_alignRight="@+id/unbanSpinner"
+        android:layout_alignEnd="@+id/unbanSpinner" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/banButton"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/banSpinner"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/unBanButton"
-        android:layout_below="@+id/spinner2"
+        android:layout_below="@+id/unbanSpinner"
         android:layout_centerHorizontal="true" />
 
     <Button

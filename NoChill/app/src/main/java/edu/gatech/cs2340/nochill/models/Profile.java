@@ -141,7 +141,7 @@ public class Profile {
      * gets if user is banned or not
      * @return true if user is banned or else false
      */
-    public boolean getBan(){
+    public boolean isBanned(){
         return banned;
     }
 

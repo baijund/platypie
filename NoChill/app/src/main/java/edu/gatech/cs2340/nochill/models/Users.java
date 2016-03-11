@@ -2,6 +2,7 @@ package edu.gatech.cs2340.nochill.models;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class Users {
             return false;
         }
         p.ban();
+        Log.i("Ban: ", "Banned " + username);
         editUser(p);
         return true;
     }
@@ -118,6 +120,40 @@ public class Users {
         p.setAdmin(false);
         editUser(p);
         return true;
+    }
+
+    public static List<String> getUserList(){
+        List<String> userListStrings = new ArrayList<>();
+        for(Profile p : userList){
+            userListStrings.add(p.getUsername());
+        }
+        return userListStrings;
+    }
+
+    /**
+     *
+     * @return list of banned users except superadmin
+     */
+    public static List<String> getBannedUsers(){
+        List<String> bannedUsers = new ArrayList<>();
+        for(Profile p : userList){
+            if(p.isBanned() && !p.isSuperAdmin())
+                bannedUsers.add(p.getUsername());
+        }
+        return bannedUsers;
+    }
+
+    /**
+     *
+     * @return list of unbanned users except superadmin
+     */
+    public static List<String> getUnbannedUsers(){
+        List<String> unbannedUsers = new ArrayList<>();
+        for(Profile p : userList){
+            if(!p.isBanned() && !p.isSuperAdmin())
+                unbannedUsers.add(p.getUsername());
+        }
+        return unbannedUsers;
     }
 
 }
