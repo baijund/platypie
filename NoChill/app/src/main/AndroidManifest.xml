@@ -47,7 +47,7 @@
             android:label="@string/title_activity_recommendation" />
         <activity
             android:name=".presenters.adminActivity"
-            android:label="@string/title_activity_admin"></activity>
+            android:label="adminActivity"></activity>
     </application>
 
 </manifest>
