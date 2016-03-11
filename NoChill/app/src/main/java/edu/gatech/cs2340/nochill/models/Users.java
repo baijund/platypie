@@ -59,4 +59,20 @@ public class Users {
         return null;
     }
 
+
+    /**
+     *
+     * @param username Username to be banned.
+     * @return true if successful. False if user does not exist.
+     */
+    public static boolean banUser(String username){
+        Profile p = getUser(username);
+        if (p == null){
+            return false;
+        }
+        p.ban();
+        editUser(p);
+        return true;
+    }
+
 }

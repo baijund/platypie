@@ -15,6 +15,7 @@ public class Profile {
     private String password;
     private String aboutMe;
     private String major;
+    private boolean banned;
 
     public Profile(String firstName, String lastName, String email, String username, String password, String major) {
         this.firstName = firstName;
@@ -117,5 +118,18 @@ public class Profile {
      */
     public void setMajor(String m){
         major = m;
+    }
+
+
+    public void ban(){
+        banned = true;
+    }
+
+    public void unban(){
+        banned = false;
+    }
+
+    public boolean getBan(){
+        return banned;
     }
 }

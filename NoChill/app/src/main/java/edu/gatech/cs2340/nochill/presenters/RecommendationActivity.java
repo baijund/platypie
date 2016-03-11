@@ -41,12 +41,9 @@ public class RecommendationActivity extends ActionBarActivity {
 
         majorSpinner = (Spinner) findViewById(R.id.majorSpinner);
 
-
-
         moviesView = (ListView)findViewById(R.id.recommendListView);
         majorSpinner.setEnabled(false);
         sortMajorRating("");
-
 
         moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -86,8 +83,6 @@ public class RecommendationActivity extends ActionBarActivity {
 
             }
         });
-
-
     }
 
     /**
@@ -99,7 +94,8 @@ public class RecommendationActivity extends ActionBarActivity {
     }
 
     /**
-     * Sorts by Major's Rating
+     * Sorts by Megorrrrr's'sss's
+     * @param major Major to be shown
      */
     private void sortMajorRating(final String major){
 
