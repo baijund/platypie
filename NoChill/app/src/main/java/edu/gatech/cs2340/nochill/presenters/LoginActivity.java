@@ -60,14 +60,19 @@ public class LoginActivity extends ActionBarActivity {
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
         Profile p = Users.getUser(username);
-        if(p != null && p.getPassword().equals(password)){
+        if(p != null && p.getPassword().equals(password) && !p.isBanned()){
             Toast.makeText(this, "Congratulations you entered the APP!!!!",
                     Toast.LENGTH_LONG).show();
             CurrentUser.login(p);
             goToLoggedIn();
-        } else {
-            Toast.makeText(this, "Incorrect credentials",
+        }
+        else if(p != null && p.isBanned()) {
+            Toast.makeText(this, "Bad user, you are banned.",
                     Toast.LENGTH_LONG).show();
+        }
+        else {
+                Toast.makeText(this, "Incorrect credentials",
+                        Toast.LENGTH_LONG).show();
         }
 
     }
