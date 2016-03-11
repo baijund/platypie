@@ -15,10 +15,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Ban User"
         android:id="@+id/textView14"
+        android:layout_marginTop="96dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="143dp" />
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Unban User"
         android:id="@+id/textView15"
-        android:layout_below="@+id/spinner"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -54,10 +54,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Add User as Admin"
         android:id="@+id/textView16"
+        android:layout_marginTop="59dp"
         android:layout_below="@+id/spinner2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -68,4 +68,28 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/spinner2"
         android:layout_alignEnd="@+id/spinner2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/banButton"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/unBanButton"
+        android:layout_below="@+id/spinner2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/addAdminButton"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

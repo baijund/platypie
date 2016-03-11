@@ -78,6 +78,15 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
+        Button adminProfileButton = ((Button) findViewById(R.id.adminProfileButton));
+        adminProfileButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToAdminChanges();
+            }
+
+        });
+
     }
 
     /**
@@ -158,6 +167,14 @@ public class LoggedInActivity extends ActionBarActivity {
      */
     private void goToRecommendations() {
         Intent intent = new Intent(this, RecommendationActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Goes to admin changes screen screen
+     */
+    private void goToAdminChanges() {
+        Intent intent = new Intent(this, adminActivity.class);
         startActivity(intent);
     }
 }
