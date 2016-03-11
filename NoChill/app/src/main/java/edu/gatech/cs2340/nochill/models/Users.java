@@ -75,4 +75,49 @@ public class Users {
         return true;
     }
 
+    /**
+     *
+     * @param username Username to be unbanned.
+     * @return true if successful. False if user does not exist.
+     */
+    public static boolean unbanUser(String username){
+        Profile p = getUser(username);
+        if (p == null){
+            return false;
+        }
+        p.unban();
+        editUser(p);
+        return true;
+    }
+
+    /**
+     *
+     * @param username Username to be made admin.
+     * @return true if successful. False if user does not exist.
+     */
+    public static boolean makeAdmin(String username){
+        Profile p = getUser(username);
+        if (p == null){
+            return false;
+        }
+        p.setAdmin(true);
+        editUser(p);
+        return true;
+    }
+
+    /**
+     *
+     * @param username Username to take admin privileges from.
+     * @return true if successful. False if user does not exist.
+     */
+    public static boolean unadmin(String username){
+        Profile p = getUser(username);
+        if (p == null){
+            return false;
+        }
+        p.setAdmin(false);
+        editUser(p);
+        return true;
+    }
+
 }
