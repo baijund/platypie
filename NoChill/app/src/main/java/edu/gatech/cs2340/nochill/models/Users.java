@@ -2,6 +2,11 @@ package edu.gatech.cs2340.nochill.models;
 
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,6 +57,23 @@ public class Users {
      * @return user's profile
      */
     public static Profile getUser(String username){
+
+        Response.Listener rl = new Response.Listener() {
+            @Override
+            public void onResponse(Object response) {
+                Log.i("getUser response: ", response.toString());
+            }
+        };
+
+        Response.ErrorListener el = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("getUser error: ", error.toString());
+            }
+        };
+
+        UserRequester.getUser(username, rl, el);
+
         for(Profile p : userList){
             if (p.getUsername().equals(username)){
                 return p;
