@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -28,6 +29,8 @@ import edu.gatech.cs2340.nochill.models.MovieRequester;
 import edu.gatech.cs2340.nochill.models.Movies;
 
 public class SearchActivity extends ActionBarActivity {
+
+    Context thisContext = this;
 
     /**
      * Creates movie search screen
@@ -71,32 +74,83 @@ public class SearchActivity extends ActionBarActivity {
                     JSONObject jsonRootObject = new JSONObject(response);
                     JSONArray jsonMoviesArray = jsonRootObject.optJSONArray("movies");
                     for (int i = 0; i < jsonMoviesArray.length(); i++) {
-                        JSONObject j = jsonMoviesArray.getJSONObject(i);
+                        final JSONObject j = jsonMoviesArray.getJSONObject(i);
                         Log.i("Movie title: ", j.getString("title"));
 
-                        int id = j.getInt("id");
-                        String description = j.getString("synopsis");
+                        final int id = j.getInt("id");
+                        final String description = j.getString("synopsis");
 
-                        List<String> actors = new ArrayList<String>();
-                        JSONArray actorsArr = j.getJSONArray("abridged_cast");
+                        final List<String> actors = new ArrayList<String>();
+                        final JSONArray actorsArr = j.getJSONArray("abridged_cast");
                         for (int k = 0; k < actorsArr.length(); k++) {
                             JSONObject actorobj = actorsArr.getJSONObject(k);
                             actors.add(actorobj.getString("name"));
                         }
 
-                        MovieItem m = Movies.getMovie(id);
+                        Response.Listener<String> rl = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                MovieItem m = null;
+                                JSONObject res = null;
+                                try {
+                                    res = new JSONObject(response);
+                                    String name = res.getString("name");
+                                    int year = res.getInt("year");
+                                    String rating_mpaa = res.getString("rating_mpaa");
+                                    int id = res.getInt("ID");
+                                    String description = res.getString("description");
+                                    double averageRating = res.getDouble("averageRating");
+                                    int numRatings = res.getInt("numRatings");
+                                    JSONArray jact = res.getJSONArray("actors");
+                                    List<String> actors = new ArrayList<>();
+                                    for (int i = 0; i < jact.length(); i++) {
+                                        actors.add((String) jact.get(i));
+                                    }
+                                    m = new MovieItem(name, year, rating_mpaa, id, description, averageRating, numRatings, actors);
+                                } catch (Exception e) {
+                                    Log.i("Error: ", e.toString());
+                                }
 
-                        double averageRating;
-                        int numRatings;
-                        if (m != null) {
-                            averageRating = m.getAverageRating();
-                            numRatings = m.getNumRatings();
-                        } else {
-                            averageRating = 0;
-                            numRatings = 0;
-                        }
+                                double averageRating;
+                                int numRatings;
+                                if (m != null) {
+                                    averageRating = m.getAverageRating();
+                                    numRatings = m.getNumRatings();
+                                } else {
+                                    averageRating = 0;
+                                    numRatings = 0;
+                                }
+                                try {
+                                    l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
+                                } catch (Exception e) {
+                                    Log.i("Error: ", e.toString());
+                                }
 
-                        l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
+                                final ListView lv = (ListView) findViewById(R.id.titleList);
+                                lv.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
+                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view,
+                                                            int position, long id) {
+
+                                        Object o = lv.getItemAtPosition(position);
+                                        MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
+                                        CurrentMovie.setMovie(movie);
+                                        goToActivityDescription();
+                                        //Toast.makeText(getBaseContext(), str.getActors().get(0), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+                        };
+
+                        Response.ErrorListener el = new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        };
+
+                        Movies.getMovie(id, rl, el);
                     }
 
                 } catch (JSONException e) {
@@ -107,20 +161,6 @@ public class SearchActivity extends ActionBarActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("REQUEST THING", "IT DIDNT RESPOND");
-            }
-        });
-
-        final ListView lv = (ListView)findViewById(R.id.titleList);
-        lv.setAdapter(new MovieList(this, R.layout.movie_item, l));
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                Object o = lv.getItemAtPosition(position);
-                MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
-                CurrentMovie.setMovie(movie);
-                goToActivityDescription();
-                //Toast.makeText(getBaseContext(), str.getActors().get(0), Toast.LENGTH_SHORT).show();
             }
         });
 

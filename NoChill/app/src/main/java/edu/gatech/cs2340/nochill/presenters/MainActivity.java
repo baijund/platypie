@@ -8,6 +8,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.*;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.CookieStore;
+
 import edu.gatech.cs2340.nochill.models.MovieRequester;
 import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
@@ -22,6 +27,11 @@ public class MainActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Optionally, you can just use the default CookieManager
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault( manager  );
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -30,20 +40,20 @@ public class MainActivity extends ActionBarActivity {
         //Creates the request queue
         Requests.initializeRequestQueue(this);
 
-        //HARDCODED ADMIN COMMENT OUT BEFORE DEMO
-        Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");
-        ADMIN.setSuperAdmin(true);
-        ADMIN.setAdmin(true);
-        Users.addUser(ADMIN);
-
-        Profile physics = new Profile("Physics","adminlast","adminemail","physics","","Physics");
-        Users.addUser(physics);
-
-        Profile math = new Profile("Math","adminlast","adminemail","math","","Applied Mathematics");
-        Users.addUser(math);
-
-        Profile biology = new Profile("Biology","adminlast","adminemail","biology","","Biology");
-        Users.addUser(biology);
+//        //HARDCODED ADMIN COMMENT OUT BEFORE DEMO
+//        Profile ADMIN = new Profile("admin","adminlast","adminemail","admin","password","Physics");
+//        ADMIN.setSuperAdmin(true);
+//        ADMIN.setAdmin(true);
+//        Users.addUser(ADMIN);
+//
+//        Profile physics = new Profile("Physics","adminlast","adminemail","physics","pass","Physics");
+//        Users.addUser(physics);
+//
+//        Profile math = new Profile("Math","adminlast","adminemail","math","pass","Applied Mathematics");
+//        Users.addUser(math);
+//
+//        Profile biology = new Profile("Biology","adminlast","adminemail","biology","pass","Biology");
+//        Users.addUser(biology);
 
         Button button = (Button) findViewById(R.id.button);
         Button register = (Button) findViewById(R.id.register);

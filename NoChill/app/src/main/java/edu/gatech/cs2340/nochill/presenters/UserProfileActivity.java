@@ -1,7 +1,9 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,11 +12,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
+
 import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
 
 public class UserProfileActivity extends ActionBarActivity {
+
+    final Context thisContext = this;
 
     Profile p = CurrentUser.getProfile();
     EditText fname;
@@ -71,9 +80,41 @@ public class UserProfileActivity extends ActionBarActivity {
         p.setLastName(lname.getText().toString());
         p.setFirstName(fname.getText().toString());
         p.setMajor(major.getSelectedItem().toString());
-        CurrentUser.editProfile(p);
-        Toast.makeText(this, "Profile Edited!",
-                Toast.LENGTH_LONG).show();
+
+
+        Response.Listener rl = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("editUser response: ", response);
+
+                boolean added = false;
+                try {
+                    JSONObject res = new JSONObject(response);
+                    added = !res.getBoolean("error");
+                } catch (Exception e){
+                    Log.i("Error: ", e.toString());
+                }
+
+
+                if (added){
+                    Toast.makeText(thisContext, "Profile Edited!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(thisContext, "Profile NOT Edited!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        Response.ErrorListener el = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("getUser error: ", error.toString());
+            }
+        };
+
+        CurrentUser.editProfile(p, rl, el);
+
     }
 
 }

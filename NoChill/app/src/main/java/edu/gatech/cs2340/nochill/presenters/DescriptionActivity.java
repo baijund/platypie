@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.gatech.cs2340.nochill.R;
@@ -77,13 +84,29 @@ public class DescriptionActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
-                double rating = mBar.getRating();
-                CurrentMovie.rate(rating);
-                movie = CurrentMovie.getMovie();
-                updateFields();
-                Log.i("Ratebutton: ", "Clicked");
-                Log.i("CurrentMovie: ", CurrentMovie.getMovie().getName());
-                Log.i("Major Count: ", String.format("%d",CurrentMovie.getMovie().getMajorCount(CurrentUser.getProfile().getMajor())));
+                final double rating = mBar.getRating();
+
+                Response.Listener<String> rl = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("Response: ", response);
+                        movie = CurrentMovie.getMovie();
+                        updateFields();
+                        Log.i("Ratebutton: ", "Clicked");
+                        Log.i("CurrentMovie: ", CurrentMovie.getMovie().getName());
+                        Log.i("Major Count: ", String.format("%d",CurrentMovie.getMovie().getMajorCount(CurrentUser.getProfile().getMajor())));
+                    }
+                };
+
+                Response.ErrorListener el = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("rate error: ", error.toString());
+                    }
+                };
+
+
+                CurrentMovie.rate(rating, rl, el);
 
             }
         });
@@ -97,20 +120,63 @@ public class DescriptionActivity extends ActionBarActivity {
      */
     private void updateFields(){
 
-        MovieItem m = Movies.getMovie(CurrentMovie.getMovie().getID());
-        if(m == null){
-            return;
-        }
 
-        if(m.getNumRatings() != 0){
-            ratingtxt.setText(String.format("%.2f", m.getAverageRating()));
-        }
 
-        if(m.getMajorCount(CurrentUser.getProfile().getMajor()) != 0){
-            majorRatingText.setText(String.format("%.2f", m.getMajorRating(CurrentUser.getProfile().getMajor())));
-        } else {
-            Log.i("MAJOR COUNT","waht ZEROOOO");
-        }
+        //MovieItem m = Movies.getMovie(CurrentMovie.getMovie().getID());
+
+        Response.Listener<String> rl = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                JSONObject res = null;
+                MovieItem m = null;
+                try{
+                    res = new JSONObject(response);
+                    String name = res.getString("name");
+                    int year = res.getInt("year");
+                    String rating_mpaa = res.getString("rating_mpaa");
+                    int id = res.getInt("ID");
+                    String description = res.getString("description");
+                    double averageRating = res.getDouble("averageRating");
+                    int numRatings = res.getInt("numRatings");
+                    JSONArray jact = res.getJSONArray("actors");
+                    List<String> actors = new ArrayList<>();
+                    for(int i = 0; i < jact.length(); i++){
+                        actors.add((String)jact.get(i));
+                    }
+                    m = new MovieItem(name, year, rating_mpaa, id, description, averageRating, numRatings, actors);
+                } catch (Exception e){
+                    Log.i("Error: ", e.toString());
+                }
+
+
+                if(m == null){
+                    return;
+                }
+
+                if(m.getNumRatings() != 0){
+                    ratingtxt.setText(String.format("%.2f", m.getAverageRating()));
+                }
+
+                if(m.getMajorCount(CurrentUser.getProfile().getMajor()) != 0){
+                    majorRatingText.setText(String.format("%.2f", m.getMajorRating(CurrentUser.getProfile().getMajor())));
+                } else {
+                    Log.i("MAJOR COUNT","waht ZEROOOO");
+                }
+            }
+        };
+
+        Response.ErrorListener el = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("getUser error: ", error.toString());
+            }
+        };
+
+
+        Movies.getMovie(CurrentMovie.getMovie().getID(), rl, el);
+
+
     }
 
 }

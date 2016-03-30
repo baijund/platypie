@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.nochill.models;
 
+import com.android.volley.Response;
+
 /**
  * Created by Baijun on 2/14/2016.
  * This class holds information on the logged in user
@@ -22,9 +24,9 @@ public class CurrentUser {
      * Edits profile in storage and in current user
      * @param p profile
      */
-    public static void editProfile(Profile p){
+    public static void editProfile(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
         profile = p;
-        Users.editUser(profile);
+        Users.editUser(profile, rl, el);
     }
 
     /**

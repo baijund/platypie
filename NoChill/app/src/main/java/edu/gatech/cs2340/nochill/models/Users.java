@@ -23,22 +23,19 @@ public class Users {
      * @param p
      * @return if user was added
      */
-    public static boolean addUser(Profile p){
-        if (getUser(p.getUsername()) != null){
-            return false;
-        }
-        userList.add(p);
-        Log.i("Users", "User "+ p.getUsername() +" has been added.");
-        return true;
+    public static void addUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
+        Log.i("addUser: ", "Attempting to add " + p.getUsername());
+
+
+        UserRequester.addUser(p, rl, el);
     }
 
     /**
      * Removes old profile and adds new one
      * @param p
      */
-    public static void editUser(Profile p){
-        removeUser(p.getUsername());
-        addUser(p);
+    public static void editUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
+      UserRequester.editUser(p, rl, el);
     }
 
     /**
@@ -46,17 +43,17 @@ public class Users {
      * @param username
      * @return if user was removed
      */
-    public static boolean removeUser(String username){
-        Profile p = getUser(username);
-        return userList.remove(p);
-    }
+//    public static boolean removeUser(String username){
+//        Profile p = getUser(username);
+//        return userList.remove(p);
+//    }
 
     /**
      * Returns the user's profile when a username is entered
      * @param username
      * @return user's profile
      */
-    public static Profile getUser(String username){
+    public static void getUser(String username, Response.Listener<String> rl1, Response.ErrorListener el1){
 
         Response.Listener rl = new Response.Listener() {
             @Override
@@ -73,13 +70,11 @@ public class Users {
         };
 
         UserRequester.getUser(username, rl, el);
+    }
 
-        for(Profile p : userList){
-            if (p.getUsername().equals(username)){
-                return p;
-            }
-        }
-        return null;
+    public static void login(String username, String password, Response.Listener<String> rl, Response.ErrorListener el){
+        Log.i("Login: ", "Attempting login");
+        UserRequester.login(username, password, rl, el);
     }
 
 
@@ -89,13 +84,13 @@ public class Users {
      * @return true if successful. False if user does not exist.
      */
     public static boolean banUser(String username){
-        Profile p = getUser(username);
-        if (p == null){
-            return false;
-        }
-        p.ban();
-        Log.i("Ban: ", "Banned " + username);
-        editUser(p);
+//        Profile p = getUser(username);
+//        if (p == null){
+//            return false;
+//        }
+//        p.ban();
+//        Log.i("Ban: ", "Banned " + username);
+//        editUser(p);
         return true;
     }
 
@@ -105,12 +100,12 @@ public class Users {
      * @return true if successful. False if user does not exist.
      */
     public static boolean unbanUser(String username){
-        Profile p = getUser(username);
-        if (p == null){
-            return false;
-        }
-        p.unban();
-        editUser(p);
+//        Profile p = getUser(username);
+//        if (p == null){
+//            return false;
+//        }
+//        p.unban();
+//        editUser(p);
         return true;
     }
 
@@ -120,12 +115,12 @@ public class Users {
      * @return true if successful. False if user does not exist.
      */
     public static boolean makeAdmin(String username){
-        Profile p = getUser(username);
-        if (p == null){
-            return false;
-        }
-        p.setAdmin(true);
-        editUser(p);
+//        Profile p = getUser(username);
+//        if (p == null){
+//            return false;
+//        }
+//        p.setAdmin(true);
+//        editUser(p);
         return true;
     }
 
@@ -135,22 +130,22 @@ public class Users {
      * @return true if successful. False if user does not exist.
      */
     public static boolean unadmin(String username){
-        Profile p = getUser(username);
-        if (p == null){
-            return false;
-        }
-        p.setAdmin(false);
-        editUser(p);
+//        Profile p = getUser(username);
+//        if (p == null){
+//            return false;
+//        }
+//        p.setAdmin(false);
+//        editUser(p);
         return true;
     }
 
-    public static List<String> getUserList(){
-        List<String> userListStrings = new ArrayList<>();
-        for(Profile p : userList){
-            userListStrings.add(p.getUsername());
-        }
-        return userListStrings;
-    }
+//    public static List<String> getUserList(){
+//        List<String> userListStrings = new ArrayList<>();
+//        for(Profile p : userList){
+//            userListStrings.add(p.getUsername());
+//        }
+//        return userListStrings;
+//    }
 
     /**
      *

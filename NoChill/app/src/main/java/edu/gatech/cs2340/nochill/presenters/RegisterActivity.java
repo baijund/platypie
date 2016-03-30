@@ -1,8 +1,10 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
+
 import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.Users;
@@ -18,6 +25,8 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class RegisterActivity extends ActionBarActivity {
 
+
+    final Context thisContext = this;
 
     /**
      * Creates registration screen
@@ -61,16 +70,43 @@ public class RegisterActivity extends ActionBarActivity {
             String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
             String major = ((Spinner) findViewById(R.id.majorLine)).getSelectedItem().toString();
 
-            boolean added = Users.addUser(new Profile(firstName, lastName, email, username, password, major));
 
-            if (!added){
-                Toast.makeText(this, "User already exists, choose another username.",
-                        Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Congratulations, you have registered!!!!",
-                        Toast.LENGTH_LONG).show();
-                goToLogin();
-            }
+            Response.Listener rl = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("getUser response: ", response);
+
+                    boolean added = false;
+                    try {
+                        JSONObject res = new JSONObject(response);
+                        added = !res.getBoolean("error");
+                    } catch (Exception e){
+                        Log.i("Error: ", e.toString());
+                    }
+
+
+                    if (!added){
+                        Toast.makeText(thisContext, "User not added",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(thisContext, "Congratulations, you have registered!!!!",
+                                Toast.LENGTH_LONG).show();
+                        goToLogin();
+                    }
+                }
+            };
+
+            Response.ErrorListener el = new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.i("getUser error: ", error.toString());
+                }
+            };
+
+            Users.addUser(new Profile(firstName, lastName, email, username, password, major), rl, el);
+
+
+
         } else {
             Toast.makeText(this, "Password and Confirm password do not match",
                     Toast.LENGTH_LONG).show();

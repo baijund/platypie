@@ -1,12 +1,19 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.*;
 import android.widget.*;
 import android.widget.EditText;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
 
 import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.Profile;
@@ -15,6 +22,8 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 
 public class LoginActivity extends ActionBarActivity {
+
+    final Context thisContext = this;
 
     /**
      * Creates log in screen
@@ -57,23 +66,56 @@ public class LoginActivity extends ActionBarActivity {
      */
     private void checkUserAndPass(){
         String username = ((EditText) findViewById(R.id.userName)).getText().toString();
-        String password = ((EditText) findViewById(R.id.password)).getText().toString();
+        final String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        Profile p = Users.getUser(username);
-        if(p != null && p.getPassword().equals(password) && !p.isBanned()){
-            Toast.makeText(this, "Congratulations you entered the APP!!!!",
-                    Toast.LENGTH_LONG).show();
-            CurrentUser.login(p);
-            goToLoggedIn();
-        }
-        else if(p != null && p.isBanned()) {
-            Toast.makeText(this, "Bad user, you are banned.",
-                    Toast.LENGTH_LONG).show();
-        }
-        else {
-                Toast.makeText(this, "Incorrect credentials",
-                        Toast.LENGTH_LONG).show();
-        }
+        Response.Listener<String> rl = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("getUser response: ", response);
+
+                Profile p = null;
+
+                try{
+                    JSONObject res = new JSONObject(response);
+                    String firstname = res.getString("firstname");
+                    String lastname = res.getString("lastname");
+                    String email = res.getString("email");
+                    String username = res.getString("username");
+                    String aboutme = res.getString("aboutme");
+                    String major = res.getString("major");
+                    //String password = res.getString("password");
+                    p = new Profile(firstname, lastname, email, username, password, major);
+                    p.setAboutMe(aboutme);
+                } catch (Exception e){
+                    Log.i("error: ", e.toString());
+                }
+
+                if(p != null && p.getPassword().equals(password) && !p.isBanned()){
+                    Toast.makeText(thisContext, "Congratulations you entered the APP!!!!",
+                            Toast.LENGTH_LONG).show();
+                    CurrentUser.login(p);
+                    CurrentUser.getProfile().setPassword(password);
+                    goToLoggedIn();
+                }
+                else if(p != null && p.isBanned()) {
+                    Toast.makeText(thisContext, "Bad user, you are banned.",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(thisContext, "Incorrect credentials",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        Response.ErrorListener el = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("getUser error: ", error.toString());
+            }
+        };
+
+        Users.login(username, password, rl, el);
 
     }
 
