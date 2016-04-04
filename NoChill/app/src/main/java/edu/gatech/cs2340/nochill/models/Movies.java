@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -65,20 +66,22 @@ public class Movies {
                 int year = m.getYear();
                 String rating_mpaa = m.getRating_mpaa();
                 String description = m.getDescription();
-                double averageRaring = m.getAverageRating();
+                double averageRating = m.getAverageRating();
                 int numRatings = m.getNumRatings();
                 List<String> actors = m.getActors();
 
                 JSONObject j = new JSONObject();
+                JSONArray jArr = new JSONArray(actors);
                 try {
                     j.put("name", name);
                     j.put("id", id);
                     j.put("year", year);
                     j.put("rating_mpaa", rating_mpaa);
                     j.put("description", description);
-                    j.put("averageRating", averageRaring);
+                    j.put("averageRating", averageRating);
                     j.put("numRatings", numRatings);
-                    j.put("actors", "[a1, a2, a3]");
+                    j.put("actors", jArr);
+                    //j.put("actors", "[a1, a2, a3]");
                 } catch (Exception e){
                     Log.i("addUSer Error: ", "get param error");
                 }
@@ -153,13 +156,6 @@ public class Movies {
 
 
         addMovie(m, rl, el);
-//        Log.i("Map: ", "Movies in map ----------------------------");
-//        for(int id : movieMap.keySet()){
-//            Log.i("id: ", String.format("%d", id));
-//            Log.i("Name: ", movieMap.get(id).getName());
-//            Log.i("Rating: ", String.format("%f", movieMap.get(id).getAverageRating()));
-//            Log.i("------","--------");
-//        }
     }
 
 
@@ -175,13 +171,17 @@ public class Movies {
      * Gives list of MovieItems for search results
      * @return List<MovieItem> movieitem list
      */
-    public static List<MovieItem> getMovieList(){
-        List<MovieItem> l = new ArrayList();
-        for(int id : movieMap.keySet()){
-            if(movieMap.get(id).getNumRatings() > 0)
-                l.add(movieMap.get(id));
-        }
-        return l;
+    public static void getMovieList(Response.Listener<String> rl, Response.ErrorListener el){
+
+        StringRequest sr = new StringRequest(Request.Method.GET, "https://nochill.herokuapp.com/movies/getMovieList", rl, el);
+        queue.add(sr);
+
+//        List<MovieItem> l = new ArrayList();
+//        for(int id : movieMap.keySet()){
+//            if(movieMap.get(id).getNumRatings() > 0)
+//                l.add(movieMap.get(id));
+//        }
+//        return l;
     }
 
 }

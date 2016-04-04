@@ -1,8 +1,10 @@
 package edu.gatech.cs2340.nochill.presenters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +12,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +36,7 @@ public class RecommendationActivity extends ActionBarActivity {
     ListView moviesView;
     Spinner majorSpinner;
 
+    Context thisContext = this;
 
     /**
      * Creates Recommendation Activity screen
@@ -99,33 +108,76 @@ public class RecommendationActivity extends ActionBarActivity {
      */
     private void sortMajorRating(final String major){
 
-        List<MovieItem> l = Movies.getMovieList();
+        final List<MovieItem> l = new ArrayList<>();
 
-        if (!major.equals("")){
-            for(int i = l.size() - 1; i >=0; i--){
-                MovieItem m = l.get(i);
-                if(m.getMajorCount(major) == 0){
-                    l.remove(i);
+        Response.Listener<String> rl = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("Response", response);
+                JSONObject res = null;
+                JSONArray moviesJ = new JSONArray();
+                JSONArray majorRatingsJ = new JSONArray();
+                try{
+                    res = new JSONObject(response);
+                    moviesJ = res.getJSONArray("movies");
+                    majorRatingsJ = res.getJSONArray("majorRatings");
+                } catch(Exception e) {
+                    Log.i("Error: ", e.toString());
                 }
+
+                for (int i = 0; i < moviesJ.length(); i++){
+                    try{
+                        res = moviesJ.getJSONObject(i);
+                        String name = res.getString("name");
+                        int year = res.getInt("year");
+                        String rating_mpaa = res.getString("rating_mpaa");
+                        int id = res.getInt("ID");
+                        String description = res.getString("description");
+                        double averageRating = res.getDouble("averageRating");
+                        int numRatings = res.getInt("numRatings");
+                        l.add(new MovieItem(name, year, rating_mpaa, id, description, averageRating, numRatings, new ArrayList<String>()));
+                    } catch (Exception e){
+                        Log.i("Error: ", e.toString());
+                    }
+
+                }
+
+                if (!major.equals("")){
+                    for(int i = l.size() - 1; i >=0; i--){
+                        MovieItem m = l.get(i);
+                        if(m.getMajorCount(major) == 0){
+                            l.remove(i);
+                        }
+                    }
+
+                    Collections.sort(l, new Comparator<MovieItem>() {
+                        @Override
+                        public int compare(MovieItem movieItem, MovieItem t1) {
+                            return (movieItem.getMajorRating(major) > t1.getMajorRating(major))?-1:1;
+                        }
+                    });
+                } else {
+
+                    Collections.sort(l, new Comparator<MovieItem>() {
+                        @Override
+                        public int compare(MovieItem movieItem, MovieItem t1) {
+                            return (movieItem.getAverageRating() > t1.getAverageRating())?-1:1;
+                        }
+                    });
+                }
+
+                moviesView.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
             }
+        };
 
-            Collections.sort(l, new Comparator<MovieItem>() {
-                @Override
-                public int compare(MovieItem movieItem, MovieItem t1) {
-                    return (movieItem.getMajorRating(major) > t1.getMajorRating(major))?-1:1;
-                }
-            });
-        } else {
+        Response.ErrorListener el = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("getUser error: ", error.toString());
+            }
+        };
 
-            Collections.sort(l, new Comparator<MovieItem>() {
-                @Override
-                public int compare(MovieItem movieItem, MovieItem t1) {
-                    return (movieItem.getAverageRating() > t1.getAverageRating())?-1:1;
-                }
-            });
-        }
-
-        moviesView.setAdapter(new MovieList(this, R.layout.movie_item, l));
+        Movies.getMovieList(rl, el);
 
 
     }
