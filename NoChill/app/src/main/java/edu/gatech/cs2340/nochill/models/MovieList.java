@@ -19,6 +19,12 @@ public class MovieList extends ArrayAdapter<MovieItem> {
     private Activity context;
     private List<MovieItem> list;
 
+    /**
+     * Creates list of movies
+     * @param context screen
+     * @param resource number
+     * @param objects movieItem list
+     */
     public MovieList(Context context, int resource, List<MovieItem> objects) {
         super(context, resource, R.id.movieItemName, objects);
         this.context = (Activity) context;
@@ -30,19 +36,19 @@ public class MovieList extends ArrayAdapter<MovieItem> {
      * @param position of movie in list
      * @param view object
      * @param parent object
-     * @return
+     * @return View screen
      */
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View rowView= inflater.inflate(R.layout.movie_item, null, true);
+        final LayoutInflater inflater = context.getLayoutInflater();
+        final View rowView= inflater.inflate(R.layout.movie_item, null, true);
 
-        TextView title = (TextView) rowView.findViewById(R.id.movieItemName);
-        TextView rating = (TextView) rowView.findViewById(R.id.movieItemRating);
-        TextView year = (TextView) rowView.findViewById(R.id.movieItemYear);
+        final TextView title = (TextView) rowView.findViewById(R.id.movieItemName);
+        final TextView rating = (TextView) rowView.findViewById(R.id.movieItemRating);
+        final TextView year = (TextView) rowView.findViewById(R.id.movieItemYear);
 
         title.setText(list.get(position).getName());
-        rating.setText(list.get(position).getRating_mpaa());
+        rating.setText(list.get(position).getratingMpaa());
         year.setText(String.valueOf(list.get(position).getYear()));
 
         return rowView;

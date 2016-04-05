@@ -10,26 +10,26 @@ import android.widget.*;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.net.CookieStore;
+//import java.net.CookiePolicy;
+//import java.net.CookieStore;
 
-import edu.gatech.cs2340.nochill.models.MovieRequester;
-import edu.gatech.cs2340.nochill.models.Profile;
+//import edu.gatech.cs2340.nochill.models.MovieRequester;
+//import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.Requests;
-import edu.gatech.cs2340.nochill.models.Users;
+//import edu.gatech.cs2340.nochill.models.Users;
 
 public class MainActivity extends ActionBarActivity {
 
     /**
-     * Creates main activity screen
-     * @param savedInstanceState
+     * Creates screen
+     * @param savedInstanceState creates screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // Optionally, you can just use the default CookieManager
-        CookieManager manager = new CookieManager();
+        final CookieManager manager = new CookieManager();
         CookieHandler.setDefault( manager  );
 
         super.onCreate(savedInstanceState);
@@ -55,8 +55,8 @@ public class MainActivity extends ActionBarActivity {
 //        Profile biology = new Profile("Biology","adminlast","adminemail","biology","pass","Biology");
 //        Users.addUser(biology);
 
-        Button button = (Button) findViewById(R.id.button);
-        Button register = (Button) findViewById(R.id.register);
+        final Button button = (Button) findViewById(R.id.button);
+        final Button register = (Button) findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +74,8 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Creates options menu
-     * @param menu
-     * @return true
+     * @param menu creates menu of options
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,15 +86,15 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Selects an item
-     * @param item
-     * @return item selected
+     * @param item selects item from movie
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -108,7 +108,7 @@ public class MainActivity extends ActionBarActivity {
      * Goes to login screen if user presses login
      */
     private void goToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
      * Goes to registration screen if user presses register
      */
     private void goToRegistration() {
-        Intent intent = new Intent(this, RegisterActivity.class);
+        final Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 

@@ -20,18 +20,24 @@ public class UserRequester {
 
     private static RequestQueue queue = Requests.getQueue();
 
+    /**
+     * get user request
+     * @param username of user
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void getUser(final String username, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/getUser", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/getUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("username",username);
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
@@ -40,18 +46,24 @@ public class UserRequester {
     }
 
 
+    /**
+     * Add user to requests
+     * @param p profile of user
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void addUser(final Profile p, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/addUser", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/addUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
-                String username = p.getUsername();
-                String password = p.getPassword();
-                String about = "none";
-                String email = p.getEmail();
-                String major = p.getMajor();
-                String firstName = p.getFirstName();
-                String lastName = p.getLastName();
-                JSONObject j = new JSONObject();
+                final String username = p.getUsername();
+                final String password = p.getPassword();
+                final String about = "none";
+                final String email = p.getEmail();
+                final String major = p.getMajor();
+                final String firstName = p.getFirstName();
+                final String lastName = p.getLastName();
+                final JSONObject j = new JSONObject();
                 try {
                     j.put("firstName", firstName);
                     j.put("lastName", lastName);
@@ -64,14 +76,14 @@ public class UserRequester {
                     Log.i("addUSer Error: ", "get param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("userObjectString",j.toString());
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
@@ -79,11 +91,18 @@ public class UserRequester {
         queue.add(sr);
     }
 
+    /**
+     * User login
+     * @param username of user to login
+     * @param password of user to log in
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void login(final String username, final String password, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/login", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/login", rl, el){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("username", username);
                 params.put("password", password);
                 return params;
@@ -91,7 +110,7 @@ public class UserRequester {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
@@ -99,20 +118,25 @@ public class UserRequester {
         queue.add(sr);
     }
 
-
+    /**
+     * Edits user
+     * @param p profile of user
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void editUser(final Profile p, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/editUser", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/editUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
 
-                String username = p.getUsername();
-                String password = p.getPassword();
-                String about = p.getAboutMe();
-                String email = p.getEmail();
-                String major = p.getMajor();
-                String firstName = p.getFirstName();
-                String lastName = p.getLastName();
-                JSONObject j = new JSONObject();
+                final String username = p.getUsername();
+                final String password = p.getPassword();
+                final String about = p.getAboutMe();
+                final String email = p.getEmail();
+                final String major = p.getMajor();
+                final String firstName = p.getFirstName();
+                final String lastName = p.getLastName();
+                final JSONObject j = new JSONObject();
                 try {
                     j.put("firstName", firstName);
                     j.put("lastName", lastName);
@@ -126,14 +150,14 @@ public class UserRequester {
                     Log.i("editUser Error: ", "param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("userObjectString",j.toString());
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }

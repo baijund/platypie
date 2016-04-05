@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.nochill.models;
 
-import android.os.Parcelable;
-import android.os.Parcel;
+//import android.os.Parcelable;
+//import android.os.Parcel;
 
 /**
  * Created by Alaap on 2/13/16.
@@ -19,6 +19,15 @@ public class Profile {
     private boolean admin;
     private boolean superAdmin;
 
+    /**
+     * Creates profile object
+     * @param firstName of user
+     * @param lastName of user
+     * @param email of user
+     * @param username of user
+     * @param password of user
+     * @param major of user
+     */
     public Profile(String firstName, String lastName, String email, String username, String password, String major) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,7 +63,7 @@ public class Profile {
 
     /**
      * Sets the user's new last name
-     * @param lname
+     * @param lname last name of user
      */
     public void setLastName(String lname){lastName = lname;}
 
@@ -68,7 +77,7 @@ public class Profile {
 
     /**
      * Sets the user's new email
-     * @param em
+     * @param em email of user
      */
     public void setEmail(String em){email = em;}
 
@@ -82,7 +91,7 @@ public class Profile {
 
     /**
      * Sets the user's new password
-     * @param pword
+     * @param pword password of user
      */
     public void setPassword(String pword){password = pword;}
 
@@ -102,7 +111,7 @@ public class Profile {
 
     /**
      * Sets the user's new about me
-     * @param about
+     * @param about about me of user
      */
     public void setAboutMe(String about){aboutMe = about;}
 

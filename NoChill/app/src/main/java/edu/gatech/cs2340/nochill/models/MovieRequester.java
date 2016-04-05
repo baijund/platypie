@@ -1,16 +1,16 @@
 package edu.gatech.cs2340.nochill.models;
 
-import android.app.DownloadManager;
-import android.content.Context;
-import android.net.Uri;
+//import android.app.DownloadManager;
+//import android.content.Context;
+//import android.net.Uri;
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
+//import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+//import com.android.volley.toolbox.Volley;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -20,9 +20,9 @@ import java.net.URLEncoder;
  */
 public class MovieRequester {
     private static final String API_KEY = "7wj4raxmwrr475d3na6ujxbr";
-    private static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
-    private static final String NewReleaseURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
-    private static final String InTheatersURL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey="+API_KEY;
+    //private static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    private static final String NEW_RELEASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
+    private static final String IN_THEATERS_URL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey="+API_KEY;
 
     private static RequestQueue queue = Requests.getQueue();
 
@@ -32,7 +32,7 @@ public class MovieRequester {
      * @param el error listener
      */
     public static void requestNewReleases(Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, NewReleaseURL, rl, el);
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, NEW_RELEASE_URL, rl, el);
         queue.add(stringRequest);
     }
 
@@ -42,7 +42,7 @@ public class MovieRequester {
      * @param el error listener
      */
     public static void requestInTheater(Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, InTheatersURL, rl, el);
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, IN_THEATERS_URL, rl, el);
         queue.add(stringRequest);
     }
 
@@ -59,7 +59,7 @@ public class MovieRequester {
         } catch (UnsupportedEncodingException e) {
             Log.i("Error: ", "Error encoding");
         }
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, rl, el);
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url, rl, el);
         queue.add(stringRequest);
     }
 

@@ -10,8 +10,8 @@ public class CurrentMovie {
     private static MovieItem movie;
 
     /**
-     * sets current movie
-     * @param m
+     * Sets current movie
+     * @param m set movie
      */
     public static void setMovie(MovieItem m){
         movie = m;
@@ -26,8 +26,10 @@ public class CurrentMovie {
     }
 
     /**
-     * takes rating for movie
-     * @param rating
+     * Rates movie
+     * @param rating current rating
+     * @param rl response listener
+     * @param el error listener
      */
     public static void rate(double rating, Response.Listener<String> rl, Response.ErrorListener el){
         Movies.rateMovie(movie, rating, rl, el);

@@ -26,11 +26,11 @@ import edu.gatech.cs2340.nochill.models.Users;
 public class RegisterActivity extends ActionBarActivity {
 
 
-    final Context thisContext = this;
+    private final Context thisContext = this;
 
     /**
      * Creates registration screen
-     * @param savedInstanceState
+     * @param savedInstanceState creates screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class RegisterActivity extends ActionBarActivity {
 
         setTitle("Register");
 
-        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        final Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class RegisterActivity extends ActionBarActivity {
             }
         });
 
-        Button registerButton = (Button) findViewById(R.id.registerButton);
+        final Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -60,25 +60,25 @@ public class RegisterActivity extends ActionBarActivity {
      * checks the credentials of the user/password and username combination
      */
     private void checkPassAndConfirm(){
-        String password = ((EditText) findViewById(R.id.passwordLine)).getText().toString();
-        String confirmPassword = ((EditText) findViewById(R.id.confirmPasswordLine)).getText().toString();
+        final String password = ((EditText) findViewById(R.id.passwordLine)).getText().toString();
+        final String confirmPassword = ((EditText) findViewById(R.id.confirmPasswordLine)).getText().toString();
         if(password.equals(confirmPassword)) {
 
-            String firstName = ((EditText) findViewById(R.id.firstNameLine)).getText().toString();
-            String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
-            String email = ((EditText) findViewById(R.id.emailLine)).getText().toString();
-            String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
-            String major = ((Spinner) findViewById(R.id.majorLine)).getSelectedItem().toString();
+            final String firstName = ((EditText) findViewById(R.id.firstNameLine)).getText().toString();
+            final String lastName = ((EditText) findViewById(R.id.lastNameLine)).getText().toString();
+            final String email = ((EditText) findViewById(R.id.emailLine)).getText().toString();
+            final String username = ((EditText) findViewById(R.id.usernameLine)).getText().toString();
+            final String major = ((Spinner) findViewById(R.id.majorLine)).getSelectedItem().toString();
 
 
-            Response.Listener rl = new Response.Listener<String>() {
+            final Response.Listener rl = new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.i("getUser response: ", response);
 
                     boolean added = false;
                     try {
-                        JSONObject res = new JSONObject(response);
+                        final JSONObject res = new JSONObject(response);
                         added = !res.getBoolean("error");
                     } catch (Exception e){
                         Log.i("Error: ", e.toString());
@@ -96,7 +96,7 @@ public class RegisterActivity extends ActionBarActivity {
                 }
             };
 
-            Response.ErrorListener el = new Response.ErrorListener() {
+            final Response.ErrorListener el = new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.i("getUser error: ", error.toString());
@@ -117,13 +117,13 @@ public class RegisterActivity extends ActionBarActivity {
      * goes to login screen
      */
     private void goToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     /**
      * Creates the menu
-     * @param menu
+     * @param menu initiation
      * @return true
      */
     @Override
@@ -136,7 +136,7 @@ public class RegisterActivity extends ActionBarActivity {
 
     /**
      * Acts when item is selected
-     * @param item
+     * @param item selected
      * @return item selected
      */
     @Override
@@ -144,7 +144,7 @@ public class RegisterActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -158,7 +158,7 @@ public class RegisterActivity extends ActionBarActivity {
      * Goes to main activity
      */
     private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

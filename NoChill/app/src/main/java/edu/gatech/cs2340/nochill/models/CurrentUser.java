@@ -21,8 +21,10 @@ public class CurrentUser {
     }
 
     /**
-     * Edits profile in storage and in current user
-     * @param p profile
+     * Edits profile
+     * @param p current profile
+     * @param rl response listener
+     * @param el error listener
      */
     public static void editProfile(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
         profile = p;

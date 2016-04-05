@@ -9,8 +9,8 @@ import java.util.List;
 public class MovieItem {
     private String name;
     private int year;
-    private String rating_mpaa;
-    private int ID;
+    private String ratingMpaa;
+    private int id;
     private String description;
     private double averageRating;
     private int numRatings;
@@ -23,15 +23,15 @@ public class MovieItem {
      * @return id of movie
      */
     public int getID() {
-        return ID;
+        return id;
     }
 
     /**
      * sets movie ID
-     * @param ID
+     * @param id movie ID from Rotten Tomatoes
      */
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**
@@ -43,8 +43,8 @@ public class MovieItem {
     }
 
     /**
-     * sets description of movie
-     * @param description
+     * Sets movie descriptions
+     * @param description main description for movie
      */
     public void setDescription(String description) {
         this.description = description;
@@ -59,8 +59,8 @@ public class MovieItem {
     }
 
     /**
-     * sets average rating of the movie
-     * @param averageRating
+     * Sets average Rating of movie
+     * @param averageRating previous average
      */
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
@@ -75,8 +75,8 @@ public class MovieItem {
     }
 
     /**
-     * creates/sets list of actors
-     * @param actors
+     * Sets list of actors
+     * @param actors list of actors
      */
     public void setActors(List<String> actors) {
         this.actors = actors;
@@ -92,17 +92,27 @@ public class MovieItem {
 
     /**
      * sets total number of ratings
-     * @param numRatings
+     * @param numRatings current number of ratings
      */
     public void setNumRatings(int numRatings) {
         this.numRatings = numRatings;
     }
 
+    /**
+     * @param name of movie
+     * @param year movie released
+     * @param rating current movie rating
+     * @param id from rotten tomatoes
+     * @param description synopsis of movie
+     * @param averageRating current average rating of movie
+     * @param numRatings of ratings given to movie
+     * @param actors list of actors in movie
+     */
     public MovieItem(String name, int year, String rating, int id, String description, double averageRating, int numRatings, List<String> actors) {
         this.name = name;
         this.year = year;
-        this.rating_mpaa = rating;
-        ID = id;
+        this.ratingMpaa = rating;
+        this.id = id;
 
         this.description = description;
 
@@ -126,7 +136,7 @@ public class MovieItem {
 
     /**
      * sets the name of the movie
-     * @param name
+     * @param name of movie
      */
     public void setName(String name) {
         this.name = name;
@@ -134,7 +144,7 @@ public class MovieItem {
 
     /**
      * gets the year the movie was made
-     * @return
+     * @return int year of movie
      */
     public int getYear() {
         return year;
@@ -142,7 +152,7 @@ public class MovieItem {
 
     /**
      * sets the year the movie was made
-     * @param year
+     * @param year movie was released
      */
     public void setYear(int year) {
         this.year = year;
@@ -152,16 +162,16 @@ public class MovieItem {
      * gets the MPAA rating of the movie
      * @return MPAA rating of the movie
      */
-    public String getRating_mpaa() {
-        return rating_mpaa;
+    public String getratingMpaa() {
+        return ratingMpaa;
     }
 
     /**
      * Set MPAA rating
-     * @param rating_mpaa
+     * @param ratingMpaa appropriateness of movie
      */
-    public void setRating_mpaa(String rating_mpaa) {
-        this.rating_mpaa = rating_mpaa;
+    public void setRatingMpaa(String ratingMpaa) {
+        this.ratingMpaa = ratingMpaa;
     }
 
     /**
@@ -170,14 +180,14 @@ public class MovieItem {
      * @return double of rating
      */
     public double getMajorRating(String major){
-        Double rating = majorRatingMap.get(major);
+        final Double rating = majorRatingMap.get(major);
         return rating!=null?rating:0;
     }
 
     /**
      * sets the major's rating
      * @param major String
-     * @param rating
+     * @param rating current rating by major
      */
     public void setMajorRating(String major, double rating){
         majorRatingMap.put(major, rating);
@@ -185,18 +195,18 @@ public class MovieItem {
 
     /**
      * Gets number of people who rated movie from major
-     * @param major
+     * @param major of user
      * @return int number of people
      */
     public int getMajorCount(String major){
-        Integer count = majorCountMap.get(major);
+        final Integer count = majorCountMap.get(major);
         return count!=null?count:0;
     }
 
     /**
      * Sets number of people who rate movie from major
-     * @param major
-     * @param rating
+     * @param major of user
+     * @param rating given to movie
      */
     public void setMajorCount(String major, int rating){
         majorCountMap.put(major, rating);

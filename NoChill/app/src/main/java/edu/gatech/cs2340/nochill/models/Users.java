@@ -19,9 +19,10 @@ public class Users {
     private static List<Profile> userList = new LinkedList<Profile>();
 
     /**
-     * Returns false if unable to add user or else returns true
-     * @param p
-     * @return if user was added
+     * Adds user
+     * @param p user to add
+     * @param rl response listener
+     * @param el error listener
      */
     public static void addUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
         Log.i("addUser: ", "Attempting to add " + p.getUsername());
@@ -31,11 +32,13 @@ public class Users {
     }
 
     /**
-     * Removes old profile and adds new one
-     * @param p
+     * Edits old profile
+     * @param p user to edit
+     * @param rl response listener
+     * @param el error listener
      */
     public static void editUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
-      UserRequester.editUser(p, rl, el);
+        UserRequester.editUser(p, rl, el);
     }
 
     /**
@@ -49,20 +52,21 @@ public class Users {
 //    }
 
     /**
-     * Returns the user's profile when a username is entered
-     * @param username
-     * @return user's profile
+     * Gets user
+     * @param username of user
+     * @param rl1 response listener
+     * @param el1 error listener
      */
     public static void getUser(String username, Response.Listener<String> rl1, Response.ErrorListener el1){
 
-        Response.Listener rl = new Response.Listener() {
+        final Response.Listener rl = new Response.Listener() {
             @Override
             public void onResponse(Object response) {
                 Log.i("getUser response: ", response.toString());
             }
         };
 
-        Response.ErrorListener el = new Response.ErrorListener() {
+        final Response.ErrorListener el = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("getUser error: ", error.toString());
@@ -72,6 +76,13 @@ public class Users {
         UserRequester.getUser(username, rl, el);
     }
 
+    /**
+     * Login for user
+     * @param username of user
+     * @param password o fuser
+     * @param rl response listener
+     * @param el error listener
+     */
     public static void login(String username, String password, Response.Listener<String> rl, Response.ErrorListener el){
         Log.i("Login: ", "Attempting login");
         UserRequester.login(username, password, rl, el);
@@ -152,10 +163,11 @@ public class Users {
      * @return list of banned users except superadmin
      */
     public static List<String> getBannedUsers(){
-        List<String> bannedUsers = new ArrayList<>();
-        for(Profile p : userList){
-            if(p.isBanned() && !p.isSuperAdmin())
+        final List<String> bannedUsers = new ArrayList<>();
+        for(final Profile p : userList){
+            if(p.isBanned() && !p.isSuperAdmin()) {
                 bannedUsers.add(p.getUsername());
+            }
         }
         return bannedUsers;
     }
@@ -165,10 +177,11 @@ public class Users {
      * @return list of unbanned users except superadmin
      */
     public static List<String> getUnbannedUsers(){
-        List<String> unbannedUsers = new ArrayList<>();
-        for(Profile p : userList){
-            if(!p.isBanned() && !p.isSuperAdmin())
+        final List<String> unbannedUsers = new ArrayList<>();
+        for(final Profile p : userList){
+            if(!p.isBanned() && !p.isSuperAdmin()) {
                 unbannedUsers.add(p.getUsername());
+            }
         }
         return unbannedUsers;
     }

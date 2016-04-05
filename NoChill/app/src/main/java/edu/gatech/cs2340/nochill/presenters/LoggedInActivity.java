@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.CurrentUser;
-import edu.gatech.cs2340.nochill.models.Users;
+//import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoggedInActivity extends ActionBarActivity {
 
 
     /**
-     * Creates logged in screen
-     * @param savedInstanceState
+     * creates screen
+     * @param savedInstanceState screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class LoggedInActivity extends ActionBarActivity {
 
         setTitle("Home");
 
-        Button logout = ((Button) findViewById(R.id.logout));
+        final Button logout = ((Button) findViewById(R.id.logout));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +36,7 @@ public class LoggedInActivity extends ActionBarActivity {
         });
 
 
-        Button proButt = ((Button) findViewById(R.id.profileButton));
+        final Button proButt = ((Button) findViewById(R.id.profileButton));
         proButt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class LoggedInActivity extends ActionBarActivity {
             }
         });
 
-        Button dvdButt = ((Button) findViewById(R.id.dvdButton));
+        final Button dvdButt = ((Button) findViewById(R.id.dvdButton));
         dvdButt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -53,7 +53,7 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
-        Button searchButt = ((Button) findViewById(R.id.searchButton));
+        final Button searchButt = ((Button) findViewById(R.id.searchButton));
         searchButt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
-        Button newReleasesButt = ((Button) findViewById(R.id.releasesButton));
+        final Button newReleasesButt = ((Button) findViewById(R.id.releasesButton));
         newReleasesButt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -71,7 +71,7 @@ public class LoggedInActivity extends ActionBarActivity {
 
         });
 
-        Button recommendationsButton = ((Button) findViewById(R.id.recommendationButton));
+        final Button recommendationsButton = ((Button) findViewById(R.id.recommendationButton));
         recommendationsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class LoggedInActivity extends ActionBarActivity {
         });
 
 
-        Button adminProfileButton = ((Button) findViewById(R.id.adminProfileButton));
+        final Button adminProfileButton = ((Button) findViewById(R.id.adminProfileButton));
         adminProfileButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -97,9 +97,9 @@ public class LoggedInActivity extends ActionBarActivity {
     }
 
     /**
-     * Creates option menu for screen
-     * @param menu
-     * @return true
+     * creates options menu
+     * @param menu initiates menu
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,16 +110,16 @@ public class LoggedInActivity extends ActionBarActivity {
 
 
     /**
-     * Acts when item is selected
-     * @param item
-     * @return item selected
+     * Select options
+     * @param item options menu
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -133,7 +133,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to login screen
      */
     private void goToLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -141,7 +141,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to profile screen
      */
     private void goToProfile(){
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        final Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);
     }
 
@@ -149,7 +149,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to DVD screen
      */
     private void goToDVD() {
-        Intent intent = new Intent(this, NewDVDActivity.class);
+        final Intent intent = new Intent(this, NewDVDActivity.class);
         startActivity(intent);
     }
 
@@ -157,7 +157,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to search screen
      */
     private void goToSearch() {
-        Intent intent = new Intent(this, SearchActivity.class);
+        final Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
@@ -165,7 +165,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to new releases screen
      */
     private void goToNewReleases() {
-        Intent intent = new Intent(this, NewReleasesActivity.class);
+        final Intent intent = new Intent(this, NewReleasesActivity.class);
         startActivity(intent);
     }
 
@@ -173,7 +173,7 @@ public class LoggedInActivity extends ActionBarActivity {
      * Goes to new recommendations screen
      */
     private void goToRecommendations() {
-        Intent intent = new Intent(this, RecommendationActivity.class);
+        final Intent intent = new Intent(this, RecommendationActivity.class);
         startActivity(intent);
     }
 
@@ -182,7 +182,7 @@ public class LoggedInActivity extends ActionBarActivity {
      */
     private void goToAdminChanges() {
         if(CurrentUser.getProfile().isAdmin()){
-            Intent intent = new Intent(this, adminActivity.class);
+            final Intent intent = new Intent(this, adminActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Not an admin",

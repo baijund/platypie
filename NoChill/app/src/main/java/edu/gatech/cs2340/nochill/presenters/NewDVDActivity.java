@@ -28,11 +28,11 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class NewDVDActivity extends ActionBarActivity {
 
-    Context thisContext = this;
+    private Context thisContext = this;
 
     /**
      * Creates list for new DVDs
-     * @param savedInstanceState
+     * @param savedInstanceState creates screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class NewDVDActivity extends ActionBarActivity {
                 Log.i("REQUEST THING", "Success");
 
                 try {
-                    JSONObject jsonRootObject = new JSONObject(response);
-                    JSONArray jsonMoviesArray = jsonRootObject.optJSONArray("movies");
+                    final JSONObject jsonRootObject = new JSONObject(response);
+                    final JSONArray jsonMoviesArray = jsonRootObject.optJSONArray("movies");
                     for (int i = 0; i < jsonMoviesArray.length(); i++) {
                         final JSONObject j = jsonMoviesArray.getJSONObject(i);
                         Log.i("Movie title: ", j.getString("title"));
@@ -60,30 +60,30 @@ public class NewDVDActivity extends ActionBarActivity {
                         final List<String> actors = new ArrayList<String>();
                         final JSONArray actorsArr = j.getJSONArray("abridged_cast");
                         for (int k = 0; k < actorsArr.length(); k++) {
-                            JSONObject actorobj = actorsArr.getJSONObject(k);
+                            final JSONObject actorobj = actorsArr.getJSONObject(k);
                             actors.add(actorobj.getString("name"));
                         }
 
-                        Response.Listener<String> rl = new Response.Listener<String>() {
+                        final Response.Listener<String> rl = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 MovieItem m = null;
                                 JSONObject res = null;
                                 try {
                                     res = new JSONObject(response);
-                                    String name = res.getString("name");
-                                    int year = res.getInt("year");
-                                    String rating_mpaa = res.getString("rating_mpaa");
-                                    int id = res.getInt("ID");
-                                    String description = res.getString("description");
-                                    double averageRating = res.getDouble("averageRating");
-                                    int numRatings = res.getInt("numRatings");
-                                    JSONArray jact = res.getJSONArray("actors");
-                                    List<String> actors = new ArrayList<>();
+                                    final String name = res.getString("name");
+                                    final int year = res.getInt("year");
+                                    final String ratingMpaa = res.getString("rating_mpaa");
+                                    final int id = res.getInt("ID");
+                                    final String description = res.getString("description");
+                                    final double averageRating = res.getDouble("averageRating");
+                                    final int numRatings = res.getInt("numRatings");
+                                    final JSONArray jact = res.getJSONArray("actors");
+                                    final List<String> actors = new ArrayList<>();
                                     for (int i = 0; i < jact.length(); i++) {
                                         actors.add((String) jact.get(i));
                                     }
-                                    m = new MovieItem(name, year, rating_mpaa, id, description, averageRating, numRatings, actors);
+                                    m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
                                 } catch (Exception e) {
                                     Log.i("Error: ", e.toString());
                                 }
@@ -109,8 +109,8 @@ public class NewDVDActivity extends ActionBarActivity {
                                     public void onItemClick(AdapterView<?> parent, View view,
                                                             int position, long id) {
 
-                                        Object o = lv.getItemAtPosition(position);
-                                        MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
+                                        final Object o = lv.getItemAtPosition(position);
+                                        final MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
                                         CurrentMovie.setMovie(movie);
                                         goToActivityDescription();
 
@@ -121,7 +121,7 @@ public class NewDVDActivity extends ActionBarActivity {
                             }
                         };
 
-                        Response.ErrorListener el = new Response.ErrorListener() {
+                        final Response.ErrorListener el = new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
 
@@ -151,7 +151,7 @@ public class NewDVDActivity extends ActionBarActivity {
      * Goes to activity description
      */
     private void goToActivityDescription() {
-        Intent intent = new Intent(this, DescriptionActivity.class);
+        final Intent intent = new Intent(this, DescriptionActivity.class);
         startActivity(intent);
     }
 

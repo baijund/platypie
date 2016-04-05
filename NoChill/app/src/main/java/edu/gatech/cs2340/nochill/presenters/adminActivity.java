@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.nochill.presenters;
 
 import android.app.AlertDialog;
-import android.content.Context;
+//import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -16,14 +16,14 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class adminActivity extends ActionBarActivity {
 
-    Spinner unbanSpinner;
-    ArrayAdapter<String> unbanAdapt; //Adapter displaying banned users
+    private Spinner unbanSpinner;
+    private ArrayAdapter<String> unbanAdapt; //Adapter displaying banned users
 
-    Spinner banSpinner;
-    ArrayAdapter<String> banAdapt; //Adapter displaying unbanned users
+    private Spinner banSpinner;
+    private ArrayAdapter<String> banAdapt; //Adapter displaying unbanned users
 
-    Spinner nonAdminSpinner;
-    ArrayAdapter<String> nonAdminAdapt; //Adapter displaying unbanned users
+    private Spinner nonAdminSpinner;
+    //private ArrayAdapter<String> nonAdminAdapt; //Adapter displaying unbanned users
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,37 +43,37 @@ public class adminActivity extends ActionBarActivity {
         nonAdminSpinner = (Spinner) findViewById(R.id.addAdminSpinner);
         nonAdminSpinner.setAdapter(banAdapt);
 
-        Button banButt = ((Button) findViewById(R.id.banButton));
+        final Button banButt = ((Button) findViewById(R.id.banButton));
 
 
         banButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = (String) banSpinner.getSelectedItem();
+                final String username = (String) banSpinner.getSelectedItem();
                 attemptBan(username);
             }
 
         });
 
 
-        Button unbanButt = ((Button) findViewById(R.id.unBanButton));
+        final Button unbanButt = ((Button) findViewById(R.id.unBanButton));
         unbanButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = (String) unbanSpinner.getSelectedItem();
+                final String username = (String) unbanSpinner.getSelectedItem();
                 attemptUnban(username);
             }
 
         });
 
-        Button addAdminButt = ((Button) findViewById(R.id.addAdminButton));
+        final Button addAdminButt = ((Button) findViewById(R.id.addAdminButton));
         if(!CurrentUser.getProfile().isSuperAdmin()){
             addAdminButt.setEnabled(false);
         } else {
             addAdminButt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String username = (String) nonAdminSpinner.getSelectedItem();
+                    final String username = (String) nonAdminSpinner.getSelectedItem();
                     attemptAdmin(username);
                 }
 
@@ -82,8 +82,12 @@ public class adminActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * attempts to make a user an admin
+     * @param username admin username to add
+     */
     private void attemptAdmin(final String username){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to make " + username + " an admin?")
                 .setCancelable(false)
                 .setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
@@ -98,12 +102,16 @@ public class adminActivity extends ActionBarActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
     }
 
+    /**
+     * Bans user
+     * @param username of user to ban
+     */
     private void attemptBan(final String username){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to ban " + username)
                 .setCancelable(false)
                 .setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
@@ -118,13 +126,17 @@ public class adminActivity extends ActionBarActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
     }
 
+    /**
+     * Unbans user
+     * @param username of user to unban
+     */
     private void attemptUnban(final String username){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to unban " + username)
                 .setCancelable(false)
                 .setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
@@ -139,10 +151,13 @@ public class adminActivity extends ActionBarActivity {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
     }
 
+    /**
+     * Updates adapters
+     */
     private void updateAdapters(){
         banAdapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Users.getUnbannedUsers());
         banSpinner.setAdapter(banAdapt);

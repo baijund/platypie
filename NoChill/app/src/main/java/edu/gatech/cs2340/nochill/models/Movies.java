@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.nochill.models;
 
-import android.graphics.Movie;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -12,7 +11,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,23 +25,24 @@ public class Movies {
     private static HashMap<Integer,MovieItem> movieMap = new HashMap<Integer,MovieItem>();
 
     /**
-     * Returns movie associated with id
-     * @param id id of movie as given by RT
-     * @return MovieItem object if in storage or else null
+     * Gets movie from app
+     * @param id rotten tomatoes id
+     * @param rl response listener
+     * @param el error listener
      */
     public static void getMovie(final Integer id, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/getMovie", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/getMovie", rl, el){
             @Override
             protected Map<String,String> getParams(){
 
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("id",id.toString());
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
@@ -52,31 +51,32 @@ public class Movies {
     }
 
     /**
-     * Adds movie to storage
-     * @param m MovieItem to be added. If it exists, update it.
-     * @return null if movie did not exist or old MovieItem
+     * Adds movie to list
+     * @param m current movie item to add
+     * @param rl responselistener
+     * @param el error listener
      */
     public static void addMovie(final MovieItem m, Response.Listener<String> rl, Response.ErrorListener el){
-        StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/addMovie", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/addMovie", rl, el){
             @Override
             protected Map<String,String> getParams(){
 
-                String name = m.getName();
-                int id = m.getID();
-                int year = m.getYear();
-                String rating_mpaa = m.getRating_mpaa();
-                String description = m.getDescription();
-                double averageRating = m.getAverageRating();
-                int numRatings = m.getNumRatings();
-                List<String> actors = m.getActors();
+                final String name = m.getName();
+                final int id = m.getID();
+                final int year = m.getYear();
+                final String ratingMpaa = m.getratingMpaa();
+                final String description = m.getDescription();
+                final double averageRating = m.getAverageRating();
+                final int numRatings = m.getNumRatings();
+                final List<String> actors = m.getActors();
 
-                JSONObject j = new JSONObject();
-                JSONArray jArr = new JSONArray(actors);
+                final JSONObject j = new JSONObject();
+                final JSONArray jArr = new JSONArray(actors);
                 try {
                     j.put("name", name);
                     j.put("id", id);
                     j.put("year", year);
-                    j.put("rating_mpaa", rating_mpaa);
+                    j.put("rating_mpaa", ratingMpaa);
                     j.put("description", description);
                     j.put("averageRating", averageRating);
                     j.put("numRatings", numRatings);
@@ -86,7 +86,7 @@ public class Movies {
                     Log.i("addUSer Error: ", "get param error");
                 }
 
-                JSONObject j2 = new JSONObject();
+                final JSONObject j2 = new JSONObject();
                 try {
                     j2.put("major", CurrentUser.getProfile().getMajor());
                     j2.put("rating", 1);
@@ -95,7 +95,7 @@ public class Movies {
                     Log.i("addUSer Error: ", "get param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("movieString",j.toString());
                 params.put("majorRatingString",j2.toString());
                 return params;
@@ -103,7 +103,7 @@ public class Movies {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
+                final Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
                 return params;
             }
@@ -121,9 +121,11 @@ public class Movies {
     }
 
     /**
-     * User rates the movie
-     * @param mov MovieItem movie that was rated
-     * @param rating double of rating
+     * Rating movie
+     * @param mov to rate
+     * @param rating for movie
+     * @param rl response listener
+     * @param el error listener
      */
     public static void rateMovie(MovieItem mov, double rating, Response.Listener<String> rl, Response.ErrorListener el){
         //MovieItem m = getMovie(mov.getID());
@@ -141,16 +143,16 @@ public class Movies {
             oldnumrats = 0;
             m = mov;
         }
-        double newavg = recalculateAverage(oldavg, oldnumrats, rating);
+        final double newavg = recalculateAverage(oldavg, oldnumrats, rating);
         m.setAverageRating(newavg);
         m.setNumRatings(oldnumrats + 1);
 
         //Set major specific ratings
-        String major = CurrentUser.getProfile().getMajor();
-        double oldMajorAvg = m.getMajorRating(major);
-        int oldMajorRatings = m.getMajorCount(major);
+        final String major = CurrentUser.getProfile().getMajor();
+        final double oldMajorAvg = m.getMajorRating(major);
+        final int oldMajorRatings = m.getMajorCount(major);
 
-        double newMajorAvg = recalculateAverage(oldMajorAvg, oldMajorRatings, rating);
+        final double newMajorAvg = recalculateAverage(oldMajorAvg, oldMajorRatings, rating);
         m.setMajorCount(major, oldMajorRatings + 1);
         m.setMajorRating(major, newMajorAvg);
 
@@ -160,20 +162,24 @@ public class Movies {
 
 
     /**
-     * Re-calculates average of the ratings after user inputs a new one
-     *
+     * Recalculates average for movie
+     * @param oldAvg previous average
+     * @param ratingNum number rated
+     * @param rating of movie
+     * @return double
      */
     private static double recalculateAverage(double oldAvg, int ratingNum, double rating){
         return (oldAvg*ratingNum + rating)/(ratingNum + 1);
     }
 
     /**
-     * Gives list of MovieItems for search results
-     * @return List<MovieItem> movieitem list
+     * Gets movie list
+     * @param rl response listener
+     * @param el error listener
      */
     public static void getMovieList(Response.Listener<String> rl, Response.ErrorListener el){
 
-        StringRequest sr = new StringRequest(Request.Method.GET, "https://nochill.herokuapp.com/movies/getMovieList", rl, el);
+        final StringRequest sr = new StringRequest(Request.Method.GET, "https://nochill.herokuapp.com/movies/getMovieList", rl, el);
         queue.add(sr);
 
 //        List<MovieItem> l = new ArrayList();

@@ -23,18 +23,18 @@ import edu.gatech.cs2340.nochill.R;
 
 public class UserProfileActivity extends ActionBarActivity {
 
-    final Context thisContext = this;
+    private final Context thisContext = this;
 
-    Profile p = CurrentUser.getProfile();
-    EditText fname;
-    EditText lname;
-    EditText email;
-    EditText aboutMe;
-    Spinner major;
+    private Profile p = CurrentUser.getProfile();
+    private EditText fname;
+    private EditText lname;
+    private EditText email;
+    private EditText aboutMe;
+    private Spinner major;
 
     /**
      * Creates user profile screen
-     * @param savedInstanceState
+     * @param savedInstanceState creates screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,8 @@ public class UserProfileActivity extends ActionBarActivity {
         aboutMe = (EditText) findViewById(R.id.aboutme);
         major = (Spinner) findViewById(R.id.majorLine2);
 
-        ArrayAdapter adapt = (ArrayAdapter) major.getAdapter();
-        int position = adapt.getPosition(p.getMajor());
+        final ArrayAdapter adapt = (ArrayAdapter) major.getAdapter();
+        final int position = adapt.getPosition(p.getMajor());
         major.setSelection(position);
 
 
@@ -62,7 +62,7 @@ public class UserProfileActivity extends ActionBarActivity {
         aboutMe.setText(p.getAboutMe(), TextView.BufferType.EDITABLE);
 
 
-        Button updateButton = (Button) findViewById(R.id.updateButton);
+        final Button updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -82,14 +82,14 @@ public class UserProfileActivity extends ActionBarActivity {
         p.setMajor(major.getSelectedItem().toString());
 
 
-        Response.Listener rl = new Response.Listener<String>() {
+        final Response.Listener rl = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("editUser response: ", response);
 
                 boolean added = false;
                 try {
-                    JSONObject res = new JSONObject(response);
+                    final JSONObject res = new JSONObject(response);
                     added = !res.getBoolean("error");
                 } catch (Exception e){
                     Log.i("Error: ", e.toString());
@@ -106,7 +106,7 @@ public class UserProfileActivity extends ActionBarActivity {
             }
         };
 
-        Response.ErrorListener el = new Response.ErrorListener() {
+        final Response.ErrorListener el = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("getUser error: ", error.toString());

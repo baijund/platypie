@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.*;
 import android.widget.*;
-import android.widget.EditText;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,11 +21,11 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoginActivity extends ActionBarActivity {
 
-    final Context thisContext = this;
+    private final Context thisContext = this;
 
     /**
-     * Creates log in screen
-     * @param savedInstanceState
+     * Creates screen
+     * @param savedInstanceState screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,7 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
 
 
-        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        final Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,10 +41,10 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        final Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
-        public void onClick(View v){
+            public void onClick(View v){
                 checkUserAndPass();
             }
         });
@@ -57,7 +55,7 @@ public class LoginActivity extends ActionBarActivity {
      * Goes to main screen if user presses cancel
      */
     private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -65,10 +63,10 @@ public class LoginActivity extends ActionBarActivity {
      * Checks if password matches confirm password and stores profile in an arraylist
      */
     private void checkUserAndPass(){
-        String username = ((EditText) findViewById(R.id.userName)).getText().toString();
+        final String username = ((EditText) findViewById(R.id.userName)).getText().toString();
         final String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        Response.Listener<String> rl = new Response.Listener<String>() {
+        final Response.Listener<String> rl = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.i("getUser response: ", response);
@@ -76,13 +74,13 @@ public class LoginActivity extends ActionBarActivity {
                 Profile p = null;
 
                 try{
-                    JSONObject res = new JSONObject(response);
-                    String firstname = res.getString("firstname");
-                    String lastname = res.getString("lastname");
-                    String email = res.getString("email");
-                    String username = res.getString("username");
-                    String aboutme = res.getString("aboutme");
-                    String major = res.getString("major");
+                    final JSONObject res = new JSONObject(response);
+                    final String firstname = res.getString("firstname");
+                    final String lastname = res.getString("lastname");
+                    final String email = res.getString("email");
+                    final String username = res.getString("username");
+                    final String aboutme = res.getString("aboutme");
+                    final String major = res.getString("major");
                     //String password = res.getString("password");
                     p = new Profile(firstname, lastname, email, username, password, major);
                     p.setAboutMe(aboutme);
@@ -96,19 +94,17 @@ public class LoginActivity extends ActionBarActivity {
                     CurrentUser.login(p);
                     CurrentUser.getProfile().setPassword(password);
                     goToLoggedIn();
-                }
-                else if(p != null && p.isBanned()) {
+                } else if(p != null && p.isBanned()) {
                     Toast.makeText(thisContext, "Bad user, you are banned.",
                             Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     Toast.makeText(thisContext, "Incorrect credentials",
                             Toast.LENGTH_LONG).show();
                 }
             }
         };
 
-        Response.ErrorListener el = new Response.ErrorListener() {
+        final Response.ErrorListener el = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("getUser error: ", error.toString());
@@ -121,8 +117,8 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      * Creates options menu
-     * @param menu
-     * @return true
+     * @param menu initiates menu
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,16 +128,16 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     /**
-     * Acts when item is selected
-     * @param item
-     * @return item selection
+     * Creates option menu
+     * @param item selects item
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -155,7 +151,7 @@ public class LoginActivity extends ActionBarActivity {
      * Goes to login screen after account has been made
      */
     private void goToLoggedIn() {
-        Intent intent = new Intent(this, LoggedInActivity.class);
+        final Intent intent = new Intent(this, LoggedInActivity.class);
         startActivity(intent);
     }
 }
