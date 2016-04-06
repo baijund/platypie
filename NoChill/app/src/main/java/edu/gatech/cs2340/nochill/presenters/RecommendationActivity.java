@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -32,10 +33,17 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class RecommendationActivity extends ActionBarActivity {
 
-
+    /**
+     * Movies in list of recommendations
+     */
     private ListView moviesView;
+    /**
+     * Spinner to determine major
+     */
     private Spinner majorSpinner;
-
+    /**
+     * Screen where recommendationActivity is created
+     */
     private Context thisContext = this;
 
     /**
@@ -122,7 +130,7 @@ public class RecommendationActivity extends ActionBarActivity {
                     res = new JSONObject(response);
                     moviesJ = res.getJSONArray("movies");
                     majorRatingsJ = res.getJSONArray("majorRatings");
-                } catch(Exception e) {
+                } catch(JSONException e) {
                     Log.i("Error: ", e.toString());
                 }
 
@@ -137,7 +145,7 @@ public class RecommendationActivity extends ActionBarActivity {
                         final double averageRating = res.getDouble("averageRating");
                         final int numRatings = res.getInt("numRatings");
                         l.add(new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, new ArrayList<String>()));
-                    } catch (Exception e){
+                    } catch (JSONException e){
                         Log.i("Error: ", e.toString());
                     }
 

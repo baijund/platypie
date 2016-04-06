@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.gatech.cs2340.nochill.models.Profile;
@@ -25,7 +26,9 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class RegisterActivity extends ActionBarActivity {
 
-
+    /**
+     * Screen where RegisterActivity is created
+     */
     private final Context thisContext = this;
 
     /**
@@ -80,7 +83,7 @@ public class RegisterActivity extends ActionBarActivity {
                     try {
                         final JSONObject res = new JSONObject(response);
                         added = !res.getBoolean("error");
-                    } catch (Exception e){
+                    } catch (JSONException e){
                         Log.i("Error: ", e.toString());
                     }
 

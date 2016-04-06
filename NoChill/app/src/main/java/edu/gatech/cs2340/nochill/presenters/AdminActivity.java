@@ -16,12 +16,27 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class AdminActivity extends ActionBarActivity {
 
+    /**
+     * Spinner object created to unban users
+     */
     private Spinner unbanSpinner;
+    /**
+     * Array storing users to unban
+     */
     private ArrayAdapter<String> unbanAdapt; //Adapter displaying banned users
 
+    /**
+     * Spinner to ban user
+     */
     private Spinner banSpinner;
+    /**
+     * Array used to store users to ban
+     */
     private ArrayAdapter<String> banAdapt; //Adapter displaying unbanned users
 
+    /**
+     * Spinner to make a nonadmin
+     */
     private Spinner nonAdminSpinner;
     //private ArrayAdapter<String> nonAdminAdapt; //Adapter displaying unbanned users
 

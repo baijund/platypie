@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -25,8 +26,17 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class DescriptionActivity extends ActionBarActivity {
 
+    /**
+     * Description for the movie
+     */
     private MovieItem movie;
+    /**
+     * Text for general rating
+     */
     private TextView ratingtxt;
+    /**
+     * Text for major rating
+     */
     private TextView majorRatingText;
 
     /**
@@ -105,8 +115,8 @@ public class DescriptionActivity extends ActionBarActivity {
                 try{
                     theRes = new JSONObject(response);
                     Log.i("Response: ", "The response is " + response);
-                    JSONArray resPre = new JSONArray(theRes.getString("movie"));
-                    JSONObject res = resPre.getJSONObject(0);
+                    final JSONArray resPre = new JSONArray(theRes.getString("movie"));
+                    final JSONObject res = resPre.getJSONObject(0);
                     final String name = res.getString("name");
                     final int year = res.getInt("year");
                     final String ratingMpaa = res.getString("rating_mpaa");
@@ -128,7 +138,7 @@ public class DescriptionActivity extends ActionBarActivity {
                         m.setMajorRating(jMajors.getJSONObject(i).getString("major"), jMajors.getJSONObject(i).getDouble("rating"));
                     }
 
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("Error: ", e.toString());
                 }
                 if(m == null){

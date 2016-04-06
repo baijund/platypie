@@ -28,6 +28,9 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class NewDVDActivity extends ActionBarActivity {
 
+    /**
+     * Context/screen where everything is held
+     */
     private Context thisContext = this;
 
     /**
@@ -84,7 +87,7 @@ public class NewDVDActivity extends ActionBarActivity {
                                         actors.add((String) jact.get(j));
                                     }
                                     m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
-                                } catch (Exception e) {
+                                } catch (JSONException e) {
                                     Log.i("Error: ", e.toString());
                                 }
 
@@ -99,7 +102,7 @@ public class NewDVDActivity extends ActionBarActivity {
                                 }
                                 try {
                                     l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
-                                } catch (Exception e) {
+                                } catch (JSONException e) {
                                     Log.i("Error: ", e.toString());
                                 }
 

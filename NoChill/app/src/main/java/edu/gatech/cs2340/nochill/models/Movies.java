@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -18,10 +19,22 @@ import java.util.Map;
 /**
  * Created by Baijun on 2/27/2016.
  */
-public class Movies {
+public final class Movies {
+    /**
+     * Creates private constructor for Movies object
+     */
+    private Movies() {
 
+    }
+
+    /**
+     * Request que of movies
+     */
     private static RequestQueue queue = Requests.getQueue();
 
+    /**
+     * Looks at which movie
+     */
     private static Map<Integer,MovieItem> movieMap = new HashMap<Integer,MovieItem>();
 
     /**
@@ -82,7 +95,7 @@ public class Movies {
                     j.put("numRatings", numRatings);
                     j.put("actors", jArr);
                     //j.put("actors", "[a1, a2, a3]");
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("addUSer Error: ", "get param error");
                 }
 
@@ -92,7 +105,7 @@ public class Movies {
                     j2.put("rating", 1);
                     j2.put("count", 1);
                     j2.put("id", id);
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("addUSer Error: ", "get param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());

@@ -29,7 +29,9 @@ import edu.gatech.cs2340.nochill.models.MovieRequester;
 import edu.gatech.cs2340.nochill.models.Movies;
 
 public class SearchActivity extends ActionBarActivity {
-
+    /**
+     * Creates screen for SearchActivity
+     */
     private Context thisContext = this;
 
     /**
@@ -107,7 +109,7 @@ public class SearchActivity extends ActionBarActivity {
                                         actors.add((String) jact.get(j));
                                     }
                                     m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
-                                } catch (Exception e) {
+                                } catch (JSONException e) {
                                     Log.i("Error: ", e.toString());
                                 }
 
@@ -122,7 +124,7 @@ public class SearchActivity extends ActionBarActivity {
                                 }
                                 try {
                                     l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
-                                } catch (Exception e) {
+                                } catch (JSONException e) {
                                     Log.i("Error: ", e.toString());
                                 }
 

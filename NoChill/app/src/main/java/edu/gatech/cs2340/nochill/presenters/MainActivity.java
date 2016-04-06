@@ -6,18 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
-//import java.net.CookiePolicy;
-//import java.net.CookieStore;
 
-//import edu.gatech.cs2340.nochill.models.MovieRequester;
-//import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.Requests;
-//import edu.gatech.cs2340.nochill.models.Users;
+
 
 public class MainActivity extends ActionBarActivity {
 

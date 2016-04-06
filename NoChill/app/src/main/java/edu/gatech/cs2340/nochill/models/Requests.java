@@ -13,8 +13,17 @@ import com.android.volley.toolbox.Volley;
 /**
  * Created by Baijun on 2/27/2016.
  */
-public class Requests {
+public final class Requests {
+    /**
+     * Creates private constructor for requests
+     */
+    private Requests() {
 
+    }
+
+    /**
+     * Creates queue for requests
+     */
     private static RequestQueue queue;
 
     /**

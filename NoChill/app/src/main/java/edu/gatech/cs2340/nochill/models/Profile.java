@@ -8,15 +8,45 @@ package edu.gatech.cs2340.nochill.models;
  */
 public class Profile {
 
+    /**
+     * First name of user
+     */
     private String firstName;
+    /**
+     * last name of user
+     */
     private String lastName;
+    /**
+     * email of user
+     */
     private String email;
+    /**
+     * username of user
+     */
     private String username;
+    /**
+     * password of user
+     */
     private String password;
+    /**
+     * user about me
+     */
     private String aboutMe;
+    /**
+     * user's major
+     */
     private String major;
+    /**
+     * user's banned status
+     */
     private boolean banned;
+    /**
+     * user admin status
+     */
     private boolean admin;
+    /**
+     * user superadmin status
+     */
     private boolean superAdmin;
 
     /**

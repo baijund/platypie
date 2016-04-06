@@ -12,8 +12,15 @@ import java.util.List;
 /**
  * Created by Alaap on 2/13/16.
  */
-public class Users {
+public final class Users {
+    /**
+     * Creates private constructor for users
+     */
+    private Users() {}
 
+    /**
+     * List of Profiles
+     */
     private static List<Profile> userList = new LinkedList<Profile>();
 
     /**

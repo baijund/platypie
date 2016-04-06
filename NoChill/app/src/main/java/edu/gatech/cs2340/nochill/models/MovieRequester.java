@@ -18,12 +18,29 @@ import java.net.URLEncoder;
 /**
  * Created by Baijun on 2/19/2016.
  */
-public class MovieRequester {
+public final class MovieRequester {
+    /**
+     * Creates private constructor for MovieRequester Object
+     */
+    private MovieRequester() {}
+
+    /**
+     * General API key
+     */
     private static final String API_KEY = "7wj4raxmwrr475d3na6ujxbr";
     //private static final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0";
+    /**
+     * URL to get new releases
+     */
     private static final String NEW_RELEASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey="+API_KEY;
+    /**
+     * URL to get in theaters movies
+     */
     private static final String IN_THEATERS_URL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey="+API_KEY;
 
+    /**
+     * Request queue of movies
+     */
     private static RequestQueue queue = Requests.getQueue();
 
     /**

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +26,9 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoginActivity extends ActionBarActivity {
 
+    /**
+     * current context
+     */
     private final Context thisContext = this;
 
     /**

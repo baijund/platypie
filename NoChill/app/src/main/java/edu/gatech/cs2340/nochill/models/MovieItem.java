@@ -8,15 +8,45 @@ import java.util.Map;
  * Created by Baijun on 2/19/2016.
  */
 public class MovieItem {
+    /**
+     * Name of movie
+     */
     private String name;
+    /**
+     * Year movie was released
+     */
     private int year;
+    /**
+     * MPAA rating of movie
+     */
     private String ratingMpaa;
+    /**
+     * Rotten tomatoes ID of movie
+     */
     private int id;
+    /**
+     * Movie synopsis
+     */
     private String description;
+    /**
+     * Current average rating of movie
+     */
     private double averageRating;
+    /**
+     * Curent number of ratings of movie
+     */
     private int numRatings;
+    /**
+     * List of actors in movie
+     */
     private List<String> actors;
+    /**
+     * Map with major ratings
+     */
     private Map<String, Double> majorRatingMap = new HashMap<String, Double>();
+    /**
+     * Map with major ratings count
+     */
     private Map<String, Integer> majorCountMap = new HashMap<String, Integer>();
 
     /**
