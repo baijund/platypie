@@ -26,8 +26,6 @@ public class Users {
      */
     public static void addUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
         Log.i("addUser: ", "Attempting to add " + p.getUsername());
-
-
         UserRequester.addUser(p, rl, el);
     }
 
@@ -185,5 +183,7 @@ public class Users {
         }
         return unbannedUsers;
     }
+
+
 
 }

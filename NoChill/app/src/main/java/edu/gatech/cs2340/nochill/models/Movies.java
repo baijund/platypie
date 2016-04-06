@@ -91,6 +91,7 @@ public class Movies {
                     j2.put("major", CurrentUser.getProfile().getMajor());
                     j2.put("rating", 1);
                     j2.put("count", 1);
+                    j2.put("id", id);
                 } catch (Exception e){
                     Log.i("addUSer Error: ", "get param error");
                 }

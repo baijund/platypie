@@ -72,7 +72,7 @@ public class DescriptionActivity extends ActionBarActivity {
                 final Response.Listener<String> rl = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("Response: ", response);
+                        Log.i("Response to rate: ", response);
                         movie = CurrentMovie.getMovie();
                         updateFields();
                         Log.i("Ratebutton: ", "Clicked");
@@ -102,10 +102,13 @@ public class DescriptionActivity extends ActionBarActivity {
         final Response.Listener<String> rl = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONObject res = null;
+                JSONObject theRes = null;
                 MovieItem m = null;
                 try{
-                    res = new JSONObject(response);
+                    theRes = new JSONObject(response);
+                    Log.i("Response: ", "The response is " + response);
+                    JSONArray resPre = new JSONArray(theRes.getString("movie"));
+                    JSONObject res = resPre.getJSONObject(0);
                     final String name = res.getString("name");
                     final int year = res.getInt("year");
                     final String ratingMpaa = res.getString("rating_mpaa");
@@ -115,10 +118,18 @@ public class DescriptionActivity extends ActionBarActivity {
                     final int numRatings = res.getInt("numRatings");
                     final JSONArray jact = res.getJSONArray("actors");
                     final List<String> actors = new ArrayList<>();
+                    final JSONArray jMajors = theRes.getJSONArray("majorRatings");
+
                     for(int i = 0; i < jact.length(); i++){
                         actors.add((String)jact.get(i));
                     }
                     m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
+
+                    for(int i = 0; i < jMajors.length() - 1; i++){
+                        m.setMajorCount(jMajors.getJSONObject(i).getString("major"), jMajors.getJSONObject(i).getInt("count"));
+                        m.setMajorRating(jMajors.getJSONObject(i).getString("major"), jMajors.getJSONObject(i).getDouble("rating"));
+                    }
+
                 } catch (Exception e){
                     Log.i("Error: ", e.toString());
                 }

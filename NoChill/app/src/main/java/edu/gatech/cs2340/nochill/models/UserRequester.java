@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -72,7 +73,7 @@ public class UserRequester {
                     j.put("major", major);
                     j.put("password", password);
                     j.put("about", about);
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("addUSer Error: ", "get param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
