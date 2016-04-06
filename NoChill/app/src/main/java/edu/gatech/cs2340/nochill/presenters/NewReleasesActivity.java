@@ -80,10 +80,9 @@ public class NewReleasesActivity extends ActionBarActivity {
                                     final int numRatings = res.getInt("numRatings");
                                     final JSONArray jact = res.getJSONArray("actors");
                                     final List<String> actors = new ArrayList<>();
-                                    for (int i = 0; i < jact.length(); i++) {
-                                        actors.add((String) jact.get(i));
+                                    for (int j = 0; j < jact.length(); j++) {
+                                        actors.add((String) jact.get(j));
                                     }
-                                    //Log.i("m", "Assigning");
                                     m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
                                 } catch (Exception e) {
                                     Log.i("Error: ", e.toString());

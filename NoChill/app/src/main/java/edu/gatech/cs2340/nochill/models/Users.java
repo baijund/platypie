@@ -2,10 +2,8 @@ package edu.gatech.cs2340.nochill.models;
 
 import android.util.Log;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

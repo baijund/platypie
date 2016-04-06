@@ -2,6 +2,7 @@ package edu.gatech.cs2340.nochill.models;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Baijun on 2/19/2016.
@@ -15,8 +16,8 @@ public class MovieItem {
     private double averageRating;
     private int numRatings;
     private List<String> actors;
-    private HashMap<String, Double> majorRatingMap = new HashMap<String, Double>();
-    private HashMap<String, Integer> majorCountMap = new HashMap<String, Integer>();
+    private Map<String, Double> majorRatingMap = new HashMap<String, Double>();
+    private Map<String, Integer> majorCountMap = new HashMap<String, Integer>();
 
     /**
      * gets movie ID

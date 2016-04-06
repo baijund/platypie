@@ -22,7 +22,7 @@ public class Movies {
 
     private static RequestQueue queue = Requests.getQueue();
 
-    private static HashMap<Integer,MovieItem> movieMap = new HashMap<Integer,MovieItem>();
+    private static Map<Integer,MovieItem> movieMap = new HashMap<Integer,MovieItem>();
 
     /**
      * Gets movie from app

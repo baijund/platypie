@@ -14,7 +14,7 @@ import edu.gatech.cs2340.nochill.R;
 import edu.gatech.cs2340.nochill.models.CurrentUser;
 import edu.gatech.cs2340.nochill.models.Users;
 
-public class adminActivity extends ActionBarActivity {
+public class minActivity extends ActionBarActivity {
 
     private Spinner unbanSpinner;
     private ArrayAdapter<String> unbanAdapt; //Adapter displaying banned users

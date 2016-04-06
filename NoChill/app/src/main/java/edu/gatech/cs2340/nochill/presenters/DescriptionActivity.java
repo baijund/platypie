@@ -27,10 +27,6 @@ public class DescriptionActivity extends ActionBarActivity {
 
     private MovieItem movie;
     private TextView ratingtxt;
-    private TextView actorsText;
-    private TextView synopsisText;
-    private TextView mpaaText;
-    private TextView majorLabel;
     private TextView majorRatingText;
 
     /**
@@ -39,6 +35,10 @@ public class DescriptionActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TextView actorsText;
+        TextView synopsisText;
+        TextView mpaaText;
+        TextView majorLabel;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
         //Set the current movie
@@ -48,8 +48,6 @@ public class DescriptionActivity extends ActionBarActivity {
         majorRatingText = (TextView) findViewById(R.id.majorRatingTxt);
         majorLabel = (TextView) findViewById(R.id.majorLabel);
         majorLabel.setText(CurrentUser.getProfile().getMajor());
-//        TextView titleText = (TextView) findViewById(R.id.movieTitle);
-//        titleText.setText(movie.getName());
         synopsisText = (TextView) findViewById(R.id.synopsisText);
         synopsisText.setText(movie.getDescription());
         String actors = "";
@@ -144,7 +142,7 @@ public class DescriptionActivity extends ActionBarActivity {
                 if(m.getMajorCount(CurrentUser.getProfile().getMajor()) != 0){
                     majorRatingText.setText(String.format("%.2f", m.getMajorRating(CurrentUser.getProfile().getMajor())));
                 } else {
-                    Log.i("MAJOR COUNT","waht ZEROOOO");
+                    Log.i("MAJOR COUNT","is zero!!!!");
                 }
             }
         };
