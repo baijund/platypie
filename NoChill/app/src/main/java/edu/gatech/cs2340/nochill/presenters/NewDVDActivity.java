@@ -43,7 +43,7 @@ public class NewDVDActivity extends ActionBarActivity {
         setContentView(R.layout.activity_new_dvd);
         setTitle("New DVDs");
 
-        final List l = new ArrayList<MovieItem>();
+        final List<MovieItem> l = new ArrayList<MovieItem>();
         MovieRequester.requestNewReleases(new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -66,70 +66,22 @@ public class NewDVDActivity extends ActionBarActivity {
                             final JSONObject actorobj = actorsArr.getJSONObject(k);
                             actors.add(actorobj.getString("name"));
                         }
+                        l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, 0, 0, actors));
 
-                        final Response.Listener<String> rl = new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                MovieItem m = null;
-                                JSONObject res = null;
-                                try {
-                                    res = new JSONObject(response);
-                                    final String name = res.getString("name");
-                                    final int year = res.getInt("year");
-                                    final String ratingMpaa = res.getString("rating_mpaa");
-                                    final int id = res.getInt("ID");
-                                    final String description = res.getString("description");
-                                    final double averageRating = res.getDouble("averageRating");
-                                    final int numRatings = res.getInt("numRatings");
-                                    final JSONArray jact = res.getJSONArray("actors");
-                                    final List<String> actors = new ArrayList<>();
-                                    for (int j = 0; j < jact.length(); j++) {
-                                        actors.add((String) jact.get(j));
-                                    }
-                                    m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
-                                } catch (JSONException e) {
-                                    Log.i("Error: ", e.toString());
-                                }
+                        final ListView lv = (ListView) findViewById(R.id.movieList);
+                        lv.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
 
-                                double averageRating;
-                                int numRatings;
-                                if (m != null) {
-                                    averageRating = m.getAverageRating();
-                                    numRatings = m.getNumRatings();
-                                } else {
-                                    averageRating = 0;
-                                    numRatings = 0;
-                                }
-                                try {
-                                    l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, averageRating, numRatings, actors));
-                                } catch (JSONException e) {
-                                    Log.i("Error: ", e.toString());
-                                }
 
-                                final ListView lv = (ListView) findViewById(R.id.movieList);
-                                lv.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
-                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    public void onItemClick(AdapterView<?> parent, View view,
-                                                            int position, long id) {
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView<?> parent, View view,
+                                                    int position, long id) {
 
-                                        final Object o = lv.getItemAtPosition(position);
-                                        final MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
-                                        CurrentMovie.setMovie(movie);
-                                        goToActivityDescription();
-                                    }
-                                });
-
+                                final Object o = lv.getItemAtPosition(position);
+                                final MovieItem movie = (MovieItem) o;//As you are using Default String Adapter
+                                CurrentMovie.setMovie(movie);
+                                goToActivityDescription();
                             }
-                        };
-
-                        final Response.ErrorListener el = new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                            }
-                        };
-
-                        Movies.getMovie(id, rl, el);
+                        });
                     }
 
                 } catch (JSONException e) {
