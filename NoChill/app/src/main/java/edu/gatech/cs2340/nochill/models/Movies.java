@@ -20,6 +20,9 @@ import java.util.Map;
  * Created by Baijun on 2/27/2016.
  */
 public final class Movies {
+
+    private static String BASE = "http://128.61.59.145:3000";
+
     /**
      * Creates private constructor for Movies object
      */
@@ -44,7 +47,7 @@ public final class Movies {
      * @param el error listener
      */
     public static void getMovie(final Integer id, Response.Listener<String> rl, Response.ErrorListener el){
-        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/getMovie", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, BASE+"/movies/getMovie", rl, el){
             @Override
             protected Map<String,String> getParams(){
 
@@ -70,7 +73,7 @@ public final class Movies {
      * @param el error listener
      */
     public static void addMovie(final MovieItem m, Response.Listener<String> rl, Response.ErrorListener el){
-        final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/movies/addMovie", rl, el){
+        final StringRequest sr = new StringRequest(Request.Method.POST, BASE + "/movies/addMovie", rl, el){
             @Override
             protected Map<String,String> getParams(){
 
@@ -90,7 +93,7 @@ public final class Movies {
                     j.put("id", id);
                     j.put("year", year);
                     j.put("rating_mpaa", ratingMpaa);
-                    j.put("description", description);
+                    j.put("description", description.replace("'","''"));
                     j.put("averageRating", averageRating);
                     j.put("numRatings", numRatings);
                     j.put("actors", jArr);
@@ -193,7 +196,7 @@ public final class Movies {
      */
     public static void getMovieList(Response.Listener<String> rl, Response.ErrorListener el){
 
-        final StringRequest sr = new StringRequest(Request.Method.GET, "https://nochill.herokuapp.com/movies/getMovieList", rl, el);
+        final StringRequest sr = new StringRequest(Request.Method.GET, BASE + "/movies/getMovieList", rl, el);
         queue.add(sr);
 
 //        List<MovieItem> l = new ArrayList();

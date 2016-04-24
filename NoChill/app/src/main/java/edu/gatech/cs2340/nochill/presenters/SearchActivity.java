@@ -93,7 +93,6 @@ public class SearchActivity extends ActionBarActivity {
                         final ListView lv = (ListView) findViewById(R.id.theaterReleasesList);
                         lv.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
 
-
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             public void onItemClick(AdapterView<?> parent, View view,
                                                     int position, long id) {

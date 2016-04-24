@@ -75,6 +75,7 @@ public class DescriptionActivity extends ActionBarActivity {
         rateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rateButton.setEnabled(false);
                 final RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
                 final double rating = mBar.getRating();
                 final Response.Listener<String> rl = new Response.Listener<String>() {
@@ -86,6 +87,7 @@ public class DescriptionActivity extends ActionBarActivity {
                         Log.i("Ratebutton: ", "Clicked");
                         Log.i("CurrentMovie: ", CurrentMovie.getMovie().getName());
                         Log.i("Major Count: ", String.format("%d",CurrentMovie.getMovie().getMajorCount(CurrentUser.getProfile().getMajor())));
+                        //rateButton.setEnabled(true);
                     }
                 };
                 final Response.ErrorListener el = new Response.ErrorListener() {
