@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NoChill</string>
 
-    <string name="hello_world">Welcome to our app! Do you chill?</string>
+    <string name="hello_world">You do not chill.</string>
     <string name="login">Username:</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Login</string>

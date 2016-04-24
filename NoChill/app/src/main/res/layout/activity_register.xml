@@ -5,6 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".presenters.RegisterActivity"
+    android:background="@mipmap/background_fire"
     android:id="@+id/RegisterActivity">
 
     <TextView
@@ -12,8 +13,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/firstName"
         android:text="First Name: "
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:textSize="20dp"
-        android:layout_below="@+id/emailLine"
+        android:layout_below="@+id/email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -22,9 +25,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/firstNameLine"
         android:ems="10"
-        android:layout_alignTop="@+id/firstName"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="#ffffff"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/firstName"
+        android:layout_toRightOf="@+id/lastName"
+        android:layout_toEndOf="@+id/lastName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,8 +38,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Last Name: "
         android:id="@+id/lastName"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:textSize="20dp"
-        android:layout_below="@+id/firstNameLine"
+        android:layout_below="@+id/firstName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -41,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lastNameLine"
+        android:background="#ffffff"
         android:ems="10"
         android:layout_alignTop="@+id/lastName"
         android:layout_alignLeft="@+id/firstNameLine"
@@ -53,8 +62,9 @@
         android:text="Email: "
         android:id="@+id/email"
         android:textSize="20dp"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/editText"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -64,6 +74,7 @@
         android:id="@+id/emailLine"
         android:ems="10"
         android:layout_alignTop="@+id/email"
+        android:background="#ffffff"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -72,9 +83,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Username: "
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/username"
         android:textSize="20dp"
-        android:layout_below="@+id/lastNameLine"
+        android:layout_below="@+id/lastName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -84,6 +97,7 @@
         android:id="@+id/usernameLine"
         android:ems="10"
         android:layout_alignTop="@+id/username"
+        android:background="#ffffff"
         android:layout_alignLeft="@+id/emailLine"
         android:layout_alignStart="@+id/emailLine" />
 
@@ -94,6 +108,7 @@
         android:ems="10"
         android:id="@+id/passwordLine"
         android:layout_alignTop="@+id/password"
+        android:background="#ffffff"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -102,12 +117,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Password: "
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/password"
         android:textSize="20dp"
-        android:layout_below="@+id/lastNameLine"
+        android:layout_above="@+id/confirmPass"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="93dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,7 +132,12 @@
         android:text="Confirm Password: "
         android:id="@+id/confirmPass"
         android:textSize="20dp"
-        android:layout_below="@+id/passwordLine"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
+        android:layout_above="@+id/cancelButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="146dp"
         android:layout_toLeftOf="@+id/passwordLine"
         android:layout_toStartOf="@+id/passwordLine" />
 
@@ -126,49 +147,65 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/confirmPasswordLine"
-        android:layout_below="@+id/passwordLine"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="#ffffff"
+        android:layout_alignBottom="@+id/confirmPass"
+        android:layout_toRightOf="@+id/confirmPass"
+        android:layout_toEndOf="@+id/confirmPass" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
+        android:textColor="#9e2a00"
+        android:background="#ffffff"
+        android:typeface="monospace"
         android:id="@+id/cancelButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/email"
+        android:layout_alignEnd="@+id/email"
+        android:textSize="20dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:textColor="#9e2a00"
+        android:background="#ffffff"
+        android:typeface="monospace"
         android:id="@+id/registerButton"
         android:layout_alignTop="@+id/cancelButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/firstName"
+        android:layout_toEndOf="@+id/firstName"
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Major: "
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView9"
         android:textSize="20dp"
-        android:layout_below="@+id/usernameLine"
-        android:layout_alignRight="@+id/email"
-        android:layout_alignEnd="@+id/email" />
+        android:layout_below="@+id/username"
+        android:layout_alignRight="@+id/cancelButton"
+        android:layout_alignEnd="@+id/cancelButton" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/majorLine"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9"
         android:entries="@array/majors"
-        android:layout_above="@+id/passwordLine"
-        android:layout_alignLeft="@+id/usernameLine"
-        android:layout_alignStart="@+id/usernameLine" />
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
+        android:background="#ffffff"
+        android:layout_below="@+id/textView9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -4,12 +4,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".presenters.LoginActivity">
+    tools:context=".presenters.LoginActivity"
+    android:background="@mipmap/background_fire"
+    >
 
     <TextView android:text="@string/login" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:id="@+id/textView2"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:textSize="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -19,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password:"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView3"
         android:layout_marginTop="38dp"
         android:textSize="20dp"
@@ -34,7 +40,8 @@
         android:id="@+id/password"
         android:layout_alignTop="@+id/textView3"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -43,12 +50,16 @@
         android:ems ="10"
         android:layout_alignTop="@+id/textView2"
         android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password" />
+        android:layout_alignStart="@+id/password"
+        android:background="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login!"
+        android:textColor="#9e2a00"
+        android:background="#ffffff"
+        android:typeface="monospace"
         android:id="@+id/loginButton"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/emailLine"
@@ -58,8 +69,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
+        android:textColor="#9e2a00"
+        android:background="#ffffff"
+        android:typeface="monospace"
         android:id="@+id/cancelButton"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

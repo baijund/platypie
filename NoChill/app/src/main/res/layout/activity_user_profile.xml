@@ -7,13 +7,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".presenters.UserProfileActivity">
+    tools:context=".presenters.UserProfileActivity"
+    android:background="@mipmap/background_fire">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Name: "
         android:textSize="20dp"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/fnamelabel"
         android:layout_alignTop="@+id/fname"
         android:layout_alignParentLeft="true"
@@ -26,13 +29,17 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/fnamelabel" />
+        android:layout_toEndOf="@+id/fnamelabel"
+        android:layout_toRightOf="@+id/fnamelabel"
+        android:background="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last Name:"
         android:textSize="20dp"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView5"
         android:layout_below="@+id/fname"
         android:layout_alignParentLeft="true"
@@ -46,14 +53,18 @@
         android:layout_alignRight="@+id/fname"
         android:layout_alignEnd="@+id/fname"
         android:layout_toEndOf="@+id/textView5"
+        android:layout_toRightOf="@+id/textView5"
         android:layout_alignLeft="@+id/fname"
-        android:layout_alignStart="@+id/fname" />
+        android:layout_alignStart="@+id/fname"
+        android:background="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="About Me"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView6"
         android:layout_above="@+id/aboutme"
         android:layout_centerHorizontal="true" />
@@ -64,17 +75,21 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/aboutme"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/lname"
-        android:layout_alignEnd="@+id/lname"
+        android:background="#ffffff"
+        android:layout_above="@+id/updateButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="89dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email: "
         android:textSize="20dp"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView7"
         android:layout_below="@+id/lname"
         android:layout_alignParentLeft="true"
@@ -87,24 +102,30 @@
         android:layout_alignTop="@+id/textView7"
         android:layout_toRightOf="@+id/fnamelabel"
         android:layout_alignRight="@+id/lname"
-        android:layout_alignEnd="@+id/lname" />
+        android:layout_alignEnd="@+id/lname"
+        android:background="#ffffff"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Profile"
         android:id="@+id/updateButton"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
+        android:background="#ffffff"
+        android:layout_marginBottom="61dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="61dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Major: "
         android:textSize="20dp"
+        android:textColor="#9e2a00"
+        android:typeface="monospace"
         android:id="@+id/textView8"
-        android:layout_below="@+id/email"
+        android:layout_below="@+id/textView7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -113,11 +134,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/majorLine2"
         android:entries="@array/majors"
-        android:layout_below="@+id/email"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/textView6"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6" />
+        android:background="#ffffff"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
