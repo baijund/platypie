@@ -5,8 +5,18 @@ import com.android.volley.Response;
 /**
  * Created by Baijun on 2/27/2016.
  */
-public class CurrentMovie {
+public final class CurrentMovie {
 
+    /**
+     * creates private constructor for current movie
+     */
+    private CurrentMovie() {
+
+    }
+
+    /**
+     * movie item that is current
+     */
     private static MovieItem movie;
 
     /**

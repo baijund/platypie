@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.gatech.cs2340.nochill.models.CurrentUser;
@@ -21,6 +26,9 @@ import edu.gatech.cs2340.nochill.models.Users;
 
 public class LoginActivity extends ActionBarActivity {
 
+    /**
+     * current context
+     */
     private final Context thisContext = this;
 
     /**
@@ -65,14 +73,10 @@ public class LoginActivity extends ActionBarActivity {
     private void checkUserAndPass(){
         final String username = ((EditText) findViewById(R.id.userName)).getText().toString();
         final String password = ((EditText) findViewById(R.id.password)).getText().toString();
-
         final Response.Listener<String> rl = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("getUser response: ", response);
-
                 Profile p = null;
-
                 try{
                     final JSONObject res = new JSONObject(response);
                     final String firstname = res.getString("firstname");
@@ -81,10 +85,9 @@ public class LoginActivity extends ActionBarActivity {
                     final String username = res.getString("username");
                     final String aboutme = res.getString("aboutme");
                     final String major = res.getString("major");
-                    //String password = res.getString("password");
                     p = new Profile(firstname, lastname, email, username, password, major);
                     p.setAboutMe(aboutme);
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("error: ", e.toString());
                 }
 
@@ -98,7 +101,7 @@ public class LoginActivity extends ActionBarActivity {
                     Toast.makeText(thisContext, "Bad user, you are banned.",
                             Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(thisContext, "Incorrect credentials",
+                    Toast.makeText(thisContext, "Incorrect login",
                             Toast.LENGTH_LONG).show();
                 }
             }

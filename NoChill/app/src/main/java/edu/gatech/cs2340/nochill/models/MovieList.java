@@ -16,7 +16,13 @@ import edu.gatech.cs2340.nochill.R;
  * Created by Baijun on 2/19/2016.
  */
 public class MovieList extends ArrayAdapter<MovieItem> {
+    /**
+     * context to list movie activity
+     */
     private Activity context;
+    /**
+     * Listing of movieitem
+     */
     private List<MovieItem> list;
 
     /**

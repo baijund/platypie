@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -25,12 +26,17 @@ import edu.gatech.cs2340.nochill.models.Movies;
 
 public class DescriptionActivity extends ActionBarActivity {
 
+    /**
+     * Description for the movie
+     */
     private MovieItem movie;
+    /**
+     * Text for general rating
+     */
     private TextView ratingtxt;
-    private TextView actorsText;
-    private TextView synopsisText;
-    private TextView mpaaText;
-    private TextView majorLabel;
+    /**
+     * Text for major rating
+     */
     private TextView majorRatingText;
 
     /**
@@ -39,6 +45,10 @@ public class DescriptionActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TextView actorsText;
+        TextView synopsisText;
+        TextView mpaaText;
+        TextView majorLabel;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
         //Set the current movie
@@ -48,8 +58,6 @@ public class DescriptionActivity extends ActionBarActivity {
         majorRatingText = (TextView) findViewById(R.id.majorRatingTxt);
         majorLabel = (TextView) findViewById(R.id.majorLabel);
         majorLabel.setText(CurrentUser.getProfile().getMajor());
-//        TextView titleText = (TextView) findViewById(R.id.movieTitle);
-//        titleText.setText(movie.getName());
         synopsisText = (TextView) findViewById(R.id.synopsisText);
         synopsisText.setText(movie.getDescription());
         String actors = "";
@@ -72,7 +80,7 @@ public class DescriptionActivity extends ActionBarActivity {
                 final Response.Listener<String> rl = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("Response: ", response);
+                        Log.i("Response to rate: ", response);
                         movie = CurrentMovie.getMovie();
                         updateFields();
                         Log.i("Ratebutton: ", "Clicked");
@@ -102,10 +110,13 @@ public class DescriptionActivity extends ActionBarActivity {
         final Response.Listener<String> rl = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONObject res = null;
+                JSONObject theRes = null;
                 MovieItem m = null;
                 try{
-                    res = new JSONObject(response);
+                    theRes = new JSONObject(response);
+                    Log.i("Response: ", "The response is " + response);
+                    final JSONArray resPre = new JSONArray(theRes.getString("movie"));
+                    final JSONObject res = resPre.getJSONObject(0);
                     final String name = res.getString("name");
                     final int year = res.getInt("year");
                     final String ratingMpaa = res.getString("rating_mpaa");
@@ -115,11 +126,19 @@ public class DescriptionActivity extends ActionBarActivity {
                     final int numRatings = res.getInt("numRatings");
                     final JSONArray jact = res.getJSONArray("actors");
                     final List<String> actors = new ArrayList<>();
+                    final JSONArray jMajors = theRes.getJSONArray("majorRatings");
+
                     for(int i = 0; i < jact.length(); i++){
                         actors.add((String)jact.get(i));
                     }
                     m = new MovieItem(name, year, ratingMpaa, id, description, averageRating, numRatings, actors);
-                } catch (Exception e){
+
+                    for(int i = 0; i < jMajors.length() - 1; i++){
+                        m.setMajorCount(jMajors.getJSONObject(i).getString("major"), jMajors.getJSONObject(i).getInt("count"));
+                        m.setMajorRating(jMajors.getJSONObject(i).getString("major"), jMajors.getJSONObject(i).getDouble("rating"));
+                    }
+
+                } catch (JSONException e){
                     Log.i("Error: ", e.toString());
                 }
                 if(m == null){
@@ -133,7 +152,7 @@ public class DescriptionActivity extends ActionBarActivity {
                 if(m.getMajorCount(CurrentUser.getProfile().getMajor()) != 0){
                     majorRatingText.setText(String.format("%.2f", m.getMajorRating(CurrentUser.getProfile().getMajor())));
                 } else {
-                    Log.i("MAJOR COUNT","waht ZEROOOO");
+                    Log.i("MAJOR COUNT","is zero!!!!");
                 }
             }
         };

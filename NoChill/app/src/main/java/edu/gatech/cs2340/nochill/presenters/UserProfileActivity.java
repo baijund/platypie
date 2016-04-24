@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.gatech.cs2340.nochill.models.CurrentUser;
@@ -22,14 +23,33 @@ import edu.gatech.cs2340.nochill.models.Profile;
 import edu.gatech.cs2340.nochill.R;
 
 public class UserProfileActivity extends ActionBarActivity {
-
+    /**
+     * Creates screen for UserProfileActivity
+     */
     private final Context thisContext = this;
-
+    /**
+     * User's profile
+     */
     private Profile p = CurrentUser.getProfile();
+    /**
+     * Editable text for first name
+     */
     private EditText fname;
+    /**
+     * Editable text for last name
+     */
     private EditText lname;
+    /**
+     * Editable text for email
+     */
     private EditText email;
+    /**
+     * Editable text for description
+     */
     private EditText aboutMe;
+    /**
+     * Editable text for major
+     */
     private Spinner major;
 
     /**
@@ -91,7 +111,7 @@ public class UserProfileActivity extends ActionBarActivity {
                 try {
                     final JSONObject res = new JSONObject(response);
                     added = !res.getBoolean("error");
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("Error: ", e.toString());
                 }
 

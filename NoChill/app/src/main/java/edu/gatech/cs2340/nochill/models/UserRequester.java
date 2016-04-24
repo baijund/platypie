@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -16,8 +17,34 @@ import java.util.Map;
 /**
  * Created by Baijun on 3/29/2016.
  */
-public class UserRequester {
+public final class UserRequester {
+    /**
+     * USERNAME
+     */
+    private static final  String USERNAME = "username";
+    /**
+     * URL
+     */
+    private static final  String URL = "application/x-www-form-urlencoded";
+    /**
+     * Type
+     */
+    private static final  String TYPE = "Content-Type";
+    /**
+     * password
+     */
+    private static final  String PWORD = "password";
 
+    /**
+     * Constructor for private userrequester
+     */
+    private UserRequester() {
+
+    }
+
+    /**
+     * queue for requests
+     */
     private static RequestQueue queue = Requests.getQueue();
 
     /**
@@ -27,18 +54,19 @@ public class UserRequester {
      * @param el error listener
      */
     public static void getUser(final String username, Response.Listener<String> rl, Response.ErrorListener el){
+
         final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/getUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("username",username);
+                params.put(USERNAME,username);
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                params.put(TYPE, URL);
                 return params;
             }
         };
@@ -53,6 +81,7 @@ public class UserRequester {
      * @param el error listener
      */
     public static void addUser(final Profile p, Response.Listener<String> rl, Response.ErrorListener el){
+
         final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/addUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
@@ -68,11 +97,11 @@ public class UserRequester {
                     j.put("firstName", firstName);
                     j.put("lastName", lastName);
                     j.put("email", email);
-                    j.put("username", username);
+                    j.put(USERNAME, username);
                     j.put("major", major);
-                    j.put("password", password);
+                    j.put(PWORD, password);
                     j.put("about", about);
-                } catch (Exception e){
+                } catch (JSONException e){
                     Log.i("addUSer Error: ", "get param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
@@ -84,7 +113,7 @@ public class UserRequester {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                params.put(TYPE, URL);
                 return params;
             }
         };
@@ -99,19 +128,20 @@ public class UserRequester {
      * @param el error listener
      */
     public static void login(final String username, final String password, Response.Listener<String> rl, Response.ErrorListener el){
+
         final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/login", rl, el){
             @Override
             protected Map<String,String> getParams(){
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("username", username);
-                params.put("password", password);
+                params.put(USERNAME, username);
+                params.put(PWORD, password);
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                params.put(TYPE, URL);
                 return params;
             }
         };
@@ -125,6 +155,7 @@ public class UserRequester {
      * @param el error listener
      */
     public static void editUser(final Profile p, Response.Listener<String> rl, Response.ErrorListener el){
+
         final StringRequest sr = new StringRequest(Request.Method.POST, "https://nochill.herokuapp.com/users/editUser", rl, el){
             @Override
             protected Map<String,String> getParams(){
@@ -141,12 +172,12 @@ public class UserRequester {
                     j.put("firstName", firstName);
                     j.put("lastName", lastName);
                     j.put("email", email);
-                    j.put("username", username);
+                    j.put(USERNAME, username);
                     j.put("major", major);
-                    j.put("password", password);
+                    j.put(PWORD, password);
                     j.put("about", about);
-                    j.put("password", CurrentUser.getProfile().getPassword());
-                } catch (Exception e){
+                    j.put(PWORD, CurrentUser.getProfile().getPassword());
+                } catch (JSONException e){
                     Log.i("editUser Error: ", "param error");
                 }
                 Log.i("PARAMETERS: ", j.toString());
@@ -158,7 +189,7 @@ public class UserRequester {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                params.put(TYPE, URL);
                 return params;
             }
         };

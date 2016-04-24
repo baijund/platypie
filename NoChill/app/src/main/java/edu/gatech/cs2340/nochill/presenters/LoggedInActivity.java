@@ -182,7 +182,7 @@ public class LoggedInActivity extends ActionBarActivity {
      */
     private void goToAdminChanges() {
         if(CurrentUser.getProfile().isAdmin()){
-            final Intent intent = new Intent(this, adminActivity.class);
+            final Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Not an admin",

@@ -2,10 +2,8 @@ package edu.gatech.cs2340.nochill.models;
 
 import android.util.Log;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,8 +12,15 @@ import java.util.List;
 /**
  * Created by Alaap on 2/13/16.
  */
-public class Users {
+public final class Users {
+    /**
+     * Creates private constructor for users
+     */
+    private Users() {}
 
+    /**
+     * List of Profiles
+     */
     private static List<Profile> userList = new LinkedList<Profile>();
 
     /**
@@ -26,8 +31,6 @@ public class Users {
      */
     public static void addUser(Profile p, Response.Listener<String> rl, Response.ErrorListener el){
         Log.i("addUser: ", "Attempting to add " + p.getUsername());
-
-
         UserRequester.addUser(p, rl, el);
     }
 
@@ -185,5 +188,7 @@ public class Users {
         }
         return unbannedUsers;
     }
+
+
 
 }

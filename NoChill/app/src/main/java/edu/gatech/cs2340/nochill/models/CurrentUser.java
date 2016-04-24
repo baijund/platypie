@@ -6,9 +6,22 @@ import com.android.volley.Response;
  * Created by Baijun on 2/14/2016.
  * This class holds information on the logged in user
  */
-public class CurrentUser {
+public final class CurrentUser {
 
+    /**
+     * Creates private constructor for currentuser
+     */
+    private CurrentUser() {
+
+    }
+
+    /**
+     * State of being logged in
+     */
     private static boolean loggedIn;
+    /**
+     * Current user's profile
+     */
     private static Profile profile;
 
     /**
