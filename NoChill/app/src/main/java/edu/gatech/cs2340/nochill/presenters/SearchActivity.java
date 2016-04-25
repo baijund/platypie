@@ -90,7 +90,7 @@ public class SearchActivity extends ActionBarActivity {
                         }
                         l.add(new MovieItem(j.getString("title"), j.getInt("year"), j.getString("mpaa_rating"), id, description, 0, 0, actors));
 
-                        final ListView lv = (ListView) findViewById(R.id.theaterReleasesList);
+                        final ListView lv = (ListView) findViewById(R.id.titleList);
                         lv.setAdapter(new MovieList(thisContext, R.layout.movie_item, l));
 
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

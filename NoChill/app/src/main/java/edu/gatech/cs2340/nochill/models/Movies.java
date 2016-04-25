@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public final class Movies {
 
-    private static String BASE = "http://128.61.59.145:3000";
+    private static String BASE = "https://nochill.herokuapp.com";
 
     /**
      * Creates private constructor for Movies object
