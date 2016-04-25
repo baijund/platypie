@@ -62,8 +62,8 @@
         android:typeface="monospace"
         android:id="@+id/loginButton"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/emailLine"
-        android:layout_alignEnd="@+id/emailLine" />
+        android:layout_alignRight="@+id/password"
+        android:layout_alignEnd="@+id/password" />
 
     <Button
         android:layout_width="wrap_content"
